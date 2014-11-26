@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="style.css" rel="stylesheet" />
+    <title>Laptop Choice</title>
+    <script type="text/javascript">
+        function showVal(newVal, id) {
+            document.getElementById(id).value = newVal;
+        }
+    </script>
+</head>
+<body>
+    <div id="container">    
+        <div id="products">
+            <div><h1>Apple's Laptops (6)</h1></div>
+            <button onclick="window.open('http://laptop.bg/laptops-apple-MacBook_Air_11_6-apple_macbook_air_md712za');">
+                <div class="notebook-description">
+                    <h2>Apple MacBook Air</h2>
+                    <p>11.6 inch/1.3GHz</p>
+                    <p>Haswell</p>
+                    <img src="images/MacBook_Air_11_6.jpg" alt="Apple Macbook" />
+                </div>
+                <div class="notebook-price">$1,729.00</div>
+            </button>
+            <button onclick="window.open('http://laptop.bg/laptops-apple-MacBook_Air_11_6-apple_macbook_air_md711zb');">
+                <div class="notebook-description">
+                    <h2>Apple MacBook Air</h2>
+                    <p>11.6 inch/1.4GHz</p>
+                    <p>Haswell</p>
+                    <img src="images/MacBook_Air_11_6.jpg" alt="Apple Macbook" />
+                </div>
+                <div class="notebook-price">$1,825.00</div>
+            </button>
+            <button onclick="window.open('http://laptop.bg/laptops-apple-MacBook_Air-apple_macbook_air_md760zb');">
+                <div class="notebook-description">
+                    <h2>Apple MacBook Air</h2>
+                    <p>13.3 inch/1.3GHz</p>
+                    <p>Haswell</p>
+                    <img src="images/MacBook_Air_13_3.jpg" alt="Apple Macbook" />
+                </div>
+                <div class="notebook-price">$1,919.00</div>
+            </button>
+            <button onclick="window.open('http://laptop.bg/laptops-apple-MacBook_Air-apple_macbook_air_z0p0bg_cto');">
+                <div class="notebook-description">
+                    <h2>Apple MacBook Air</h2>
+                    <p>13.3 inch/1.7GHz</p>
+                    <p>Haswell</p>
+                    <img src="images/MacBook_Air_13_3.jpg" alt="Apple Macbook" />
+                </div>
+                <div class="notebook-price">$1,999.00</div>
+            </button>
+            <button onclick="window.open('http://laptop.bg/laptops-apple-MacBook_Air_11_6-apple_macbook_air_md712zb');">
+                <div class="notebook-description">
+                    <h2>Apple MacBook Air</h2>
+                    <p>11.6 inch/1.4GHz</p>
+                    <p>Haswell 256GB SSD</p>
+                    <img src="images/MacBook_Air_11_6.jpg" alt="Apple Macbook" />
+                </div>
+                <div class="notebook-price">$2,119.00</div>
+            </button>
+            <button onclick="window.open('http://laptop.bg/laptops-apple-MacBook_Pro_13-apple_macbook_pro__md101z_a');">
+                <div class="notebook-description">
+                    <h2>Apple MacBook Pro</h2>
+                    <p>13.3 inch/2.5GHz</p>
+                    <p>Ivy Bridge</p>
+                    <img src="images/MacBook_Pro_13_3.jpg" alt="Apple Macbook" />
+                </div>
+                <div class="notebook-price">$2,529.00</div>
+            </button>
+        </div>
+
+        <div id="filters">
+            <form>
+                <label for="price-label">Price($): <input type="text" id="price-label" value="2100" disabled /></label>
+                <div>
+                    <span>1700</span><span>2600</span>
+                </div>
+                <input type="range" id="price" oninput="showVal(this.value, 'price-label')" onchange="showVal(this.value, 'price-label')" value="2100" min="1700" max="2600" step="100" />
+                <label for="ram-label">RAM(MB): <input id="ram-label" value="3072" disabled /></label>
+                <div>
+                    <span>2048</span><span>4096</span>
+                </div>
+                <input type="range" id="ram" onreset="showVal(this.value, 'ram-label')" oninput="showVal(this.value, 'ram-label')" onchange="showVal(this.value, 'ram-label')" value="3072" min="2048" max="4096" step="1024" />
+                <label for="disc-label">Disc(GB): <input id="disc-label" value="1000" disabled /></label>
+                <div>
+                    <span>100GB</span><span>2000GB</span>
+                </div>
+                <input type="range" id="disc" oninput="showVal(this.value, 'disc-label')" onchange="showVal(this.value, 'disc-label')" value="1000" min="100" max="2000" step="100" />
+                <label for="display-label">Display(inch): <input id="display-label" value="14.8" disabled></label>
+                <div>
+                    <span>11.6</span><span>18.4</span>
+                </div>
+                <input type="range" id="display" oninput="showVal(this.value, 'display-label')" onchange="showVal(this.value, 'display-label')" value="14.8" min="11.6" max="18.4" step="0.4" />
+                <label for="weight-label">Weight(kg): <input id="weight-label" value="3" disabled /></label>
+                <div>
+                    <span>1</span><span>6</span>
+                </div>
+                <input type="range" id="weight" oninput="showVal(this.value, 'weight-label')" onchange="showVal(this.value, 'weight-label')" value="3" min="1" max="6" step="1" />
+                <label for="warranty-label">Warranty(months): <input id="warranty-label" value="36" disabled></label>
+                <div>
+                    <span>12 months</span><span>60 months</span>
+                </div>
+                <input type="range" id="warranty" oninput="showVal(this.value, 'warranty-label')" onchange="showVal(this.value, 'warranty-label')" value="36" min="12" max="60" step="12" />
+                <input type="reset" value="Reset Filters" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

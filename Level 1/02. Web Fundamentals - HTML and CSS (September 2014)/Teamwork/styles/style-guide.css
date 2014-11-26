@@ -1,0 +1,53 @@
+main {
+    overflow: auto;
+}
+
+#navigation-guide {
+    width: 20%;
+    float: left;
+    line-height: 27px;
+}
+#navigation-guide ul {
+    background: rgba(29, 29, 29, 0.7);
+    border-radius: 10px;
+    font-size: 1.2em;
+    list-style: none;
+    border: 2px solid gray;
+    padding: 5% 1% 5% 5%;
+}
+
+#navigation-guide a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#navigation-guide a:hover {
+    color: #9389d0;
+}
+
+main h2 {
+    font-size: 1em;
+    text-align: justify;
+}
+
+#guide {
+    width: 80%;
+    float: right;
+    padding-left: 2%;
+}
+
+article {
+    overflow: auto;
+}
+
+article img{
+    width: 35%;
+    float: left;
+}
+
+article div {
+    width: 65%;
+    float: right;
+    padding-left: 1%;
+    text-align: justify;
+}

@@ -1,0 +1,172 @@
+﻿body {
+    background-image: url(images/background.jpg);
+    font-family: Tahoma;
+    margin: 0;
+}
+
+/*--- 1.Header ---*/
+
+body > header {
+    background: linear-gradient(to right, #ff0000 33.3%, #008000 33.3%, #008000 66.7%, #0000ff 66.7%);
+    color: #ffff00;
+    width: 100%;
+    height: 55px;
+    font-size: 35px;
+    font-weight: bold; 
+    text-align: center;
+    vertical-align: top;   
+    padding-top: 0;
+}
+
+/*--- 2.Navigation menu ---*/
+
+a:visited {
+    color: #808080;
+}
+
+aside {
+    background-color: rgba(255, 255, 255, 0.9);  
+    border-radius: 18px 18px 18px 18px;
+    padding: 10px 10px;
+    margin: 30px 15px;
+    width: 225px;
+    float: left;
+}
+
+aside header {
+    font-size: 20px;
+    font-weight: bolder;
+    text-decoration: underline; 
+    padding-left: 5px;
+}
+
+ul {
+    color: #000000;
+    list-style-type: none;
+    margin-top: 4px;
+    margin-bottom: 0;
+    padding-left: 0;
+    width: 100%;      
+}
+
+li {
+    background-image: url(images/bullet.png);
+    background-repeat: no-repeat;
+    background-position: 10px 11px;
+    border-radius: 7px 7px 7px 7px;  
+    font-size: 18px;  
+    line-height: 25px;     
+    padding: 6px 0 6px 35px;
+    
+}
+
+li:nth-child(1):hover {
+    background-color: #FF0000;
+}
+
+li:nth-child(2):hover {
+    background-color: #FFA500;
+}
+
+li:nth-child(3):hover {
+    background-color: #FFFF00;
+}
+
+li:nth-child(4):hover {
+    background-color: #008000;
+}
+
+li:nth-child(5):hover {
+    background-color: #0000FF;
+}
+
+li:nth-child(6):hover {
+    background-color: #800080;
+}
+
+li a, li:hover a {
+    color: #000000;
+    cursor: default;
+    text-decoration: none;
+}
+
+/*--- 3.Section ---*/
+
+section {
+    display: block;  
+    margin: 30px 25px 30px 285px;
+}
+
+section header {
+    color: #ffffff;
+    border-radius: 9px 9px;
+    font-size: 30px;
+    height: 50px;    
+    padding-left: 20px;
+    padding-top: 10px;   
+}
+
+article {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 18px;
+    margin-bottom: 20px;   
+    padding: 15px;
+    font-size: 20px;
+}
+
+article a {
+    color: #808080;
+}
+
+div {
+    margin-top: 0;
+    display: inline-block;
+}
+
+div::first-letter {
+    font-size: 60px !important;
+}
+
+div::first-line {
+    font-style: italic !important;
+}
+
+span:lang(la) {
+    color: #0000ff;
+    font-style: italic;
+}
+
+span:lang(la):before,  span:lang(la):after {
+    content: "\"";
+}
+
+footer {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+#webColors {
+    background-color: #FF0000;
+}
+
+#webSafeColors {
+    background-color: #FFA500;
+    color: #000000;
+}
+
+#RGB {
+    background-color: #FFFF00;
+    color: #000000;
+}
+
+#RGBA {
+    background-color: #008000;
+}
+
+#HSLHSV {
+    background-color: #0000FF;
+}
+
+#lorem {
+    background-color: #800080;
+}

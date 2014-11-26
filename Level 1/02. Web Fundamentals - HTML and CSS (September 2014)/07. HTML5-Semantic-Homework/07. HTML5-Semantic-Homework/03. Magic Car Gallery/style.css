@@ -1,0 +1,42 @@
+﻿div, header, h1, section, iframe, ul, li, a {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Tahoma;
+    font-size: 20px;
+}
+
+#container {
+    background: #000000;
+    border-radius: 10px;
+    width: 470px;
+    margin: 0 auto;
+    padding: 20px;   
+}
+
+h1 {
+    color: #FDC606;
+    margin-top: 0;
+    text-align: center;
+}
+
+iframe, ul {
+    display: inline-block;
+}
+
+ul {
+    vertical-align: top;
+    margin: 0;
+    padding-left: 20px;
+}
+
+li {
+    line-height: 27px;
+}    
+
+a {
+    font-style: italic;
+    text-decoration: none;
+    color: #ffffff;
+}

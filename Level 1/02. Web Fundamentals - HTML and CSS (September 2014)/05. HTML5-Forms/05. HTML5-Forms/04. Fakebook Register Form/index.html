@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="style.css" rel="stylesheet" />
+    <title>Fakebook Register Form</title>
+</head>
+<body>
+    <div id="container">
+        <div id="title">
+            <h1>fakebook<span>&reg;</span></h1>
+            <h2>Registration</h2>
+            <h3>It is safe and it will always be!</h3>
+        </div>
+        <form method="post" action="#">
+            <fieldset id="non-important">
+                <legend>None-Important Infomation</legend>
+                <div>
+                    <input class="long-text" type="text" placeholder="First Name" />
+                    <input class="long-text" type="text" placeholder="Last Name" />
+                </div>
+                <div>
+                    <input class="long-text" type="email" placeholder="Your Email" pattern="\b[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}\b" />
+                    <input class="long-text" type="tel" title="Can contain only + and digits" placeholder="Phone Number" pattern="[0-9+ ]+" />
+                </div>
+                <div>
+                    <input class="long-text" type="password" placeholder="Your Password" />
+                    <input class="long-text" type="url" placeholder="Website" />
+                </div>
+                <div>
+                    <div><label id="birthday-label" for="birthday">Birthday</label></div>
+                    <input type="datetime-local" id="birthday" value="2000-01-01T00:00" />
+                </div>
+                <div id="gender">
+                    <input id="female" type="radio" name="gender" />
+                    <label for="female">Female</label>
+                    <input id="male" type="radio" name="gender" />
+                    <label for="male">Male</label>
+                    <input id="other" type="radio" name="gender" />
+                    <label for="other">Other</label>
+                </div>
+            </fieldset>
+            <fieldset id="important">
+                <legend>Important Information *required</legend>
+                <div>
+                    <select class="long-text" tabindex="3" required>
+                        <option selected value="" disabled>Country</option>
+                        <option>Austria</option>
+                        <option>Bulgaria</option>
+                        <option>Germany</option>
+                        <option>USA</option>
+                        <option>Other</option>
+                    </select>
+                    <input class="long-text" type="text" placeholder="Village" tabindex="1" required />
+                    <input class="long-text" type="text" placeholder="District" tabindex="2" required />
+                </div>
+                <div>
+                    <input class="long-text" type="text" placeholder="Street" tabindex="5" required />
+                    <input type="text" placeholder="Nr" tabindex="6" required />
+                    <input type="text" placeholder="Floor" tabindex="7" required />
+                    <input type="text" placeholder="Ap Nr" tabindex="8" required />
+                </div>
+                <div>
+                    <label id="color-label" for="color">Door Color</label>
+                </div>
+                <div>
+                    <input type="color" id="color" tabindex="4" value="#FF80C0">
+                    <input class="long-text" type="text" placeholder="Water Meter Nr" required>
+                    <select class="long-text" required>
+                        <option selected value="" disabled>Aunt Panties` Size</option>
+                        <option>50</option>
+                        <option>56</option>
+                        <option>58</option>
+                        <option>60</option>
+                        <option>60+</option>
+                    </select>
+                </div>
+                <div>
+                    <label>More Personal Information</label>
+                </div>
+                <div>
+                    <textarea placeholder="Give Us More Information!" required></textarea>
+                </div>
+            </fieldset>
+            <input type="reset" value="Clear Form">
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+body, div, footer, section, h1, ul, li, a {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PT Sans', Tahoma, sans-serif;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+
+#container {
+    background: #234465;
+    background-size: contain;
+    height: 280px;   
+    min-width: 1170px;
+    vertical-align: bottom;
+}
+
+footer{
+    width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FF9C00;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FF9C00;
+    text-decoration: none;
+    -webkit-transition: color .2s ease-in-out;
+    -moz-transition: color .2s ease-in-out;
+    -ms-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    line-height: 24px;
+}
+
+#social li{
+    display: inline-block;
+}
+
+input {
+    background: none;
+    border: 2px solid #FF9C00;
+    color: #fff;
+    display: block;
+    width: 160px;
+    height: 44px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+input:hover {
+    background: #FF9C00;
+    -webkit-transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    -ms-transition: background .5s ease-in-out;
+    -o-transition: background .5s ease-in-out;
+    transition: background .5s ease-in-out;
+}
+
+img:hover {
+    opacity: 0.5;
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+    cursor: pointer;
+}
+
+section {
+    display: inline-block;
+    vertical-align: top;
+    padding: 40px 10px 0 0;
+}
+
+    #buttons {
+        width: 190px;
+        height: 158px;  
+    }
+
+    #menu, #friends {
+        width: 200px;
+        height: 254px;
+    }
+
+    #learning-system {
+        width: 285px;
+        height: 254px;
+    }
+
+    #facebook-box {
+        padding-top: 30px;
+        width: 240px;
+        height: 254px;
+    }
+
+
+.fb-like-box {
+    background: rgba(255,255,255,.9);
+}

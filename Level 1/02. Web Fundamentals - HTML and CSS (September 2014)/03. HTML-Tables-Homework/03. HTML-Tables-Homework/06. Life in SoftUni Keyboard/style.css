@@ -1,0 +1,60 @@
+﻿#container {
+    width: 440px;
+    margin: 0 auto;
+}
+
+table, td, th {
+    border: 1px solid #000000;
+}
+
+th button {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 494px;  
+}
+
+tbody tr:nth-child(3) button {
+    height: 138px;
+}
+
+#nested-table, #nested-table td {
+    border: none;
+}
+
+#nested-table button {
+    font-size: 13px;
+    height: 60px;
+    width: 110px;
+    margin: 3px;  
+}
+
+button {
+    background: linear-gradient(to bottom, #f1f1f1 0,#ebebeb 50%,#dcdcdc 50%,#dcdcdc 100%,#d2d2d2 100%);
+    font-family: Tahoma;
+    font-size: 18px;
+    color: #0000ff;
+    border: 1px solid gray;
+    border-radius: 5px;
+    outline: none;
+    height: 100px;
+    width: 110px;
+    margin: 6px;   
+    padding: 0;
+}
+
+button:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.two-cells button {
+    width: 238px;
+}
+
+.three-cells button {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+    width: 366px;  
+}

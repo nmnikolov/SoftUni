@@ -1,0 +1,39 @@
+﻿body {
+    font-family: Tahoma;
+    font-size: 16px;
+}
+
+#container {
+    height: 270px;
+    width: 410px;
+    margin: 10px auto;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+tr {
+    height: 30px;
+}
+
+thead tr:first-child th {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+thead tr:last-child {  
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+tbody td {
+    padding-left: 7px;
+}
+
+tfoot td {
+    text-align: right;
+    padding-right: 7px;
+}

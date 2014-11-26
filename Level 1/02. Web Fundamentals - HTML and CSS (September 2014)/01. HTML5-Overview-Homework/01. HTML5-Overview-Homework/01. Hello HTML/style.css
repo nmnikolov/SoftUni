@@ -1,0 +1,11 @@
+﻿body {
+    background-color: #ede8e8;  
+}
+
+p {
+    font-size: 4em;
+    font-family: Consolas;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 100px;
+}

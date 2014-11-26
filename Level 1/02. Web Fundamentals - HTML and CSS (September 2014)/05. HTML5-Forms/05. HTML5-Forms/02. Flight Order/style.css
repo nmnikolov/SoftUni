@@ -1,0 +1,96 @@
+﻿#container {
+    font-family: Tahoma;
+    font-size: 15px;
+    background: #FFC0CB;
+    height: 380px;
+    width: 495px;
+    margin: 0 auto;  
+}
+
+fieldset {
+    border: none;
+    padding: 0;   
+}
+
+legend {
+    font-size: 40px;
+    font-weight: bold;
+    font-style: italic; 
+    text-transform: uppercase;     
+    padding-left: 95px;
+}
+
+table {
+    height: 307px;
+    width: 490px;  
+    margin: 5px 0 5px 5px;
+}
+
+td {
+    padding-left: 0;
+    padding-bottom: 5px;
+}
+
+tr:nth-child(2), tr:nth-child(5), tr:nth-child(7), tr:nth-child(9) {
+    height: 33px;
+}
+
+tr:nth-child(1), tr:nth-child(3), tr:nth-child(4), tr:nth-child(6), tr:nth-child(8) {
+    font-style: italic;
+    height: 26px;
+}
+
+select {
+    font-size: 15px;
+    height: 25px;    
+    width: 233px;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+input {
+    font-size: 15px;
+    height: 21px;    
+}
+
+input[type="checkbox"] {
+    -moz-appearance: none;
+    height: 15px;
+    width: 15px;    
+}
+
+input[type="date"] {
+    width: 227px;
+}
+
+input[type="time"] {
+    width: 109px;
+}
+
+input[type="number"] {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 74px;
+    height: 25px;    
+}
+
+input[type=submit], input[type=reset] {
+    height: 35px;
+    width: 234px;
+}
+
+    input[type=submit]:hover, input[type=reset]:hover {
+        cursor: pointer;
+        color: #ff0000;
+    }
+
+span:nth-child(2) {
+    padding-left: 47px;
+}
+
+span:nth-child(3) {
+    padding-left: 44px;
+}
