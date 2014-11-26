@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Circle Area</title>
+    <link href="styles/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="container">
+        <div id="shortcuts">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shortcuts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="red">Enter</span> - Calculate Area</td>
+                        <td><span class="red">Ctrl + del</span> - Clear</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <input type="text" id="input" placeholder="Enter radius of a circle" autofocus onkeydown="if (event.keyCode == 13) calcCircleArea(this.value)" />
+        <input type="button" id="calc" value="Calculate Area" onclick="calcCircleArea(document.getElementById('input').value)" />
+        <input type="button" id="reset" value="Clear" onclick="clearResults()" />
+        <div id="results"></div>
+    </div>
+    <script src="js/circle-area.js"></script>
+</body>
+</html>
