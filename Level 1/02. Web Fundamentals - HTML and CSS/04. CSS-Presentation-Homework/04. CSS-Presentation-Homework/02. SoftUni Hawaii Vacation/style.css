@@ -1,0 +1,28 @@
+﻿@font-face {
+  font-family: Animated;
+  src: url('fonts/Animated.ttf');
+}
+
+#container {
+    background: radial-gradient(ellipse at 190px 125px, #ffffff 0,#FAF9C5 10%,#ffffff 15%,#005EDB 100%);
+    height: 600px;
+    width: 900px;   
+}
+
+#beach {    
+    background-image: url(images/AlexHula.png), url(images/TediHula.png), url(images/VladoKHula.png), url(images/NakovHula.png), url(images/PetiaHula.png), url(images/VladoGHula.png), url(images/HawaiiBackground.png);
+    background-position: 494px 203px, 263px 362px, 673px 234px, 414px 158px, 183px 192px, 43px 222px, 0;
+    background-repeat: no-repeat;  
+    height: 600px;
+    width: 900px;
+}
+
+h1 {
+    font-family: Animated;
+    font-size: 45px;
+    color: #FDBC21;
+    letter-spacing: 2px;   
+    float: right;    
+    margin-top: 15px;
+    padding-right: 20px;
+}

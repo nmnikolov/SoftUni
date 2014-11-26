@@ -1,0 +1,246 @@
+﻿header, main, aside, footer, article, nav, ul, li, form, input, a, div, span, p, h1, h2, h3, h4, h5, h6, dfn, label, hr, section, article, select, option, table, tbody, tr, td {
+    box-sizing: border-box;
+}
+
+#container {
+    font-family: Tahoma;
+    width: 916px;
+    margin: 0 auto;
+    padding: 10px 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+h1 {
+    width: 100%;
+    float: left;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+form {
+    width: 225px;
+    float: right;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+
+input[type=text] {
+    width: 200px;
+    height: 25px;
+    background: #F7F7F7;
+    float: left;
+    border: 1px solid #d1d1d1;
+    border-right: none;
+    outline: none;
+    padding: 0 4px;
+}
+
+input[type=submit] {
+    float: left;
+    border: 1px solid #d1d1d1;
+    border-left: none;
+    background: white;
+    width: 25px;
+    height: 25px;
+    background: #F7F7F7;
+    background-image: url('images/search.png');
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 5px 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#nav-main {
+    width: 70%;
+    float: left;
+    color: #808080;
+}
+
+#nav-main ul {
+    margin: 0;
+    padding: 0;
+}
+
+#nav-main li {
+    display: inline-block;
+    width: 100px;
+}
+
+#nav-main a {
+    color: #808080;
+    text-transform: uppercase;
+}
+
+#nav-main a:hover {
+    color: #ff8b00;
+}
+
+/*--- Aside-left ---*/
+
+#left {
+    width: 20%;
+    float: left;
+}
+
+#left ul {
+    padding: 0;
+    margin-top: 60px;
+    border-top: 1px solid #d1d1d1;
+}
+
+#left li {
+    margin: 10px 0;
+}
+
+#left a {
+    color: #64A8D2;
+}
+
+#left a:hover {
+    color: #ff8b00;
+}
+
+/*--- Main-content ---*/
+
+main {
+    width: 60%;
+    float: left;
+    padding: 0 2%;
+}
+
+h2 {
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-weight: normal;
+    color: #808080;
+    font-size: 12px;
+    margin-top: 0;
+}
+
+h3 a {
+    color: #808080;
+}
+.name, .comment {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+.continue a, .previous a {
+    color: #64A8D2;
+}
+
+.continue a:hover, .previous a:hover {
+    color: #ff8b00;
+}
+
+.previous {
+    padding: 30px 0 10px;
+    margin: 0;
+    border-top: 1px solid #d1d1d1;
+}
+
+/*--- Aside-left ---*/
+
+#right {
+    width: 20%;
+    float: left;
+}
+
+label {
+    height: 25px;
+    margin-top: 20px;
+    display: block;
+    color: #808080;
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 5px;
+}
+
+select {
+    margin-top: 10px;
+}
+
+/*--- Twitter-bar ---*/
+
+#twitter {
+    width: 100%;
+    float: left;
+    background: #F7F7F7;
+    height: 50px;
+    padding: 10px;
+    color: #808080;
+}
+
+#twitter dfn:before {
+    content: url(images/twitter.png);
+    width: 10px;
+}
+
+/*--- Footer ---*/
+
+#container footer {
+    float: left;
+    width: 100%;
+    background: #000000;
+    color: #d1d1d1;
+    overflow: auto;
+}
+
+footer td {
+    width: 180px;
+    font-size: 14px;
+    vertical-align: top;
+    padding-top: 20px;
+}
+
+h4 {
+    color: #ffffff;
+    font-size: 16px;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.title {
+    padding-bottom: 15px;
+    display: block;
+    color: #ffffff;
+}
+
+footer ul {
+    padding: 0;
+    margin: 0;
+    line-height: 20px;
+}
+
+footer li a {
+    color: #ffffff;
+}
+
+footer p {
+    margin: 0;
+}
+
+.big {
+    color: #ffffff;
+}
+
+.big a {
+    color: #ffffff;
+}

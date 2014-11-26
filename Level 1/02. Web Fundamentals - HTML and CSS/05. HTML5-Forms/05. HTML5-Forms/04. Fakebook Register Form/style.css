@@ -1,0 +1,234 @@
+﻿/*------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------CSS-Reset-------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------*/
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------End-of-CSS-Reset-------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------*/
+
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#container {
+    background: #3B5997;
+    font-family: Tahoma;
+    font-size: 16px;  
+    color: #fff; 
+    height: 585px;
+    width: 950px;    
+    margin: 0 auto;   
+}
+
+
+/*--- Title ---*/
+
+#title {
+    text-align: center;
+}
+    h1 {
+        font-size: 100px;
+        font-weight: bold;
+    }
+
+    h1 span {
+        font-size: 20px;
+        margin-left: 5px;
+        font-weight: normal;
+    }
+
+    h2 {
+        margin-top: 15px;
+        font-size: 30px;   
+        font-weight: bold;
+    }
+
+    h3 {
+        margin: 10px 0 30px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+
+/*--- Form ---*/
+
+form {
+    height: 300px;
+}
+    fieldset {
+        display: inline-block;       
+        border: 1px solid #fff;
+        border-radius: 10px;
+        height: 100%;
+        vertical-align: top;  
+        margin-left: 15px;
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+    legend {
+        font-size: 17px;
+        font-weight: bold;            
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    form div {
+        margin-bottom: 10px;
+    }
+    
+    form input, select {
+        border: 1px solid #808080;
+        border-radius: 5px;        
+        height: 35px;   
+        outline: none;
+    }
+        form input {
+            padding-left: 5px;
+        }   
+
+    .long-text, select, input[type=color] {
+        width: 164px;
+        vertical-align: top;
+        margin-right: 5px;      
+    }
+
+
+/*--- Form  -  Non-Important Information ---*/
+
+#non-important {  
+    width: 360px;
+}
+    #non-important legend {
+        margin-left: 15%;    
+    }
+
+    #birthday {
+        width: 240px;
+    } 
+
+    #gender input {        
+        height: 13px;
+        width: 13px;      
+        margin: 0;
+        vertical-align: top;
+        cursor: pointer;
+    }
+
+    #gender label{
+        vertical-align: top;
+        margin-right: 20px;
+        margin-left: 2px;       
+        cursor: pointer;  
+    }
+
+   
+/*--- Form  -  Important Information ---*/
+
+#important {
+    width: 540px;
+}
+    #important legend {
+        margin-left: 23%;    
+    }
+    #important div:nth-child(3) input:nth-child(n+2) {
+        width: 85px;
+        margin-right: 5px;
+    }    
+
+    #color {
+        padding: 2px;
+    }
+
+    #color, #color-label, select {
+        cursor: pointer;
+    }
+
+    textarea {
+        border-radius: 5px;
+        height: 70px;
+        width: 510px;     
+        padding-left: 5px;
+        outline: none;
+        resize: none;
+    }
+
+
+/*--- Clear and Register buttons ---*/
+
+input[type=reset], input[type=submit] {
+    background: #DDDDDD; 
+    color: #3B5997;
+    border: 1px solid #808080;
+    border-radius: 7px;
+    height: 50px;    
+    vertical-align: top;
+    margin-top: 15px;
+    margin-left: 15px;     
+    cursor: pointer;
+}
+    input[type=reset] {
+        font-size: 20px;
+        width: 360px;   
+    }
+
+    input[type=submit] {
+        font-size: 26px;
+        width: 540px;
+    }
+        input[type=reset]:hover, input[type=submit]:hover {
+            color: #f00;
+        }

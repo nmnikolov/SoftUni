@@ -1,0 +1,154 @@
+﻿@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lobster'), local('Lobster-Regular'), url(http://fonts.gstatic.com/s/lobster/v11/hhO8-q4hv9jbU4UQyl-u4vY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Glyph';
+  src: url('resources/glyphicons-halflings-regular.ttf') format('opentype');
+}
+
+div, h1, p, fieldset, legend, input {
+    box-sizing: border-box;
+}
+
+#container {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(resources/background.png);
+    color: #D7E5EE;
+    width: 750px;
+    height: 320px;
+    margin: 0 auto;  
+    padding: 25px 10px 20px; 
+    border-top: 3px solid #6D7F82;
+    border-left: 3px solid #FF3737;
+    border-right: 3px solid #FF3737;
+}
+
+h1 {
+    font-family: Lobster;
+    height: 37px;
+    font-size: 25px;
+    background: #679966;
+    width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#content-wrapper {
+    width: 720px;
+    height: 230px;
+    background: #333333;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+#left, #login {
+    width: 350px;
+    height: 215px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+#left {
+    background: #232323;
+}
+
+#logo {
+    height: 107px;
+    border-bottom: 1px solid #ffffff;
+    padding-top: 20px;
+    text-align: center;
+}
+
+#logo:before {
+    font-family: 'Glyph';
+    content: '\e104';
+    font-size: 60px;
+}
+
+p {
+    font-size: 14px;
+    text-align: center;
+}
+
+p:before {
+    font-family: 'Glyph';
+    content: '\e089';
+}
+
+
+
+#login {
+    border: none;
+}
+
+legend {
+    text-align: center;
+}
+
+#username, #country {
+    width: 290px;
+    border: 1px solid transparent;
+    height: 30px;
+    border-radius: 0 5px 5px 0;
+    display: inline-block;
+    vertical-align: top;
+    float: left;
+    padding-left: 5px;
+    margin-top: 20px;
+    outline: none;
+}
+
+#username:focus , #country:focus {
+    border-color: #018aff;
+}
+
+#head-icon, #globus-icon {
+    width: 36px;
+    height: 30px;
+    display: inline-block;
+    background: #679966;
+    border-radius: 5px 0 0 5px;
+    float: left;
+    margin-top: 20px;
+    padding: 5px 0 0 10px;
+}
+
+#head-icon:before {
+    font-family: 'Glyph';
+    content: '\e008';
+    color: #555555;
+}
+
+#globus-icon:before {
+    font-family: 'Glyph';
+    content: '\e135';
+    color: #555555;
+}
+
+#submit {
+    background: #232323;
+    color: #D7E5EE; 
+    height: 30px;
+    border-radius: 5px;
+    width: 326px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+#submit:hover {
+    background: #679966;
+}
+
+
+
+
+
+

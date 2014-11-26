@@ -1,0 +1,219 @@
+﻿/*------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------CSS-Reset-------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------*/
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/*
+table {
+	border-collapse: collapse;
+	/*border-spacing: 0;
+}
+ */
+/*------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------End-of-CSS-Reset-------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------*/
+
+
+#container {
+    font-family: Tahoma;
+    color: #2E487B;
+    height: 700px; 
+    width: 1000px;    
+    margin: 30px auto;
+}
+
+div, button, input, input[type=range] {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#products {
+    display: inline-block;
+    width: 750px;
+    float: left;
+}
+
+h1 {
+    color: #2e4879;
+    font-size: 28px;
+    font-weight: bold;
+    height: 50px;
+    width: inherit; 
+    margin-top: 25px;
+}
+
+button {
+    background: none;  
+    border: 2px solid #E8F5FC;
+    border-radius: 15px 15px 0 15px;
+    height: 262px;
+    width: 232px; 
+    margin-right: 10px;
+    margin-bottom: 20px;
+    padding: 0;
+    outline: none;     
+}
+    button:hover {
+        border-color: #2e4879;
+        cursor: pointer;
+    }
+
+    .notebook-description {
+        height: 210px;
+        width: 200px;
+        text-align: left;
+        margin: 13px 13px 0;
+    }
+
+    h2 {
+        color: #2e4879;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    img {
+        height: 150px;
+        width: 200px;      
+    }
+
+    .notebook-price {
+        background: #2C425A;
+        color: #fff;
+        text-align: center;
+        border-top-left-radius: 15px;
+        height: 35px;
+        width: 100px;       
+        float: right;
+        margin-right: -3px;
+        padding-top: 10px;
+        padding-right: 0;
+    }
+
+
+/*--- Filters ---*/
+
+#filters {
+    background: #F7FCFF;
+    border: 1px solid #E8F5FC;
+    text-align: center;
+    display: inline-block;
+    height: 660px;
+    width: 250px;    
+    float: right;
+    padding: 0 5px;
+}
+
+label {
+    display: block;
+    height: 25px;
+}
+
+label input {
+    background: none;
+    color: #d40505;
+    font-size: 16px;
+    font-weight: bold; 
+    border: none;      
+    width: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+span:first-child {
+    display: inline-block;
+    text-align: left;
+    float: left;
+}
+
+span:last-child {
+    display: inline-block;
+    text-align: right;
+    float: right;s
+}
+
+#disc-label {
+    text-align: right;
+}
+
+#display-label {
+    text-align: left;
+    width: 35px;
+}
+
+#weight-label {
+    width: 12px;
+}
+
+input[type=range] {
+    height: 60px;
+    width: 238px;   
+    margin: 0;
+}
+    input[type=range]::-ms-tooltip {
+        display: none;
+    }
+
+input[type=reset] {
+    background: transparent;
+    color: #2C425A;
+    font-size: 18px;
+    border: 1px solid #2C425A;
+    border-radius: 7px;
+    height: 30px;
+    width: auto;
+    padding: 0 10px;
+    outline: none;
+}
+    input[type=reset]:hover {
+        background: #2C425A;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        cursor: pointer;
+    }

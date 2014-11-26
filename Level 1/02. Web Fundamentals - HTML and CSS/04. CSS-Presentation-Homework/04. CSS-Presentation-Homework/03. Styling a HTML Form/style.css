@@ -1,0 +1,179 @@
+﻿body {
+    font-family: Tahoma;
+    font-size: 14px;
+}
+
+#container {
+    background-image: url(images/formBackground.jpg);
+    border-radius: 7px;
+    height: 730px;
+    width: 500px;   
+}
+
+
+/*--- Title ---*/
+
+fieldset {
+    color: #000000;
+    font-size: 17px;
+    border: none;
+    padding: 0;   
+}
+
+fieldset:first-child legend {
+    padding-top: 15px;
+}
+
+legend {
+    color: #ffffff;
+    font-weight: bold;
+    width: 400px;
+    padding: 6px 0 7px 5%;
+}
+
+
+/*--- Styling all divs, labels and inputs ---*/
+
+div {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #ffffff;
+    border-radius: 5px; 
+    height: 40px;
+    width: 90%;
+    margin: 3px auto; 
+}
+
+label {
+    display: inline-block;
+    height: 50%;
+    width: 27%;
+    margin-top: 8px;
+    padding-left: 10px;
+}
+
+input {
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    height: 50%;
+    width: 50%;
+    margin-top: 8px;
+    padding-left: 10px;   
+}
+
+div input:focus {
+	background: #FFE2CC;
+	border-color: #FFE2CC;
+}
+
+#card-type input:focus {
+    background: none;
+	border-color: none;
+}
+
+
+/*--- Address field ---*/
+
+#address {
+    height: 100px;
+}
+
+#address label {
+    display: inline-block;
+    height: 70%;
+    width: 27%;
+    margin-top: 8px;
+    padding-left: 10px;
+    vertical-align: top;
+}
+
+textarea {
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    height: 80%;
+    width: 50%;
+    margin-top: 8px;
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+textarea:focus {
+	background: #FFE2CC;
+	border-color: #FFE2CC;
+}
+
+
+/*--- Card type field ---*/
+
+#card {
+    height: 70px;
+}
+
+#card>label {
+    display: inline-block;
+    height: 25%;
+    width: 20%;
+    margin-top: 8px;
+    padding-left: 10px;
+    
+}
+
+#card-type {
+	margin-top: 5px;
+	height: 32px;
+	border: none;
+    background: none;
+    margin-left: 0;
+}
+
+#card-type input { 
+    height: 32px;
+    width: 13px;
+    margin: 0 0 0 20px;
+	cursor: pointer;
+}
+
+#card-type label {
+    height: 32px;
+	width: 40px;
+    vertical-align: top;
+	margin-top: 4px;
+	padding-top: 4px;
+    padding-left: 38px;
+	cursor: pointer;
+}
+
+#card-type label:nth-child(2) {
+	background-image: url(images/visa.png);
+	background-repeat: no-repeat;
+}
+
+#card-type label:nth-child(4) {
+	background-image: url(images/amex.png);
+	background-repeat: no-repeat;
+}
+
+#card-type label:nth-child(6) {
+	background-image: url(images/mastercard.png);
+	background-repeat: no-repeat;
+}
+
+
+/*--- Submit button ---*/
+
+#submit {
+	background: #04152F;
+	border-color: #04152F;
+    border-radius: 30px;
+	color: #ffffff;
+	font-weight: bold;
+	height: 30px;
+	width: 100px;	
+	margin: 15px 200px;
+	padding: 0;
+    outline: none;
+}
+
+#submit:hover {
+	cursor: pointer;
+	color: #ff0000;
+}

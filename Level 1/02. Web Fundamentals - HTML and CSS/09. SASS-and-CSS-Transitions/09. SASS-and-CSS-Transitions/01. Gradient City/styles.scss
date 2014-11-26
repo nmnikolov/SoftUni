@@ -1,0 +1,180 @@
+﻿$bg-top: #808080;
+$bg-bottom: #ffffff;
+$border: 4px double #B4B4B4;
+$font-color: #7F7F7E;
+
+@mixin gradientType($gradient, $direction, $start-color, $end-color) {
+    @if ($gradient=='linear') {
+        background: linear-gradient(to $direction, $start-color, $end-color);
+    }
+    @else {
+        background: radial-gradient($start-color, $end-color);
+    }
+}
+
+@mixin gradientFill($gradient, $direction) {
+
+    & div:nth-of-type(1) {
+        $start-color: #360636;
+        $end-color: #F6E5F6;
+        @include gradientType($gradient, $direction, $start-color, $end-color);
+    }
+
+    & div:nth-of-type(2) {
+        $start-color: #0707B1;
+        $end-color: #E5E5FB;
+        @include gradientType($gradient, $direction, $start-color, $end-color);
+    }
+
+    & div:nth-of-type(3) {
+        $start-color: #083708;
+        $end-color: #E5F6E5;
+        @include gradientType($gradient, $direction, $start-color, $end-color);
+    }
+
+    & div:nth-of-type(4) {
+        $start-color: #F6F607;
+        $end-color: #FFFFD6;
+        @include gradientType($gradient, $direction, $start-color, $end-color);
+    }
+
+    & div:nth-of-type(5) {
+        $start-color: #EC9507;
+        $end-color: #FEFAD6;
+        @include gradientType($gradient, $direction, $start-color, $end-color);
+    }
+
+    & div:nth-of-type(6) {
+        $start-color: #CE0707;
+        $end-color: #FDDFDF;
+        @include gradientType($gradient, $direction, $start-color, $end-color);
+    }
+}
+
+body, div, header, nav, ul, li, a, section, article, h1, h2, h3, footer {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, $bg-top ,$bg-bottom) no-repeat; 
+    font-family: Tahoma;
+    font-size: 16px;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 900px;
+    text-align: center;
+    background: $bg-bottom;
+    border: $border;
+    padding: 20px;
+
+    > header  {
+        border: $border;
+
+        h1 {
+            color: $font-color;
+        }
+
+        ul {
+            padding: 0;
+            
+            li {
+                display: inline-block;
+                border: $border;
+                border-spacing: 2px;
+                width: 90px;
+                height: 40px;
+                line-height: 32px;
+                margin: 0 20px;
+                cursor: pointer;
+
+                a {
+                    color: $font-color;
+                    text-decoration: none;
+                }
+
+                &:hover {
+                    background: linear-gradient(to bottom, $bg-top 0,$bg-bottom 100%) no-repeat;
+
+                    a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.linear {
+    border: $border;
+    margin: 20px 0;
+    padding: 10px 20px;
+
+    h2 {
+        color: $font-color;
+        font-size: 1.2em;
+        font-weight: normal;
+    }
+
+    article:nth-of-type(1) .innerContainer {
+        @include gradientFill(linear, bottom);
+    }
+
+    article:nth-of-type(2) .innerContainer {
+        @include gradientFill(linear, right);
+    }
+
+    article:nth-of-type(3) .innerContainer {
+        @include gradientFill(linear, right bottom);
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+section h1, footer h3 {
+    color: $font-color;
+    text-decoration: underline;
+    font-size: 1.3em;
+    font-weight: normal;
+}
+
+.innerContainer div {
+    margin: 0 -3px 10px;
+    display: inline-block;
+    border-radius: 10px;
+    height: 120px;
+    width: 120px;
+}
+
+article {
+    border: 1px solid #B4B4B4;
+    margin-bottom: 10px;
+}
+
+.radial {
+    border: $border;
+    padding: 10px 20px;
+
+    article .innerContainer {
+        @include gradientFill(radial, bottom);
+        margin-top: 12px;
+    }
+}
+
+footer  {
+    border: $border;
+    margin-top: 20px;
+
+    ul {
+        padding: 0;
+
+        a {
+            color: $font-color;
+            text-decoration: none; 
+            font-size: 1.1em;
+        }
+    } 
+}

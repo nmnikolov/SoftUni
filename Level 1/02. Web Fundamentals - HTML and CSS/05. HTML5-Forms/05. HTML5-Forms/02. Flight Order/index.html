@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="style.css" rel="stylesheet" />
+    <title>Flight Order</title>
+</head>
+<body>
+    <div id="container">
+        <form>
+            <fieldset>
+                <legend>Flight order</legend>
+                <table>
+                    <tr class="titles">
+                        <td>From</td>
+                        <td>To</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select>
+                                <option disabled selected>enter a city</option>
+                                <option>Berlin</option>
+                                <option>Madrid</option>
+                                <option>New York</option>
+                                <option>Sofia</option>
+                                <option>Varna</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option disabled selected>enter a city</option>
+                                <option>Berlin</option>
+                                <option>Madrid</option>
+                                <option>New York</option>
+                                <option>Sofia</option>
+                                <option>Varna</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="checkbox" id="directs">
+                            <label for="directs">Prefer directs</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Depatrute Date</td>
+                        <td>Time Interval</td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" /></td>
+                        <td>
+                            <input type="time" />
+                            <input type="time" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Return Date</td>
+                        <td>Time Interval</td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" /></td>
+                        <td>
+                            <input type="time" />
+                            <input type="time" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>12+</span>
+                            <span>2-12</span>
+                            <span>0-2</span>                   
+                        </td>
+                        <td>Choose class</td>
+                    </tr>
+                    <tr>
+                        <td id="people">
+                            <input type="number" min="0" value="0"  />
+                            <input type="number" min="0" value="0" />
+                            <input type="number" min="0" value="0" />
+                        <td>
+                            <select>   
+                                <option>Economy</option>
+                                <option>Business</option>
+                                <option>First</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="reset"><input type="reset" name="reset" value="Clear Form" /></td>
+                        <td><input type="submit" name="submit" value="Search" /></td>
+                    </tr>
+                </table>
+            </fieldset>
+            
+        </form>
+        
+    </div>
+</body>
+</html>

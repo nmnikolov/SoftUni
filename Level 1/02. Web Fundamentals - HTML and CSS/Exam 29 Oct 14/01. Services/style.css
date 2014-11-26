@@ -1,0 +1,73 @@
+﻿@font-face {
+  font-family: 'OpenSansBold';
+  src: url('resources/OpenSans-ExtraBold.ttf') format('opentype');
+}
+
+div, hedaer, h1, h2, h3, h4, table, tbody, tr, td, img, p {
+    box-sizing: border-box;
+}
+
+#container {
+    font-family: 'Open Sans';
+    background: #F0F0E8;
+    width: 920px;
+    color: #7F8287;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+h1, h2, h3, img, table, tr, td {
+    text-align: center;
+}
+
+h1, h2, h4 {
+    text-shadow: 0px 1px 2px#fff;
+}
+
+h1 {
+    color: #009288;
+    font-size: 56px;
+    font-family: OpenSansBold;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+table {
+    margin: 15px;
+}
+
+p {
+    font-size: 11px;
+}
+
+tr {
+    width: 880px;
+}
+
+td {
+    width: 220px;
+    border-left: 10px solid transparent;
+    border-color: transparent;
+    background: none;
+    margin: 10px;
+    padding-bottom: 20px;
+}
+
+td:hover {
+    background: #F6F6F5;
+    border-radius: 0 5px 5px 0;
+    border-color: #009288;
+    cursor: pointer;
+}

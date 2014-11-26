@@ -1,0 +1,117 @@
+﻿@media screen and (min-width: 960px) {
+
+    div {
+        box-sizing: border-box;
+    }
+
+    #container {
+        width: 100%;
+        max-width: 916px;
+        padding: 3% 0;
+    }
+
+    body footer {
+        width: 100%;
+        max-width: 916px;
+    }
+}
+
+@media screen and (max-width: 959px) {
+    * {
+        box-sizing: border-box; 
+    }
+
+    #container {
+        width: 100%;
+        padding: 3% 3% 0;
+    }
+
+    #content {
+        width: 70%;
+        margin: 0;
+        float: left;
+    }
+
+
+    header nav li {
+        width: 120px;
+    }
+
+
+    #sidebar {
+        width: 30%;
+        float: right;
+        padding-left: 3%;
+    }
+
+    #sidebar section{
+        margin: 0 0 10% 0 !important;
+        float: left;
+    }
+
+    section {
+        width: 99%;
+    }
+
+    #footer-container {
+        width: 100%;
+        max-width: 916px;
+    }
+
+    section#about, #sidebar #categories, #sidebar #social, #sidebar #latest, #sidebar #search {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 759px) {
+    header h1, header nav {
+        float: left;
+        width: 100%;        
+    }
+
+    header nav {
+        width: 100%;
+        margin: 2% 0;
+        float: left;
+    }
+
+    header nav li {
+        font-size: 14px;
+        width: auto;
+        text-align: right;
+    }
+
+    #navigation li, p {
+        font-size: 14px;
+        width: auto;
+    }
+
+    #content, #sidebar {
+        width: 100%;
+        float: left;
+    }
+
+    #sidebar #categories, #sidebar #social, #sidebar #latest {
+        width: 30%;
+    }
+
+    #sidebar #search {
+        width: 100%;
+    }
+
+    #sidebar #search #searchbar {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 539px) {
+
+    #sidebar #categories, #sidebar #social {
+        width: 50%;
+    }
+
+    header nav ul li:nth-child(3) {
+        display: block;
+    }
+
+}
