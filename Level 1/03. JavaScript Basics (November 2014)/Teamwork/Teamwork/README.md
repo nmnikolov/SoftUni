@@ -3,7 +3,7 @@ JS-Basics-Team-Salmon-Berry
 
 * **Game**: Blue Force
 * **Website**: http://blueforce.ninikolov.com/
-* **Github**: https://github.com/nmnikolov/JavaScript-Basics/tree/master/Teamwork/Teamwork
+* **Github**: https://github.com/nmnikolov/SoftUni/tree/master/Level%201/03.%20JavaScript%20Basics%20(November%202014)/Teamwork/Teamwork
 * **Team members**:
     - Rositsa Popova
     - Deivid Raychev
