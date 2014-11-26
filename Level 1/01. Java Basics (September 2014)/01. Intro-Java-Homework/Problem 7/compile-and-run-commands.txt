@@ -1,0 +1,23 @@
+*******************************************************************
+For Windows
+*******************************************************************
+Navigate to folder "Problem 7" then hold "shift" key and click right 
+mouse button on the white background area. Click on "Open Command Window Here" 
+then enter these commands on a separate lines:
+
+javac _06_SumTwoNumbers.java
+java _06_SumTwoNumbers
+*follow the program instructions
+
+
+*******************************************************************
+For Linux
+*******************************************************************
+Navigate to folder "Problem 7" then click right mouse button and 
+choose "Open Terminal Here" then enter these commands on a separate lines:
+
+javac _06_SumTwoNumbers.java
+java _06_SumTwoNumbers
+*follow the program instructions
+
+
