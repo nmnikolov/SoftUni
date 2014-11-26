@@ -1,4 +1,2 @@
-JavaScript-Basics
-=================
-
-JavaScript-Basics November 2014
+JavaScript Basics November 2014
+===============================
