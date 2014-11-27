@@ -5,7 +5,7 @@
     for (var person in persons) {
         if (persons[person].age < youngestAge) {
             youngest = persons[person].firstname + ' ' + persons[person].lastname;
-            youngestAge = person.age;
+            youngestAge = persons[person].age;
         }
     }
 
@@ -13,7 +13,7 @@
 }
 
 var persons = [
-  { firstname: 'George', lastname: 'Kolev', age: 32 },
+  { firstname: 'George', lastname: 'Kolev', age: 42 },
   { firstname: 'Bay', lastname: 'Ivan', age: 81 },
   { firstname: 'Baba', lastname: 'Ginka', age: 40 }];
 
