@@ -2,7 +2,7 @@
 
 date_default_timezone_set('Europe/Sofia');
 
-function getWednesdays($y, $m)
+function getSundays($y, $m)
 {
     return new DatePeriod(
         new DateTime("first sunday of $y-$m"),
@@ -11,6 +11,6 @@ function getWednesdays($y, $m)
     );
 }
 
-foreach (getWednesdays(date("Y"), date("M")) as $wednesday) {
+foreach (getSundays(date("Y"), date("M")) as $wednesday) {
     echo $wednesday->format("jS F, Y\n");
 }
