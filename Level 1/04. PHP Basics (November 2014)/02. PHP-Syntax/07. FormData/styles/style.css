@@ -1,0 +1,4 @@
+input[type=text], input[type=submit] {
+    display: block;
+    margin: 2px 0;
+}
