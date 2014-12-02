@@ -1,7 +1,7 @@
 <?php
 
 function dump($var) {
-    if (is_numeric($var)) {
+    if (is_numeric($var) && gettype($var) !== 'string') {
         var_dump($var);
     } else {
         echo gettype($var), "\n";
