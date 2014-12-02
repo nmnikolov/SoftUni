@@ -12,18 +12,18 @@ function compare($var) {
     return $numbers;
 };
 
-$input = array(
+$input = [
     1234,
     145,
     15,
     247
-);
+];
 
 for ($i = 0; $i < count($input); $i++) {
     $numbers = compare($input[$i]);
     if (count($numbers)) {
-        echo implode(", ", $numbers) . "\n";
+        echo implode(", ", $numbers), "\n";
     } else {
-        echo "no\n";
+        echo "no", "\n";
     }
 }

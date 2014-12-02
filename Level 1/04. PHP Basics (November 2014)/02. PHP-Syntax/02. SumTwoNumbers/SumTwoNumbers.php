@@ -8,11 +8,11 @@ function sum($array) {
     printf('$firstNumber + $secondNumber = %.2f + %.2f = %.2f' . "\n", $firstNumber, $secondNumber, $sum);
 };
 
-$input = array(
+$input = [
     [2, 5],
     [1.567808, 0.356],
     [1234.5678 , 333]
-);
+];
 
 for ($i = 0; $i < count($input); $i++) {
     sum($input[$i]);
