@@ -1,20 +1,23 @@
 <?php
 
 if (isset($_GET['amount'], $_GET['currency'], $_GET['interest'], $_GET['period'])) {
-    $amount = $_GET['amount'];
-    $interest = $_GET['interest'] / 12;
-    $period = $_GET['period'];
-    $result = $amount;
-    $currency;
+
+    $variables = [
+        'amount' => $_GET['amount'],
+        'interest' => $_GET['interest'] / 12,
+        'period' => $_GET['period'],
+    ];
 
     switch ($_GET['currency']) {
-        case 'USD': $currency = '$'; break;
-        case 'EUR': $currency = '€'; break;
-        default: $currency = 'lv.'; break;
+        case 'USD': $variables['currency'] = '$'; break;
+        case 'EUR': $variables['currency'] = '€'; break;
+        default: $variables['currency'] = 'lv.'; break;
     }
 
-    for ($i = 0; $i < $period; $i++) {
-        $result *= (100 + $interest) / 100;
+    $result = $variables['amount'];
+
+    for ($i = 0; $i < $variables['period']; $i++) {
+        $result *= (100 + $variables['interest']) / 100;
     }
 }
 ?>
@@ -29,10 +32,10 @@ if (isset($_GET['amount'], $_GET['currency'], $_GET['interest'], $_GET['period']
     <form action="" method="get">
         <div>
             <label for="amount">Enter Amount:</label>
-            <input type="text" id="amount" name="amount" />
+            <input type="text" id="amount" name="amount" required />
         </div>
         <div>
-            <input type="radio" name="currency" id="USD" value="USD" />
+            <input type="radio" name="currency" id="USD" value="USD" required />
             <label for="USD">USD</label>
             <input type="radio" name="currency" id="EUR" value="EUR" />
             <label for="EUR">EUR</label>
@@ -41,10 +44,11 @@ if (isset($_GET['amount'], $_GET['currency'], $_GET['interest'], $_GET['period']
         </div>
         <div>
             <label for="interest">Compound Interest Amount</label>
-            <input type="text" name="interest" id="interest" />
+            <input type="text" name="interest" id="interest" required />
         </div>
         <div>
-            <select name="period">
+            <select name="period" required>
+                <option selected value="" disabled>Period</option>
                 <option value="6">6 Months</option>
                 <option value="12">1 Year</option>
                 <option value="24">2 Years</option>
@@ -55,7 +59,7 @@ if (isset($_GET['amount'], $_GET['currency'], $_GET['interest'], $_GET['period']
     </form>
 
     <?php if (isset($result)): ?>
-        <p><?= htmlentities($currency) . ' ' . htmlentities(round($result, 2)) ?></p>
+        <p><?= htmlentities($variables['currency']) . ' ' . htmlentities(round($result, 2)) ?></p>
     <?php endif ?>
 </div>
 </body>

@@ -1,0 +1,44 @@
+form {
+    width: 700px;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+input[type=button], input[type=submit], select, input[type=checkbox], input[type=radio], #gender>label, #driver-license>div>label {
+    cursor: pointer;
+}
+
+input, select {
+    margin-bottom: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.main {
+    margin-top: 20px;
+}
+
+.block {
+    display: block;
+}
+
+.remove {
+    font-size: 17px;
+    color: #808080;
+    background: none;
+    border: none;
+    outline: none;
+    margin: 0 10px;
+}
+
+.remove:hover {
+    color: #ff0000;
+}
