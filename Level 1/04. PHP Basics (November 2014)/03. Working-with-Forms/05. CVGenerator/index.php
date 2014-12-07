@@ -3,7 +3,7 @@
 $nationalities = ['Albanian', 'Austrian', 'Bulgarian', 'Canadian', 'Cuban', 'German', 'Israeli', 'Nigerian', 'Pakistani',
     'Tunisian', 'Zambian', 'Other'];
 
-$skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Expert', 'Other'];
+$skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Expert'];
 
 $langLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 ?>
