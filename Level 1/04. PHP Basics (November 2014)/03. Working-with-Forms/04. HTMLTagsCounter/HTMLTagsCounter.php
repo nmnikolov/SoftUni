@@ -8,7 +8,7 @@ $tags = ['!DOCTYPE', 'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio'
 'legend', 'li', 'link','map', 'mark', 'menu', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option',
 'output', 'p', 'param', 'pre','progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small',
 'source', 'span','strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead',
-'time', 'title','tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', ];
+'time', 'title','tr', 'track', 'u', 'ul', 'var', 'video', 'wbr'];
 ?>
 
 <!DOCTYPE html>
