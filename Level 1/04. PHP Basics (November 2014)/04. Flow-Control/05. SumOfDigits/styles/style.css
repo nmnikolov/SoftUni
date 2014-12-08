@@ -1,0 +1,11 @@
+table {
+    margin-top: 10px;
+}
+
+table, td {
+    border: 1px solid #000;
+}
+
+#string {
+    width: 600px;
+}
