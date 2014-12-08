@@ -21,16 +21,16 @@
             <?php for ($i = 0; $i <= 100; $i += 2): ?>
                 <tr>
                     <td> <?= $i ?> </td>
-                    <td> <?= number_format(sqrt($i), 2) ?> </td>
+                    <td> <?= round(sqrt($i), 2) ?> </td>
 
-                    <?php $total += number_format(sqrt($i), 2) ?>
+                    <?php $total += round(sqrt($i), 2) ?>
                 </tr>
             <?php endfor; ?>
         </tbody>
         <tfoot>
             <tr>
                 <td>Total</td>
-                <td> <?= number_format($total, 2) ?> </td>
+                <td> <?= round($total, 2) ?> </td>
             </tr>
         </tfoot>
     </table>
