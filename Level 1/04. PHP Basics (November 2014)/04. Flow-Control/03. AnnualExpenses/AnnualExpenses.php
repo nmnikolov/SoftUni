@@ -24,12 +24,12 @@
 
     <?php
     if (isset($_GET['years'])):
-        $numberOfYears = $_GET['years'];
+        $numberOfYears = (int)$_GET['years'];
 
         if (preg_match('/[^\d]/', $numberOfYears) || (int)$numberOfYears < 1) {
-            echo "<p>Years must be integer number greater than 0</p>";
+            echo "<p>Must enter integer number greater than 0</p>";
             exit;
-    }
+        }
     ?>
 
     <table>
