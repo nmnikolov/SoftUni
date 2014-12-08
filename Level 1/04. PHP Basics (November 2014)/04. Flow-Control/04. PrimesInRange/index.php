@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Primes In Range</title>
+    <title>Primes in Range</title>
     <link type="text/css" rel="stylesheet" href="styles/style.css">
 </head>
 <body>
