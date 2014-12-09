@@ -1,0 +1,13 @@
+#string {
+    width: 608px;
+    display: block;
+    margin: 10px 0;
+}
+
+label, input[type=radio], #submit {
+    cursor: pointer;
+}
+
+span {
+    color: #808080;
+}
