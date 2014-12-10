@@ -12,7 +12,7 @@ foreach ($sections as $key => $section):
             <h1> <?= $key ?></h1>
             <ul>
                 <?php foreach ($section as $value): ?>
-                    <li> <?= $value ?> </li>
+                    <li> <?= htmlentities($value) ?> </li>
                 <?php endforeach; ?>
             </ul>
         </article>
