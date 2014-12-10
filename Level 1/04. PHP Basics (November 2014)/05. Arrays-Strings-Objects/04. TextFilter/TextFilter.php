@@ -6,7 +6,7 @@ if (isset($_POST['text'], $_POST['banlist'])):
     $banlist = explode(', ', $_POST['banlist']);
     $replace = [];
 
-    foreach ($banlist as $key => $value) {
+    foreach ($banlist as $value) {
         $replacement = str_repeat('*', strlen($value));
         $text = str_ireplace($value, $replacement, $text);
     } ?>
