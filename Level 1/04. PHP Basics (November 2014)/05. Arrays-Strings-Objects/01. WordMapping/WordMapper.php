@@ -20,7 +20,7 @@ if (isset($_POST['text'])):
             <tbody>
                 <?php foreach ($wordsCount as $key => $value): ?>
                     <tr>
-                        <td> <?= $key; ?></td>
+                        <td> <?= htmlentities($key); ?></td>
                         <td> <?= $value; ?> </td>
                     </tr>
                 <?php endforeach; ?>
