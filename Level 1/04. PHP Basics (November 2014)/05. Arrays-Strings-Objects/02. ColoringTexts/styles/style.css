@@ -1,0 +1,42 @@
+body {
+    font-size: 18px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+span {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+#text {
+    width: 700px;
+    height: 150px;
+    font-size: 1em;
+}
+
+#submit {
+    display: block;
+    background: #3C3C3C;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    width: 7em;
+    height: 2em;
+    outline: none;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background: #E90606;
+}
+
+.red {
+    color: #ff0000;
+}
+
+.blue {
+    color: #0000ff;
+}
