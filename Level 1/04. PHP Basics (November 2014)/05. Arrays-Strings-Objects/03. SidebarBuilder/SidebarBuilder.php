@@ -8,7 +8,6 @@ $sections = [
 
 foreach ($sections as $key => $section):
     if (!empty($section)) : ?>
-
         <article id="<?= $key ?>">
             <h1> <?= $key ?></h1>
             <ul>
