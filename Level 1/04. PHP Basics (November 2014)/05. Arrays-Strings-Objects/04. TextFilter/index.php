@@ -10,7 +10,7 @@
         <textarea id="text" name="text" placeholder="Enter text here..." required ></textarea>
         <input type="text" id="banlist" name="banlist" placeholder="Enter banlist here. Separate entries with ', '" required />
 
-        <input type="submit" id="submit" value="Submit" />
+        <input type="submit" id="submit" value="Filter" />
     </form>
 
 <?php require 'TextFilter.php' ?>
