@@ -1,0 +1,54 @@
+body {
+    font-size: 18px;
+ }
+
+form {
+    margin-bottom: 20px;
+}
+
+#text {
+    height: 150px;
+}
+
+#word {
+    height: 2em;
+}
+
+span {
+    color: #808080;
+    width: 90px;
+    display: inline-block;
+}
+
+#text, #word {
+    display: block;
+    width: 700px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+#submit {
+    display: block;
+    background: #3C3C3C;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    width: 7em;
+    height: 2em;
+    outline: none;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background: #E90606;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+#result {
+    border-top: 1px solid black;
+    color: #808080;
+    padding-top: 18px;
+}
