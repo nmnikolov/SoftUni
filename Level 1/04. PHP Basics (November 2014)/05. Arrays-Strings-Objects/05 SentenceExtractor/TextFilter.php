@@ -1,6 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
-mb_internal_encoding("utf-8");
 
 if (isset($_POST['text'], $_POST['word'])) :
     $text = $_POST['text'];
