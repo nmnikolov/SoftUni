@@ -59,6 +59,7 @@ select {
 
 table {
     border-collapse: collapse;
+    border: 1px solid #3C3C3C;
 }
 
 th {
@@ -113,4 +114,9 @@ tbody tr:nth-child(odd) {
 .seminar p {
     margin: 10px 0 0;
     font-size: 0.9em;
+}
+
+#error {
+    font-size: 1em;
+    font-weight: bold;
 }
