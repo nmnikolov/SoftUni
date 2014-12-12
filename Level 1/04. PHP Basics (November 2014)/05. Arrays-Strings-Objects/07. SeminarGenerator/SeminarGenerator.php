@@ -14,18 +14,14 @@ if (isset($_POST['text'],$_POST['sort'], $_POST['sort-type'])):
         }
     }
 
-    if (!empty($seminars)) {
+    if (!empty($seminars)) :
         usort($seminars, function($a, $b) {
             $sort = $_POST['sort'];
             $sortType = $_POST['sort-type'];
 
             return $sortType === 'ascending' ? $b[$sort] < $a[$sort] : $a[$sort] < $b[$sort];
         });
-    }
-
 ?>
-
-    <?php if (!empty($seminars)) : ?>
 
     <p><span class="info">Sort by: </span> <span class="bold"> <?= htmlentities($_POST['sort']) ?> </span></p>
     <p><span class="info">Sort type: </span>  <span class="bold"> <?= htmlentities($_POST['sort-type']) ?> </p>
