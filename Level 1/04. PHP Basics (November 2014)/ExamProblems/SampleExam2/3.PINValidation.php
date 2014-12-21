@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>3. PIN Validation</title>
-</head>
-<body>
-<form method="get" action="">
-    <label>
-        Name:
-        <input type="text" name="name" value="Ana Ivanova"/>
-    </label>
-    <br />
-    <label>
-        male:
-        <input type="radio" name="gender" value="male" />
-    </label>
-    <label>
-        female:
-        <input type="radio" name="gender" value="female" checked="checked"/>
-    </label>
-    <br />
-    <label>
-        PIN:
-        <input type="text" name="pin" value="9912164756"/>
-    </label>
-    <br />
-    <input type="submit" value="Submit"/>
-</form>
-</body>
-</html>
-
 <?php
-//$_GET['gender'] = "male";
-//$_GET['name'] = "Angel georgiev";
-//$_GET['pin'] = "4008262703";
-
 $gender = $_GET['gender'];
 $pin = str_split($_GET['pin']);
 $pinMonth = intval($pin[2] . $pin[3]);

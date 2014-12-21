@@ -1,36 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Pretty Text Hasher</title>-->
-<!--    <!--    <link type="text/css" rel="stylesheet" href="styles/style.css">-->-->
-<!--</head>-->
-<!--<body>-->
-<!--<div id="container">-->
-<!--    <form action="" method="get">-->
-<!--        <div>-->
-<!--            Text:-->
-<!--            <input type="text" name="text"/>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            Hash:-->
-<!--            <input type="text" name="hashValue"/>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            Font Size:-->
-<!--            <input type="number" name="fontSize"/>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            Style:-->
-<!--            <input type="text" name="fontStyle"/>-->
-<!--        </div>-->
-<!---->
-<!--        <input type="submit" id="submit" value="Replace" />-->
-<!--    </form>-->
-
 <?php
-    
-// if (isset($_GET['text'], $_GET['hashValue'], $_GET['fontSize'], $_GET['fontStyle'])) {
-
 $text = $_GET['text'];
 $hashValue = $_GET['hashValue'];
 $fontSize= $_GET['fontSize'];
@@ -54,11 +22,3 @@ switch ($fontStyle) {
 }
 
 echo "<p style=\"font-size:" . $fontSize . ";" . $fontStyle . "\">" . $text . "</p>";
-
-//}
-
-?>
-
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
