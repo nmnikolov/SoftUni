@@ -1,0 +1,421 @@
+* {
+    box-sizing: border-box;
+}
+
+#header-image {
+    height: 200px;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    font-size: 18px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#container {
+    width: 100%;
+    /*max-width: 1170px;*/
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #000080;
+}
+
+#top-menu a {
+    color: #fff;
+}
+
+#top-menu a:hover {
+    color: #f36f00;
+    transition: color .2s ease-in-out;
+}
+
+
+
+a:hover {
+    color: #ee0000;
+}
+
+header {
+    text-align: center;
+    width: 100%;
+    float: left;
+}
+
+
+
+#top-menu, #main-wrapper, #footer-wrapper {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+p {
+    text-align: justify;
+}
+
+#header-menu {
+    background: #1D1D1D;
+    height: 40px;
+}
+
+#header-image img {
+    width: 100%;
+    height: 100%;
+}
+
+#top-menu {
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+#top-menu ul {
+    font-size: 1.5em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    height: 100%;
+}
+
+#top-menu li {
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    padding-top: 5px;
+}
+
+#user-center {
+    display: inline-block;
+    width: 20%;
+    height: 40px;
+    float: right;
+}
+
+#user-center p {
+    display: inline-block;
+    font-size: 1.2em;
+    color: #ffb800;
+    padding:10px 25px 0 0;
+    height: 40px;
+    margin: 0;
+    float: right;
+}
+
+#main {
+    width: 100%;
+    margin: 0 auto;
+    min-height: 500px;
+    float: left;
+    margin: 20px 0;
+}
+
+.post-details {
+    font-size: 1em;
+    color: #808080;
+}
+
+#categories article {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.answer-show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+#answer-form textarea{
+    width: 100%;
+    max-width: 1170px;
+    min-height: 200px;
+    font-size: 1em;
+}
+
+.answer {
+    border-top: 1px solid black;
+}
+
+.topic-content {
+    font-size: 1.1em;
+}
+
+.content {
+    font-size: 1em;
+}
+
+.button {
+    display: inline-block;
+    background: #3C3C3C;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    /*width: 7em;*/
+    height: 2em;
+    outline: none;
+    cursor: pointer;
+    margin: 3px 0;
+}
+
+.pages li {
+    display: inline-block;
+}
+
+.button:hover {
+    background: #E90606;
+    transition: background .2s ease-in-out;
+}
+
+.error-message {
+    color: #E90606;
+}
+
+.pages {
+    text-align: center;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+#topic-add textarea {
+    width: 100%;
+    max-width: 1170px;
+    min-height: 200px;
+}
+
+.current-page a {
+    color: #E90606;
+}
+
+header #topic-button {
+    float: left;
+}
+
+footer {
+    background: #1D1D1D;
+    color: #fff;
+    width: 100%;
+    min-height: 50px;
+    font-size: 1.1em;
+    float: left;
+}
+
+footer div {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-top: 7px;
+}
+
+.topic:nth-child(odd) {
+    background: #f2f2f2;
+}
+
+.topic {
+    float: left;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.answer {
+    float: left;
+    width: 100%;
+}
+
+.answer:nth-child(2) {
+    border-top: none;
+}
+
+article {
+    padding: 0 10px;
+}
+
+.profile-questions h1 {
+    font-size: 2em;
+}
+
+.profile, #profile-questions {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#search-form {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    background: #1D1D1D;
+}
+
+#search-form div {
+    padding-top: 10px;
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+#search-text {
+    font-size: 1.2em;
+    padding: 0 10px 0 3px;
+    width: 95%;
+    max-width: 1130px;
+    float: right;
+    height: 40px;
+    outline: none;
+    border: none;
+}
+
+#search-submit {
+    background: transparent url(search.svg) no-repeat center center;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    width: 5%;
+    max-width: 60px;
+    float: right;
+    height: 40px;
+    cursor: pointer;
+}
+
+#search-submit:hover {
+    background: transparent url(search-hover.svg) no-repeat center center;
+    background-color: #fff;
+    transition: background .2s ease-in-out;
+}
+
+#navigation-bar {
+    width: 100%;
+    max-width: 1170px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+#up-to-top {
+    display: none;
+    background: transparent;
+    position: fixed;
+    right: .5%;
+    bottom: .5%;
+    box-sizing: border-box;
+    opacity: 0.7;
+}
+
+#up-to-top:hover {
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+}
+
+
+#search-toggle {
+    height: 36px;
+    width: 36px;
+    padding: 0;
+    float: right;
+    margin-top: 3px;
+    font-size: 0.9em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+}
+
+#search-toggle:hover {
+    opacity: 0.6;
+    transition: opacity .2s ease-in-out;
+}
+
+#search-toggle-hide {
+    display:none;
+}
+
+#login-form {
+    text-align: center;
+}
+
+#login-form input:nth-child(-n + 2) {
+    height: 35px;
+    width: 400px;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+#login-form input[type=submit] {
+    width: 6em;
+}
+
+#register-form {
+    text-align: center;
+}
+
+#register-form input:nth-child(-n + 5) {
+    height: 35px;
+    width: 400px;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    display: block;
+}
+
+#register-form input:nth-child(-n + 3) {
+    display: inline-block;
+}
+
+#register-form input[type=submit] {
+    width: 6em;
+}
+
+#members h2 {
+    color: #000080;
+}
+
+#question-form input[type=text] {
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    height: 35px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+#question-form select {
+    font-size: 1em;
+    display: block;
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+#question-form textarea {
+    font-size: 1em;
+    padding: 0 10px;
+}
+
+#pages-bar {
+    float: left;
+    width: 100%;
+}
+
+.registration-hints p {
+    position: absolute;
+    margin: -3px 0 0 5px;
+    max-width: 300px;
+}
+
+.center {
+    text-align: center;
+}
