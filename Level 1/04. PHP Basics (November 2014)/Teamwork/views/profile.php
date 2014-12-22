@@ -8,13 +8,13 @@ if ( ! empty($loggedUser)  ) : ?>
 
         <?php if ($loggedUser['username'] == $member[0]['username']) :?>
 
-            <form action="" method="post" >
+            <form action="" method="post">
                 <div>
-                    Name
+                    <label>Name</label>
                     <input type="text" name="name" value="<?php echo htmlentities($member[0]['name']); ?>"/>
                 </div>
                 <div>
-                    Email
+                    <label>Email</label>
                     <input type="email" name="email" value="<?php echo htmlentities($member[0]['email']); ?>"/>
                 </div>
                 <input type="submit" class="button save" name="profile-other" value="Save"/>
@@ -23,15 +23,15 @@ if ( ! empty($loggedUser)  ) : ?>
             <form action="" method="post">
                 <h4>Change Password</h4>
                 <div>
-                    Current password
+                    <label>Current password</label>
                     <input type="password" name="curr-password" value="" />
                 </div>
                 <div>
-                    New password
+                    <label>New password</label>
                     <input type="password" name="password" value="" />
                 </div>
                 <div>
-                    Confirm new password
+                    <label>Confirm new password</label>
                     <input type="password" name="confirm-pass" value="" />
                 </div>
                 <input type="submit" class="button save" name="change-password" value="Save"/>
@@ -61,7 +61,7 @@ if ( ! empty($loggedUser)  ) : ?>
 
 <?php else: ?>
 
-    <p>You have to log in to see this page.</p>
+    <p class="error-messages">You have to log in to see this page.</p>
 
 <?php endif; ?>
 
