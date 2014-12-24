@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Sofia');
 
-preg_match_all("/(?<=[^a-zA-Z\d]){1}\d+\.*\d*(?=[^a-zA-Z\d]){1}/", $_GET['numbersString'], $numbers);
+preg_match_all("/(?<=[^a-zA-Z\d]){1}\d+(?=[^a-zA-Z\d]){1}/", $_GET['numbersString'], $numbers);
 preg_match_all("/\d{4}-\d{2}-\d{2}/", $_GET['dateString'], $dates);
 $sum = '' . array_sum($numbers[0]);
 $sum = strrev($sum);
