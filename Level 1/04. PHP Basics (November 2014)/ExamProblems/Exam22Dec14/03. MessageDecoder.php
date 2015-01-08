@@ -14,6 +14,7 @@ echo "<table border='1' cellpadding='5'>";
 
 for ($i = 0; $i < count($words); $i++ ) {
     $rows = ceil(strlen($words[$i]) / $columns);
+    $words[$i] = str_pad($words[$i], $columns * $rows);
     for ($row = 0; $row < $rows; $row++ ) {
         echo "<tr>";
         for ($column = 0; $column < $columns ; $column++ ) {
