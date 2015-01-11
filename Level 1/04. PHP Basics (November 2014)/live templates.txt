@@ -1,0 +1,20 @@
+// for
+for ($$$ITERABLE$ = 0; $$$ITERABLE$ < $LENGTH$; $$$ITERABLE$++) {
+    $END$
+}
+
+// fore
+foreach ($$$ITERABLE$ as $$$VAR_VALUE$) {
+    $END$
+}
+
+// if
+if ($CONDITION$) {
+    $END$
+}
+
+// switch
+switch ($CONDITION$) {
+    case $END$
+    default: 
+}
