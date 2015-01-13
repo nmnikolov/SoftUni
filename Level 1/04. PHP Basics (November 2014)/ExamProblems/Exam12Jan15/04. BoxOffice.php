@@ -3,16 +3,16 @@ $list = $_GET['list'];
 $minSeats = intval($_GET['minSeats']);
 $maxSeats = intval($_GET['maxSeats']);
 $filter = $_GET['filter'];
+$order = $_GET['order'];
 
 $rows = preg_split('/\r?\n/', $list, -1, PREG_SPLIT_NO_EMPTY);
 
 for ($row = 0; $row < count($rows); $row++) {
-    $rowData = preg_split('/\-|\//', $rows[$row], -1, PREG_SPLIT_NO_EMPTY);
-    $nameData = preg_split('/\(|\)/', $rowData[0], -1, PREG_SPLIT_NO_EMPTY);
-    $name = trim($nameData[0]);
-    $type = trim($nameData[1]);
-    $actors = preg_split('/, /', $rowData[1], -1, PREG_SPLIT_NO_EMPTY);
-    $seats = intval($rowData[2]);
+    $rowData = preg_split('/\(|\)|\-|\//', $rows[$row], -1, PREG_SPLIT_NO_EMPTY);
+    $name = trim($rowData[0]);
+    $type = trim($rowData[1]);
+    $actors = preg_split('/, /', $rowData[2], -1, PREG_SPLIT_NO_EMPTY);
+    $seats = intval($rowData[3]);
     if (($filter === $type || $filter === 'all') && $seats >= $minSeats && $seats <= $maxSeats) {
         $movies[] = [
             'name' => $name,
@@ -24,8 +24,7 @@ for ($row = 0; $row < count($rows); $row++) {
 }
 
 if (isset($movies)) {
-    usort($movies, function($a, $b) {
-        $order = $_GET['order'];
+    usort($movies, function($a, $b) use ($order) {
         if ($a['name'] !== $b['name']) {
             return $order == 'ascending' ? $a['name'] > $b['name'] : $b['name'] > $a['name'];
         }
