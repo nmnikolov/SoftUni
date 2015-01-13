@@ -3,7 +3,7 @@ $text = trim($_GET['text']);
 $length = intval($_GET['size']);
 $rows = intval(strlen($text) / $length) + (strlen($text) % $length !== 0 ? 1 : 0);
 
-$direction = 1;
+$direction = 1; // 1 => fill down then left    -1 => fill up then right
 $x = 0;
 $y = $length - 1;
 $xCount = $rows - 1;
