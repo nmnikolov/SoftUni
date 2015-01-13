@@ -6,8 +6,7 @@ $rowsData = preg_split('/\r?\n/', $list, -1, PREG_SPLIT_NO_EMPTY);
 
 for ($i = 0; $i < count($rowsData); $i++) {
     try {
-        $date = new DateTime(trim($rowsData[$i]));
-        $dates[] = $date;
+        $dates[] = new DateTime(trim($rowsData[$i]));
     } catch (Exception $e) {
         continue;
     }
