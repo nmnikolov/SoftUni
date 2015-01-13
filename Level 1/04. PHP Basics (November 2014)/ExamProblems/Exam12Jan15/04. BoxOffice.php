@@ -8,7 +8,7 @@ $order = $_GET['order'];
 $rows = preg_split('/\r?\n/', $list, -1, PREG_SPLIT_NO_EMPTY);
 
 for ($row = 0; $row < count($rows); $row++) {
-    $rowData = preg_split('/\(|\)|\-|\//', $rows[$row], -1, PREG_SPLIT_NO_EMPTY);
+    $rowData = preg_split('/[\(\)\-\/]/', $rows[$row], -1, PREG_SPLIT_NO_EMPTY);
     $name = trim($rowData[0]);
     $type = trim($rowData[1]);
     $actors = preg_split('/, /', $rowData[2], -1, PREG_SPLIT_NO_EMPTY);
