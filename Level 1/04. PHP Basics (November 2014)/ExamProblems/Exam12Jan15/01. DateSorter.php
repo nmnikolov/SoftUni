@@ -1,13 +1,13 @@
 <?php
 date_default_timezone_set('Europe/Sofia');
 $list = $_GET['list'];
-$currDate = new DateTime($_GET['currDate']);
+$currDate = date_create($_GET['currDate'], null);
 $rowsData = preg_split('/\r?\n/', $list, -1, PREG_SPLIT_NO_EMPTY);
 
 for ($i = 0; $i < count($rowsData); $i++) {
-    try {
-        $dates[] = new DateTime(trim($rowsData[$i]));
-    } catch (Exception $e) {
+    $date = date_create($rowsData[$i], null);
+    if ($date) {
+        $dates[] = $date;
     }
 }
 
