@@ -8,7 +8,6 @@ for ($i = 0; $i < count($rowsData); $i++) {
     try {
         $dates[] = new DateTime(trim($rowsData[$i]));
     } catch (Exception $e) {
-        continue;
     }
 }
 
