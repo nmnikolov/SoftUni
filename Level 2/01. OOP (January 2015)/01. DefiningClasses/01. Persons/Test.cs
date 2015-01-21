@@ -10,12 +10,12 @@ namespace _01.Persons
             {
                 Person test1 = new Person("Test1", 20);
                 Person test2 = new Person("Test2", 20, "test@gmail.com");
-                Console.WriteLine(test1.ToString());
-                Console.WriteLine(test2.ToString());
+                Console.WriteLine(test1);
+                Console.WriteLine(test2);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("Wrong input data.");
+                Console.WriteLine(ex.Message);
             }          
         }
     }  

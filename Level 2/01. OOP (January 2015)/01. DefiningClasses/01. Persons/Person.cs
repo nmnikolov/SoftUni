@@ -18,7 +18,7 @@ namespace _01.Persons
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new NullReferenceException("Cannot create Person.");
+                    throw new ArgumentException("Name cannot be empty or null.");
                 }
 
                 this.name = value;
@@ -31,7 +31,7 @@ namespace _01.Persons
             {
                 if (value < 1 || value > 100)
                 {
-                    throw new ArgumentOutOfRangeException("Cannot create Person.");
+                    throw new ArgumentException("Age must be in the range [1..100].");
                 }
 
                 this.age = value;
@@ -44,7 +44,7 @@ namespace _01.Persons
             {
                 if (value != null && !Validate.IsEmail(value))
                 {
-                    throw new ArgumentException("Cannot create Person.");
+                    throw new ArgumentException("Invalid Email.");
                 }
 
                 this.email = value;
