@@ -68,7 +68,7 @@ namespace _03.PCCatalog
                 result += String.Format("Details: {0}\n", this.details);
             }
 
-            result += String.Format("Price: {0:C2} \n", this.price);
+            result += String.Format("Price: {0:F2} BGN\n", this.price);
 
             return result;
         }

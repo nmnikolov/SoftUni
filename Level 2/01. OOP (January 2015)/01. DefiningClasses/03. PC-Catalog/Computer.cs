@@ -50,7 +50,7 @@ namespace _03.PCCatalog
         {
             string result = "MODEL: " + this.name + "\n";
             result = components.Aggregate(result, (current, t) => current + t);
-            result += String.Format("\nTOTAL PRICE: {0:C2} \n", this.TotalPrice);
+            result += String.Format("\nTOTAL PRICE: {0:F2} BGN\n", this.TotalPrice);
             return result;
         }
     }
