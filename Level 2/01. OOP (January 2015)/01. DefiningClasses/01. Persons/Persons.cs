@@ -2,7 +2,7 @@
 
 namespace _01.Persons
 {
-    class Test
+    class Persons
     {
         public static void Main()
         {

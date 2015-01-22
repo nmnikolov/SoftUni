@@ -5,13 +5,13 @@ namespace _01.Persons
 {
     class Person
     {
-        private String name;
+        private string name;
 
         private int age;
 
-        private String email;
+        private string email;
 
-        public String Name
+        public string Name
         {
             get { return this.name; }
             set
@@ -38,7 +38,7 @@ namespace _01.Persons
             }
         }
 
-        public String Email {
+        public string Email {
             get { return this.email; }
             set
             {
@@ -51,20 +51,20 @@ namespace _01.Persons
             }
         }
 
-        public Person( String name, int age, String email )
+        public Person( string name, int age, string email )
         {
             this.Name = name;
             this.Age = age;
             this.Email = email;
         }
 
-        public Person(String name, int age) : this( name, age, null )
+        public Person(string name, int age) : this( name, age, null )
         {           
         }
 
         public override string ToString()
         {
-            String result = String.Format( "Name: {0}\nAge: {1}\nEmail: ", this.name, this.age );
+            string result = String.Format( "Name: {0}\nAge: {1}\nEmail: ", this.name, this.age );
 
             if (!String.IsNullOrEmpty(this.email))
             {

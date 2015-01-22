@@ -20,7 +20,7 @@ namespace _02.LaptopShop
 
         private Battery battery;
 
-        private Decimal price;
+        private decimal price;
 
         public string Model
         {
