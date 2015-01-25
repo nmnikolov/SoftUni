@@ -8,12 +8,20 @@ namespace _02.LaptopShop
         {
             try
             {
-                Laptop acer = new Laptop(model: "Acer", price: 13.5m, batteryType: "Li-On", batteryLife: 0.1d);
+                Laptop acer = new Laptop(model: "Acer", price: 13.5m, hdd: 500, batteryType: "Li-On");
                 Console.WriteLine(acer);
             }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex);
+            }          
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex);
             }
         }
     }

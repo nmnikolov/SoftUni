@@ -19,7 +19,7 @@ namespace _03.PCCatalog
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("");
+                    throw new ArgumentException("Computer name cannot be empty.");
                 }
 
                 this.name = value;
@@ -30,11 +30,11 @@ namespace _03.PCCatalog
             get { return this.totalPrice; }
         }
 
-        public Computer(string name, Component processor = null, Component motherboard = null, Component graphicCard = null, Component ram = null, Component hdd = null)
+        public Computer(string name, params Component[] list)
         {
             this.totalPrice = 0m;
             this.Name = name;
-            AddComponents(processor, motherboard, graphicCard, ram, hdd);        
+            AddComponents(list);   
         }
 
         public void AddComponents(params Component[] list)
@@ -48,7 +48,7 @@ namespace _03.PCCatalog
 
         public override string ToString()
         {
-            string result = "MODEL: " + this.name + "\n";
+            string result = String.Format("MODEL: {0}\n", this.name);
             result = components.Aggregate(result, (current, t) => current + t);
             result += String.Format("\nTOTAL PRICE: {0:F2} BGN\n", this.TotalPrice);
             return result;

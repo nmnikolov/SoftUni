@@ -10,11 +10,11 @@ namespace _02.LaptopShop
 
         private string processor;
 
-        private int ram;
+        private int? ram = null;
 
         private string graphicCard;
 
-        private int hdd;
+        private int? hdd = null;
 
         private string screen;
 
@@ -29,7 +29,7 @@ namespace _02.LaptopShop
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new Exception("");
+                    throw new ArgumentException("Model cannot be empty.");
                 }
 
                 this.model = value;
@@ -43,7 +43,7 @@ namespace _02.LaptopShop
             {
                 if (value != null && String.IsNullOrEmpty(value))
                 {
-                    throw new Exception("");
+                    throw new ArgumentException("Manufacturer cannot be empty.");
                 }
 
                 this.manufacturer = value;
@@ -57,21 +57,21 @@ namespace _02.LaptopShop
             {
                 if (value != null && String.IsNullOrEmpty(value))
                 {
-                    throw new Exception("");
+                    throw new ArgumentException("Processor cannot be empty.");
                 }
 
                 this.processor = value;
             }
         }
 
-        public int Ram
+        public int? Ram
         {
             get { return this.ram; }
             set
             {
                 if (value < 0)
                 {
-                    throw new Exception("");
+                    throw new ArgumentOutOfRangeException("ram", "Ram cannot be negative.");
                 }
 
                 this.ram = value;
@@ -85,21 +85,21 @@ namespace _02.LaptopShop
             {
                 if (value != null && String.IsNullOrEmpty(value))
                 {
-                    throw new Exception("");
+                    throw new ArgumentException("Graphic card cannot be empty.");
                 }
 
                 this.graphicCard = value;
             }
         }
 
-        public int Hdd
+        public int? Hdd
         {
             get { return this.hdd; }
             set
             {
                 if (value < 0)
                 {
-                    throw new Exception("");
+                    throw new ArgumentOutOfRangeException("hdd", "Hdd cannot be negative.");
                 }
 
                 this.hdd = value;
@@ -113,7 +113,7 @@ namespace _02.LaptopShop
             {
                 if (value != null && String.IsNullOrEmpty(value))
                 {
-                    throw new Exception("");
+                    throw new ArgumentException("Screen cannot be empty.");
                 }
 
                 this.screen = value;
@@ -127,14 +127,13 @@ namespace _02.LaptopShop
             {
                 if (value < 0)
                 {
-                    throw new Exception("");
+                    throw new ArgumentOutOfRangeException("price", "Price cannot be negative.");
                 }
                 this.price = value;
             }
         }
 
-        public Laptop(string model, decimal price, string manufacturer = null, string processor = null, int ram = 0, string graphicCard = null, int hdd = 0, string screen = null,
-            string batteryType = null, double batteryLife = 0d)
+        public Laptop(string model, decimal price, string manufacturer = null, string processor = null, int? ram = null, string graphicCard = null, int? hdd = null, string screen = null, string batteryType = null, double? batteryLife = null)
         {
             this.Model = model;
             this.Price = price;
@@ -152,9 +151,9 @@ namespace _02.LaptopShop
             string output = String.Format("Model: {0}\n", this.model);
             output += String.Format("Manufacturer: {0}\n", this.manufacturer ?? "not provided");
             output += String.Format("Processor: {0}\n", this.processor ?? "not provided");
-            output += String.Format("RAM: {0}\n", this.ram == 0 ? "not provided" : this.ram + " GB");
+            output += String.Format("RAM: {0}\n", this.ram != null ? this.ram + " GB" : "not provided");
             output += String.Format("Graphic card: {0}\n", this.graphicCard ?? "not provided");
-            output += String.Format("HDD: {0}\n", this.hdd == 0 ? "not provided" : this.hdd + " GB");
+            output += String.Format("HDD: {0}\n", this.hdd != null ? this.hdd + " GB" : "not provided");
             output += String.Format("Screen: {0}\n", this.screen ?? "not provided");
             output += String.Format("{0}\n", this.battery);
             output += String.Format("Price: {0:N2} lv.\n", this.price);

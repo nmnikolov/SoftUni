@@ -6,7 +6,7 @@ namespace _02.LaptopShop
     {
         private string batteryType;
 
-        private double batteryLife;
+        private double? batteryLife;
 
         public string BatteryType
         {
@@ -15,28 +15,28 @@ namespace _02.LaptopShop
             {
                 if (value != null && value.Trim() == "")
                 {
-                    throw new Exception("");
+                    throw new ArgumentException("Battery type cannot be empty.");
                 }
 
                 this.batteryType = value;
             }
         }
 
-        public double BatteryLife
+        public double? BatteryLife
         {
             get { return this.batteryLife; }
             set
             {
                 if (value < 0)
                 {
-                    throw new Exception("");
+                    throw new ArgumentOutOfRangeException("batteryLife", "Battery life cannot be negative.");
                 }
 
-                this.batteryLife = value;
+                this.batteryLife = value;             
             }
         }
 
-        public Battery(string batteryType = null, double batteryLife = 0d)
+        public Battery(string batteryType = null, double? batteryLife = null)
         {
             this.BatteryType = batteryType;
             this.BatteryLife = batteryLife;
@@ -44,16 +44,8 @@ namespace _02.LaptopShop
 
         public override string ToString()
         {
-            string result = String.Format("Battery: {0}\nBattery life: ", this.batteryType ?? "not provided");
-
-            if (this.batteryLife == 0d)
-            {
-                result += "not provided";
-            }
-            else
-            {
-                result += this.batteryLife + " hours";
-            }
+            string result = String.Format("Battery: {0}\n", this.batteryType ?? "not provided");
+            result += String.Format("Battery life: {0}", this.batteryLife != null ? this.batteryLife + " hours" : "not provided");
 
             return result;
         }

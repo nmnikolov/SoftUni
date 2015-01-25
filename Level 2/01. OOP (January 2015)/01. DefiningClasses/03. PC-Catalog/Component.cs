@@ -17,7 +17,7 @@ namespace _03.PCCatalog
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Error");
+                    throw new ArgumentException("Component type cannot be empty.");
                 }
                 this.type = value;
             }
@@ -31,7 +31,7 @@ namespace _03.PCCatalog
             {
                 if (value != null && value.Trim() == "")
                 {
-                    throw new ArgumentException("Error");
+                    throw new ArgumentException("Component details cannot be empty.");
                 }
 
                 this.details = value;
@@ -45,7 +45,7 @@ namespace _03.PCCatalog
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Error");
+                    throw new ArgumentException("Component price cannot be negative.");
                 }
 
                 this.price = value;
