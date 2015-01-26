@@ -10,11 +10,11 @@ namespace _02.LaptopShop
 
         private string processor;
 
-        private int? ram = null;
+        private int? ram;
 
         private string graphicCard;
 
-        private int? hdd = null;
+        private int? hdd;
 
         private string screen;
 
