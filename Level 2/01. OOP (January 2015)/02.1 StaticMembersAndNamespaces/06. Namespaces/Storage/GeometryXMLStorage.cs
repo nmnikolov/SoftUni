@@ -1,6 +1,6 @@
 ﻿namespace Geometry.Storage
 {
-    class GeometryXMLStorage
+    public class GeometryXMLStorage
     {
     }
 }

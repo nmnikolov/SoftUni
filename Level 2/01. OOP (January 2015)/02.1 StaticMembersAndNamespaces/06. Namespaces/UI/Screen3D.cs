@@ -1,6 +1,6 @@
 ﻿namespace Geometry.UI
 {
-    class Screen3D
+    public class Screen3D
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Geometry.Geometry2D
 {
-    class Polygon
+    public class Polygon
     {
     }
 }

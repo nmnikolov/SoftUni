@@ -1,6 +1,6 @@
 ﻿namespace Geometry.Geometry2D
 {
-    class Figure2D
+    public class Figure2D
     {
     }
 }

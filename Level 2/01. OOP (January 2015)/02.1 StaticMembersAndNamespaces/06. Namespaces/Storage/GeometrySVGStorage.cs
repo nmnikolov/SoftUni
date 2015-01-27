@@ -1,6 +1,6 @@
 ﻿namespace Geometry.Storage
 {
-    class GeometrySVGStorage
+    public class GeometrySVGStorage
     {
     }
 }
