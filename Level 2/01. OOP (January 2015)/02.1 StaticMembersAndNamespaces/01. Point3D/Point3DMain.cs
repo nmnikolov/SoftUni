@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Point
+﻿namespace Point
 {
+    using System;
+
     class Point3DMain
     {
         public static void Main()

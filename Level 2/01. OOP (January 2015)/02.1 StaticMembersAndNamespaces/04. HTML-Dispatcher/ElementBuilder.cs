@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HTML_Dispatcher
+﻿namespace HTML_Dispatcher
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class ElementBuilder
     {
-        private readonly string[] tags = new string[] { "!DOCTYPE", "a", "abbr", "address", "area", "article", "aside",
+        private readonly string[] tags = {"!DOCTYPE", "a", "abbr", "address", "area", "article", "aside",
             "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code",
             "col", "colgroup", "command", "datalist", "dd", "del", "details", "dfn", "div", "dl", "dt", "em", "embed",
             "fieldset", "figcaption", "figure", "footer", "form", "h1 - h6", "head", "header", "hgroup", "hr", "html",
@@ -15,12 +15,19 @@ namespace HTML_Dispatcher
             "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "pre",
             "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span",
             "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time",
-            "title", "tr", "track", "u", "ul", "var", "video", "wbr" };
+            "title", "tr", "track", "u", "ul", "var", "video", "wbr"};
 
-        private readonly string[] voidElements = new string[] {"area", "base", "br", "col", "embed", "hr", "img", "input",
+        private readonly string[] voidElements = {"area", "base", "br", "col", "embed", "hr", "img", "input",
             "keygen", "link", "meta", "param", "source", "track", "wbr"};
 
         private string name;
+
+        public ElementBuilder(string name)
+        {
+            this.Name = name;
+            this.Content = "";
+            this.Attributes = new Dictionary<string, string>();
+        }
 
         public string Content { get; set; }
 
@@ -45,14 +52,7 @@ namespace HTML_Dispatcher
                 this.name = value;
             }
         }
-      
-        public ElementBuilder(string name)
-        {
-            this.Name = name;
-            this.Content = "";
-            this.Attributes = new Dictionary<string, string>();
-        }
-
+            
         public void AddAttribute(string attribute, string value)
         {
             if (String.IsNullOrEmpty(attribute))
@@ -100,7 +100,6 @@ namespace HTML_Dispatcher
                 result.AppendFormat(">{0}</{1}>", this.Content, this.Name);
             }
             
-
             return result.ToString();
         }
     }

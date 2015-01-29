@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
-using Point;
-
-namespace Paths
+﻿namespace Paths
 {
+    using System;
+    using System.IO;
+    using Point;
+
     class PathTest
     {
         public static void Main()

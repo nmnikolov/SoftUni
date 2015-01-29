@@ -1,8 +1,8 @@
-﻿using System;
-using Point;
-
-namespace DistanceCalculator
+﻿namespace DistanceCalculator
 {
+    using System;
+    using Point;
+
     public static class DistanceCalculator
     {
         public static double CalculateDistance(Point3D point1, Point3D point2)

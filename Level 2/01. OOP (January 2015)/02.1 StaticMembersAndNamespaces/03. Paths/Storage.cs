@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using Point;
-
-namespace Paths
+﻿namespace Paths
 {
+    using System;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using Point;
+
     public static class Storage
     {
         public static void SavePathToFile(string filePath, string path)

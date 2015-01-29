@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace HTML_Dispatcher
+﻿namespace HTML_Dispatcher
 {
+    using System;
+
     class DispatcherTest
     {
         public static void Main()

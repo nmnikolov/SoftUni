@@ -1,8 +1,8 @@
-﻿using System;
-using Point;
-
-namespace DistanceCalculator
+﻿namespace DistanceCalculator
 {
+    using System;
+    using Point;
+
     public class CalculatorTest
     {
         public static void Main()

@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Point;
-
-namespace Paths
+﻿namespace Paths
 {
+    using System.Collections.Generic;
+    using System.Text;
+    using Point;
+
     public class Path3D
     {
         private readonly List<Point3D> path = new List<Point3D>();
 
-        public List<Point3D> Path {
-            get { return this.path; }
-        }
-
         public Path3D(params Point3D[] list)
         {
             AddPoints(list);
+        }
+
+        public List<Point3D> Path {
+            get { return this.path; }
         }
 
         public void AddPoints(params Point3D[] list)
@@ -28,9 +27,7 @@ namespace Paths
 
         public override string ToString()
         {
-
             StringBuilder result = new StringBuilder("Path:\n");
-
             for (int i = 0; i < this.Path.Count; i++)
             {
                 result.AppendFormat("point{0}: x={1} y={2} z={3}\n", (i + 1),
