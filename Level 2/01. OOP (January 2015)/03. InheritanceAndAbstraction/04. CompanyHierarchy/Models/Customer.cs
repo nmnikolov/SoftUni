@@ -1,8 +1,10 @@
 ﻿namespace Company.Models
 {
     using System;
+    using System.Text;
+    using Interfaces;
 
-    public class Customer : Person
+    public class Customer : Person, ICustomer
     {
         private decimal purchasesAmmount;
 
@@ -29,6 +31,14 @@
         public void AddPurchasePrice(decimal purchasePrice)
         {
             this.PurchasesAmmount += purchasePrice;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder(base.ToString());
+            result.AppendFormat("Purchases ammount: {0}\n", this.PurchasesAmmount);
+            
+            return result.ToString();
         }
     }
 }

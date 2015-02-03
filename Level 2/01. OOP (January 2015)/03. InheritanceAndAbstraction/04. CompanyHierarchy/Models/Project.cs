@@ -1,8 +1,9 @@
 ﻿namespace Company.Models
 {
     using System;
+    using Interfaces;
 
-    public class Project
+    public class Project : IProject
     {
         private string name;
 

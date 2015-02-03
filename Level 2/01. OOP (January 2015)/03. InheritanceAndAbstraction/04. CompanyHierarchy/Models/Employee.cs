@@ -1,8 +1,10 @@
 ﻿namespace Company.Models
 {
     using System;
+    using System.Text;
+    using Interfaces;
 
-    public abstract class Employee : Person
+    public abstract class Employee : Person, IEmployee
     {
         private decimal salary;
 
@@ -27,6 +29,14 @@
 
                 this.salary = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder(base.ToString());
+            result.AppendFormat("Department: {0}\nSalary: {1}\n", this.Department, this.Salary);
+
+            return result.ToString();
         }
     }
 }

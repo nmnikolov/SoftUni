@@ -1,9 +1,11 @@
 ﻿namespace Company.Models
 {
     using System;
+    using System.Text;
     using System.Text.RegularExpressions;
+    using Interfaces;
 
-    public abstract class Person
+    public abstract class Person : IPerson
     {
         private string id;
 
@@ -15,7 +17,7 @@
         {
             this.Id = id;
             this.FirstName = firstName;
-            this.lastName = lastName;
+            this.LastName = lastName;
         }
 
         public string Id
@@ -47,7 +49,7 @@
             }
         }
         
-        public string LirstName
+        public string LastName
         {
             get { return this.lastName; }
             set
@@ -59,6 +61,14 @@
 
                 this.lastName = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendFormat("Id: {0}\nFirstname: {1}\nLastname: {2}\nRole: {3}\n", this.Id, this.FirstName, this.LastName, this.GetType().Name);
+    
+            return result.ToString();
         }
     }
 }

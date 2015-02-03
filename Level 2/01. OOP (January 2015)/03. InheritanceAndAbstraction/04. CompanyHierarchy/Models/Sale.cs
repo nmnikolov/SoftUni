@@ -1,8 +1,9 @@
 ﻿namespace Company.Models
 {
     using System;
+    using Interfaces;
 
-    public class Sale
+    public class Sale : ISale
     {
         private string productName;
 
