@@ -1,4 +1,4 @@
-﻿namespace HumanStudentWorker
+﻿namespace HumanStudentWorker.Interfaces
 {
     interface INamable
     {

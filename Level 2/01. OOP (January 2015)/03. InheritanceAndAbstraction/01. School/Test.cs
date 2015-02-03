@@ -1,6 +1,7 @@
 ﻿namespace School
 {
     using System;
+    using Models;
 
     class Test
     {

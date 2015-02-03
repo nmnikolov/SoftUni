@@ -1,8 +1,9 @@
-﻿namespace School
+﻿namespace School.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Interfaces;
 
     public class Student : Person, IDetailable
     {

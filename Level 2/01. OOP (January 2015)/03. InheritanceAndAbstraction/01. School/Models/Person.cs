@@ -1,4 +1,4 @@
-﻿namespace School
+﻿namespace School.Models
 {
     using System;
     using System.Text;

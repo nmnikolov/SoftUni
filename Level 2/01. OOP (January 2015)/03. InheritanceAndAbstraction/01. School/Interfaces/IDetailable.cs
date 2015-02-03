@@ -1,4 +1,4 @@
-﻿namespace School
+﻿namespace School.Interfaces
 {
     interface IDetailable
     {

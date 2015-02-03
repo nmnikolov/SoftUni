@@ -1,10 +1,11 @@
-﻿namespace School
+﻿namespace School.Models
 {
     using System;
     using System.Data;
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
+    using Interfaces;
 
     public class Class : IDetailable
     {

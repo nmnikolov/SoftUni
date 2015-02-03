@@ -2,10 +2,11 @@
 using System.Data;
 using System.Text;
 
-namespace HumanStudentWorker
+namespace HumanStudentWorker.Models
 {
     using System;
     using System.Text.RegularExpressions;
+    using Interfaces;
 
     public class Student : Human, INamable
     {

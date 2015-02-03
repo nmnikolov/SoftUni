@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace HumanStudentWorker
+namespace HumanStudentWorker.Models
 {
     using System;
 

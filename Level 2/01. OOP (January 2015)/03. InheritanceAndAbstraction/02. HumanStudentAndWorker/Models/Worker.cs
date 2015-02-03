@@ -1,8 +1,9 @@
 ﻿using System.Text;
 
-namespace HumanStudentWorker
+namespace HumanStudentWorker.Models
 {
     using System;
+    using Interfaces;
 
     public class Worker : Human, INamable
     {
