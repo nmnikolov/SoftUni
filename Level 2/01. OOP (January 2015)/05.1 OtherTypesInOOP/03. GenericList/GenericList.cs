@@ -3,6 +3,7 @@
     using System;
     using System.Text;
 
+    [Version(1.00)]
     public class GenericList<T>
         where T : IComparable<T>
     {

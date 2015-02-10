@@ -44,6 +44,10 @@
             Console.WriteLine("Clearing the list:");
             test.Clear();
             Console.WriteLine(test);
+
+            Type type = typeof(GenericList<>);
+            object[] allAttributes = type.GetCustomAttributes(typeof(VersionAttribute), false);
+            Console.WriteLine("Version: {0}", (allAttributes[0] as VersionAttribute).Version);
         }
     }
 }
