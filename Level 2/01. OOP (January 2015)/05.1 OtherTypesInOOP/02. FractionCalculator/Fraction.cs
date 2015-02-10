@@ -66,7 +66,7 @@
 
         public override string ToString()
         {
-            String result = String.Format("{0}", (BigInteger)this.Numerator / this.Denominator);
+            String result = String.Format("{0}", (decimal)this.Numerator / (decimal)this.Denominator);
 
             return result;
         }
