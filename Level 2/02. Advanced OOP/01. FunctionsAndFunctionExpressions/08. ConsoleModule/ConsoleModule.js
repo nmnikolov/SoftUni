@@ -18,8 +18,7 @@
     }
 
     function replacePlaceholders(arg) {
-        var arguments = Array.prototype.slice.call(arg);
-        var placeholders = getUniqueArray(arguments[0].match(/{(.*?)}/g));
+        var placeholders = getUniqueArray(arg[0].match(/{(.*?)}/g));
 
         if (placeholders === null || placeholders.length !== arg.length - 1) {
             return "Error: Incorrect placeholders format.";
@@ -81,9 +80,9 @@
 }();
 
 specialConsole.writeLine("Message: hello");
-specialConsole.writeLine({ msg: "An error happened", toString: function() { return this.msg } });
+specialConsole.writeLine("Message: {0}", "hello");
 specialConsole.writeLine("Object: {0}", { name: "Gosho", toString: function() { return this.name } });
 specialConsole.writeError("Error: {0}", "A fatal error has occurred.");
 specialConsole.writeWarning("Warning: {0}", "You are not allowed to do that!");
 specialConsole.writeInfo("Info: {0}", "Hi there! Here is some info for you.");
-specialConsole.writeError("Error object: {0}", { msg: "An error happened", toString: function () { return this.msg } });
+specialConsole.writeError("Error object: {0}", { msg: "An error happened", toString: function() { return this.msg } });
