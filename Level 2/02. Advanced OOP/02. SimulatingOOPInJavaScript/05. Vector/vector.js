@@ -55,13 +55,9 @@
     };
 
     Vector.prototype.norm = function() {
-        var norm = 0;
+        var norm = Math.sqrt(this.dot(this));
 
-        for (var i = 0, len = this._dimensions.length; i < len; i += 1) {
-            norm += Math.pow(this._dimensions[i], 2);
-        }
-
-        return Math.sqrt(norm);
+        return norm;
     };
 
     return Vector;
