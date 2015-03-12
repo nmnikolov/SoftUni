@@ -17,7 +17,7 @@
         }
 
         if (this._dimensions.length !== other._dimensions.length) {
-            throw new Error("The dimensions of vectors must always be the same.");
+            throw new Error("The vectors have different dimensions.");
         }
     }
     
