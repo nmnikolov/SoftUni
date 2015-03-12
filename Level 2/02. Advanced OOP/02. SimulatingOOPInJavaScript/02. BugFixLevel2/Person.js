@@ -4,7 +4,7 @@
 
     Object.defineProperty(this, "fullName", {
         get: function () { return this.firstName + " " + this.lastName },
-        Set: function(name) {
+        set: function(name) {
             var fullName = name.split(" ");
             this.firstName = fullName[0];
             this.lastName = fullName[1];
