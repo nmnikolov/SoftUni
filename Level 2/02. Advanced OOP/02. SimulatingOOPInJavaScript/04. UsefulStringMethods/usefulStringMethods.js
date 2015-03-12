@@ -17,7 +17,7 @@ String.prototype.right = function (count) {
 }
 
 String.prototype.padLeft = function (count, character) {
-    var newStr = this.toString();
+    var newStr = this;
     character = character ? character : " ";
 
     while (newStr.length < count) {
@@ -28,7 +28,7 @@ String.prototype.padLeft = function (count, character) {
 }
 
 String.prototype.padRight = function (count, character) {
-    var newStr = this.toString();
+    var newStr = this;
     character = character ? character : " ";
 
     while (newStr.length < count) {
@@ -39,15 +39,15 @@ String.prototype.padRight = function (count, character) {
 }
 
 String.prototype.repeat = function (count) {
-    var newStr = this;
-    var c = count - 1;
+    var newStr = "";
+    var c = count;
 
     while (c > 0) {
         newStr += this;
         c -= 1;
     }
 
-    return newStr.toString();
+    return newStr;
 }
 
 console.log("*********************** Test startsWith ***********************");
@@ -115,4 +115,4 @@ console.log();
 console.log("*********************** Test combination between: repeat, padLeft and padRight ***********************");
 console.log("----- \"" + character + "\" -----");
 // Another combination
-console.log("repeat(5).padLeft(10, \"-\").padRight(15, \"+\"):   " + "*".repeat(5).padLeft(10, "-").padRight(15, "+"));
+console.log("\"*\".repeat(5).padLeft(10, \"-\").padRight(15, \"+\"):   " + "*".repeat(5).padLeft(10, "-").padRight(15, "+"));
