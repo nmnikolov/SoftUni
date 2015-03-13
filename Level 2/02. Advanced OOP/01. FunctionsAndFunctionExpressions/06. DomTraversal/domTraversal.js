@@ -1,7 +1,7 @@
 ﻿function traverse(node) {
     var elements = document.querySelectorAll(node);
 
-    if (elements.nodeType === Document.ELEMENT_NODE) {
+    if (elements.nodeType === document.HTMLElement) {
         for (var i = 0, elLen = elements.length; i < elLen; i += 1) {
             changeInnerHtml("<span style=\"color:red\"><b>Element: " + (i + 1) + "</b></span>");
             traverseNode(elements[i], '');
