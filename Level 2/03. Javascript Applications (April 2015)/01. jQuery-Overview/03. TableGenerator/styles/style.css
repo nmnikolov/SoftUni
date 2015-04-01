@@ -16,32 +16,10 @@ body {
     max-width: 900px;
 }
 
-section {
-    float: left;
-    display: inline-block;
-    min-width: 250px;
+textarea {
+    width: 700px;
     height: 200px;
-    margin: 0 10px;
-}
-
-section > div {
-    margin: 10px 10px 0 0;
-}
-
-select {
-    font-size: .7em;
-}
-
-label {
-    margin: 10px 10px 0 0;
-}
-
-button {
-    font-size: .7em;
-}
-
-ul {
-    margin: 0;
+    display: block;
 }
 
 button {
@@ -50,21 +28,30 @@ button {
     color: #fff;
     font-size: .7em;
     border: none;
-    width: 7em;
+    width: 9em;
     height: 2em;
     outline: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 5px 0;
 }
 
 button:hover {
     background: #E90606;
 }
 
-input[type=text] {
-    font-size: .7em;
+table {
+    border-collapse: collapse;
 }
 
-span {
-    color: #808080;
+th, td {
+    width: 200px;
+    border: 1px solid black;
+}
+
+th {
+    background: rgb(102, 186, 102);
+}
+
+td {
+    padding-left: 10px;
 }
