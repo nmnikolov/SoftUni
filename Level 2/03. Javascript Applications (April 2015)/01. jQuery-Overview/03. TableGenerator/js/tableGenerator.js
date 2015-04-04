@@ -44,5 +44,7 @@
 
             return table;
         }
+
+        return null;
     }
 });
