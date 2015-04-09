@@ -1,8 +1,7 @@
 ﻿$(document).ready(function () {
     $('#generator').click(function () {
         $("#cars").remove();
-        $("#cars").remove();
-
+        
         if ($('#input').val() && $.parseJSON($('#input').val())) {
             var input = $.parseJSON($('#input').val());
             input = Array.isArray(input) ? input : [input];
@@ -12,6 +11,8 @@
                 table.hide().appendTo($('#wrapper')).fadeIn(1500);
             }
         }
+
+        ev.stopPropagation();
     });
 
     function createTable(input) {
