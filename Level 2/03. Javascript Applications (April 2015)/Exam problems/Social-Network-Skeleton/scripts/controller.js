@@ -13,7 +13,6 @@ app.controller = (function () {
                 .then(function(userData){
                     _this._model.users.getById(userData.userId)
                         .then(function(data){
-                            console.log(data);
                             app.views.headerView.load(headerSelector, data);
                         });
                 });
@@ -23,14 +22,14 @@ app.controller = (function () {
         }
     };
 
-    Controller.prototype.loadPostBox = function(selector){
-        return app.views.postBoxView.load(selector);
-    };
-
     Controller.prototype.loadHome = function(selector){
 
         if(this._model.users.isLogged()){
-            app.views.postsView.load(selector);
+            this._model.posts.getAllPosts()
+                .then(function(data){
+                    app.views.postsView.load(selector, data);
+                });
+
         } else {
             app.views.defaultView.load(selector);
         }
@@ -66,7 +65,6 @@ app.controller = (function () {
                         .then(function(data){
                             app.views.profileView.load(selector, data)
                                 .then(function(){
-
                                 }, function(){
                                     Noty.error('Error loading profile page.!');
                                 });
@@ -106,14 +104,122 @@ app.controller = (function () {
 
         attachLoginHandler.call(this, selector);
         attachRegisterHandler.call(this, selector);
-//        attachHoverHandler.call(this, selector);
-//        attachShowPostHandler.call(this, headerSelector);
-//        attachSubmitPostHandler.call(this, selector);
-//        attachPictureUploadHandler.call(this, selector);
-//        attachEditProfileHandler.call(this, selector);
+        attachHoverHandler.call(this, selector);
+        attachShowPostHandler.call(this, headerSelector);
+        attachSubmitPostHandler.call(this, selector);
+        attachEditProfileHandler.call(this, selector);
     };
 
-    var attachLoginHandler = (function(selector){
+    var attachEditProfileHandler = function(selector){
+        var _this = this;
+
+        $(selector).on('click', '#profile-save', function(){
+            var userData = {
+                name: $('#name').val(),
+                about: $('#about').val(),
+                picture: $('#picture').attr('data-picture-data')
+            };
+
+            if($('#password').val()){
+                userData.password = $('#password').val();
+            }
+
+            if($('.radio input[type=radio]:checked').length){
+                userData.gender = $('.radio input[type=radio]:checked').val();
+            }
+
+            _this._model.users.getCurrentUserData()
+                .then(function(user){
+                    _this._model.users.editProfile(user.userId, userData)
+                        .then(function(){
+                            Noty.success('Changes saved.');
+                            _this.redirectTo('#/');
+                        }, function(){
+                            Noty.error('Error saving changes.');
+                        });
+                });
+
+        });
+
+        $(selector).on('click', '#profile-cancel', function(){
+            _this.redirectTo('#/')
+        });
+    };
+
+    var attachHoverHandler = function(selector){
+        var _this = this;
+
+        $(selector)
+            .on( "mouseenter", '.profile-link' , function(e) {
+                var hoverBox = $('.hover-box'),
+                    offset = $(this).offset(),
+                    userId = $(this).attr('user-id');
+                hoverBox.css(
+                    {left: offset.left + 10,
+                    'top': offset.top + 30}
+                );
+                hoverBox.show();
+
+                _this._model.users.getById(userId)
+                    .then(function(userData){
+                        app.views.hoverBoxView.load(hoverBox, userData);
+                    }, function(){
+                        Noty.error('Error loading user data.');
+                    });
+
+
+            })
+            .on( "mouseleave", '.profile-link', function() {
+                $('.hover-box').html("<p>Loading...</p>").hide();
+            });
+
+        $(selector).on('hover', '.profile-link')
+    };
+
+    var attachSubmitPostHandler = function(selector){
+        var _this = this,
+            postData;
+
+        $(selector).on('click', '#post-btn', function(e){
+            _this._model.users.getCurrentUserData()
+                .then(function(user){
+                    postData = {
+                        content: $('#post-content').val(),
+                        author: {
+                            "__type": "Pointer",
+                            "className": "_User",
+                            "objectId": user.userId
+                        }
+                    };
+
+                    _this._model.posts.addPost(postData)
+                        .then(function(){
+                            Noty.success('Post successfully added.');
+                            _this._model.posts.getAllPosts()
+                                .then(function(posts){
+                                    app.views.postsView.load(selector, posts);
+                                }, function(){
+                                    Noty.error('Error loading posts.');
+                                });
+
+                        }, function(){
+                            Noty.error('Your post submit has encountered an error.');
+                        });
+                });
+
+            return false;
+        });
+    };
+
+    var attachShowPostHandler = function(headerSelector){
+        $(headerSelector).on('click', '#post-box-toggle', function(e){
+            $('#post-container').slideToggle();
+
+            return false;
+        })
+    };
+
+    var attachLoginHandler = function(selector){
         var _this = this;
 
         $(selector).on('click', '#login-btn', function(event){
@@ -131,9 +237,9 @@ app.controller = (function () {
                     _this.redirectTo('#/');
                 });
         });
-    });
+    };
 
-    var attachRegisterHandler = (function(selector){
+    var attachRegisterHandler = function(selector){
         var _this = this;
         $(selector).on('click', '#reg-btn', function(event){
             var userData = {
@@ -155,7 +261,7 @@ app.controller = (function () {
                     _this.redirectTo('#/');
                 });
       });
-    });
+    };
 
 
     return {

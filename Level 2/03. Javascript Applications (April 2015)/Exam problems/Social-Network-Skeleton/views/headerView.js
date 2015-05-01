@@ -2,7 +2,7 @@ var app = app || {};
 app.views = app.views || {};
 
 app.views.headerView = (function(){
-    function BlogView(selector, data) {
+    function headerView(selector, data) {
         var defer = Q.defer();
 
         $.get('templates/user-header.html', function(template) {
@@ -20,7 +20,7 @@ app.views.headerView = (function(){
 
     return {
         load: function (selector, data) {
-            return BlogView(selector, data);
+            return headerView(selector, data);
         }
     }
 }());

@@ -11,7 +11,7 @@ app.requester = (function () {
         return makeRequest('GET', headers, url);
     };
 
-    Requester.prototype.post = function (serviceUrl, headers,  data) {
+    Requester.prototype.post = function (serviceUrl, headers, data) {
         var url = this._baseUrl + serviceUrl;
 
         return makeRequest('POST', headers, url, data);
@@ -23,8 +23,8 @@ app.requester = (function () {
         return makeRequest('DELETE', headers, url);
     };
 
-    Requester.prototype.put = function (serviceUrl, headers, id, data) {
-        var url = this._baseUrl + serviceUrl + id;
+    Requester.prototype.put = function (serviceUrl, headers, data) {
+        var url = this._baseUrl + serviceUrl;
 
         return makeRequest('PUT', headers, url, data);
     };
@@ -45,11 +45,10 @@ app.requester = (function () {
             url: url,
             data: JSON.stringify(data),
             processData: false,
-            success: function (data) {
-                defer.resolve(data);
+            success: function (_data) {
+                defer.resolve(_data);
             },
             error: function (error) {
-                console.log(2);
                 defer.reject(error);
             }
         });

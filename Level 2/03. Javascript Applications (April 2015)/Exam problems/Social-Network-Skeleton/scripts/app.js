@@ -13,9 +13,6 @@ var app = app || {};
 
         this.get('#/', function () {
             controller.loadHeader(headerSelector)
-            .then(function(){
-                controller.loadPostBox(mainSelector);
-            })
                 .then(function(){
                     controller.loadHome(mainSelector);
                 });

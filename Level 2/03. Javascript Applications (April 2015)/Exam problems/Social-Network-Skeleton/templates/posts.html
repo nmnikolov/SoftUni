@@ -1,5 +1,5 @@
 <!-- post box -->
-<div class="post-container" id="post-container">
+<div class="post-container" id="post-container" hidden>
     <form class="form-horizontal">
         <fieldset>
             <div class="form-group">
@@ -9,7 +9,7 @@
             </div>
             <div class="form-group pull-left">
                 <div>
-                    <button type="button" class="btn btn-primary">Post</button>
+                    <button type="button" id="post-btn" class="btn btn-primary">Post</button>
                 </div>
             </div>
         </fieldset>
@@ -17,18 +17,24 @@
 </div>
 <!-- end of post box -->
 <!-- posts page -->
+{{#each posts}}
 <article class="post well">
     <header class="post-header">
         <div class="post-image">
-            <img class="mini-thumbnail" />
+            <img class="mini-thumbnail" src="{{picture}}"/>
         </div>
         <div class="post-info">
-            <p><a href="#" class="profile-link">Name</a> made a post</p>
-            <p>on <time>DateTime</time></p>
+            <p><a href="#" class="profile-link" user-id="{{userId}}">{{name}}</a> made a post</p>
+            <p>on <time>{{createdAt}}</time></p>
         </div>
     </header>
     <section class="post-content">
-        <p>Post Content</p>
+        <p>{{content}}</p>
     </section>
 </article>
+{{/each}}
 <!-- end of posts page -->
+
+<div class="hover-box" hidden>
+    <p>Loading...</p>
+</div>

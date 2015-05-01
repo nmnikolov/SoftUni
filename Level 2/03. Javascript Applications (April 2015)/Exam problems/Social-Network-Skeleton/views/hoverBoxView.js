@@ -1,13 +1,13 @@
 var app = app || {};
 app.views = app.views || {};
 
-app.views.postBoxView = (function(){
-    function postBoxView(selector) {
+app.views.hoverBoxView = (function(){
+    function hoverBoxView(selector, data) {
         var defer = Q.defer();
 
-        $.get('templates/post-box.html', function(template) {
+        $.get('templates/hover-box.html', function(template) {
             var temp = Handlebars.compile(template);
-            var html = temp();
+            var html = temp(data);
             $(selector).html(html);
         }).success(function(_data) {
             defer.resolve(_data);
@@ -19,8 +19,8 @@ app.views.postBoxView = (function(){
     }
 
     return {
-        load: function (selector) {
-            return postBoxView(selector);
+        load: function (selector, data) {
+            return hoverBoxView(selector, data);
         }
     }
 }());

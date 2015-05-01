@@ -89,6 +89,7 @@ img.thumbnail {
     border: solid 1px #E3E3E3;
     padding: 5px;
     box-shadow: 1px 1px 1px 1px gray;
+    position: absolute;
     /* display: none; */
 }
 

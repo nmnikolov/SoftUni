@@ -19,8 +19,8 @@ app.views.postsView = (function(){
     }
 
     return {
-        load: function (selector) {
-            return postsView(selector);
+        load: function (selector, data) {
+            return postsView(selector, data);
         }
     }
 }());

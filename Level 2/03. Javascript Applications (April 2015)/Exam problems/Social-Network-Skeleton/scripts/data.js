@@ -107,11 +107,8 @@ app.data = (function(){
 
         Users.prototype.editProfile = function(userId, userData){
             var defer = Q.defer();
-
-            this._requester.put('users/', userId, userData, this.credentials.getHeaders())
+            this._requester.put('users/' + userId, credentials.getHeaders(), userData)
                 .then(function (data) {
-                    credentials.clearStorage();
-
                     defer.resolve(data);
                 }, function (error) {
                     defer.reject(error);
@@ -189,7 +186,49 @@ app.data = (function(){
 
         function Posts(ajaxRequester) {
             this._requester = ajaxRequester;
+            this._posts = {
+              'posts': []
+            };
         }
+
+        Posts.prototype.getAllPosts = function(){
+            var defer = Q.defer(),
+                _this = this;
+
+            this._requester.get('classes/Post?include=author', credentials.getHeaders())
+                .then(function(data){
+                    _this._posts['posts'].length = 0;
+
+                    $.each(data['results'], function(key, postData){
+                        var post = {
+                            userId: postData.author.objectId,
+                            name: postData.author.name,
+                            picture: postData.author.picture,
+                            content: postData.content,
+                            createdAt: formatDate(postData['createdAt'])
+                        };
+                        _this._posts['posts'].push(post);
+                    });
+                    defer.resolve(_this._posts);
+                }, function(error){
+                    defer.reject(error);
+                });
+
+            return defer.promise;
+        };
+
+        Posts.prototype.addPost = function(data){
+            var defer = Q.defer();
+
+            this._requester.post('classes/Post', credentials.getHeaders(), data)
+                .then(function(data){
+                    defer.resolve(data);
+                }, function(error){
+                    defer.reject(error);
+                });
+
+            return defer.promise;
+        };
 
         return {
             get: function (ajaxRequester) {
@@ -197,6 +236,16 @@ app.data = (function(){
             }
         }
     }());
+
+    var formatDate = function(isoString){
+            var timestamp = new Date(Date.parse(isoString)),
+                months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                hours = timestamp.getHours() > 9 ? timestamp.getHours() : '0' + timestamp.getHours(),
+                minutes = timestamp.getMinutes() > 9 ? timestamp.getMinutes() : '0' + timestamp.getMinutes();
+
+            return timestamp.getDate() + '-' + months[timestamp.getMonth()] + '-' + timestamp.getFullYear()
+                + ' ' + hours  + ':' + minutes;
+        };
 
     return {
         get: function (ajaxRequester) {
