@@ -53,17 +53,7 @@ app.noteViews = (function() {
             }).pagination('selectPage', page);
 
             $('.edit').click(function(){
-                var data = {
-                    id: $(this).parent().attr('data-id'),
-                    title: $(this).parent().find('#title').text(),
-                    text: $(this).parent().find('#text').text(),
-                    deadline: $(this).parent().find('.deadline').text()
-                };
-
-                var urlParams = 'id=' + data.id +
-                    '&title=' + data.title +
-                    '&text=' + data.text +
-                    '&deadline=' + data.deadline;
+                var urlParams = getUrlData(this);
 
                 window.location.replace('#/notes/edit/' + encodeURI(urlParams));
 
@@ -71,17 +61,7 @@ app.noteViews = (function() {
             });
 
             $('.delete').click(function(){
-                var data = {
-                    id: $(this).parent().attr('data-id'),
-                    title: $(this).parent().find('#title').text(),
-                    text: $(this).parent().find('#text').text(),
-                    deadline: $(this).parent().find('.deadline').text()
-                };
-
-                var urlParams = 'id=' + data.id +
-                    '&title=' + data.title +
-                    '&text=' + data.text +
-                    '&deadline=' + data.deadline;
+                var urlParams = getUrlData(this);
 
                 window.location.replace('#/notes/delete/' + encodeURI(urlParams));
 
@@ -89,6 +69,22 @@ app.noteViews = (function() {
             });
 
         });
+    }
+
+    function getUrlData(element){
+        var data = {
+            id: $(element).parent().attr('data-id'),
+            title: $(element).parent().find('#title').text(),
+            text: $(element).parent().find('#text').text(),
+            deadline: $(element).parent().find('.deadline').text()
+        };
+
+        var urlParams = 'id=' + data.id +
+            '&title=' + data.title +
+            '&text=' + data.text +
+            '&deadline=' + data.deadline;
+
+        return urlParams;
     }
 
     function addNoteView (selector) {
