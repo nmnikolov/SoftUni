@@ -71,22 +71,6 @@ app.noteViews = (function() {
         });
     }
 
-    function getUrlData(element){
-        var data = {
-            id: $(element).parent().attr('data-id'),
-            title: $(element).parent().find('#title').text(),
-            text: $(element).parent().find('#text').text(),
-            deadline: $(element).parent().find('.deadline').text()
-        };
-
-        var urlParams = 'id=' + data.id +
-            '&title=' + data.title +
-            '&text=' + data.text +
-            '&deadline=' + data.deadline;
-
-        return urlParams;
-    }
-
     function addNoteView (selector) {
         $.get('templates/addNote.html', function (template) {
             var temp = Handlebars.compile(template);
@@ -142,6 +126,22 @@ app.noteViews = (function() {
                 return false;
             })
         }).done();
+    }
+
+    function getUrlData(element){
+        var data = {
+            id: $(element).parent().attr('data-id'),
+            title: $(element).parent().find('#title').text(),
+            text: $(element).parent().find('#text').text(),
+            deadline: $(element).parent().find('.deadline').text()
+        };
+
+        var urlParams = 'id=' + data.id +
+            '&title=' + data.title +
+            '&text=' + data.text +
+            '&deadline=' + data.deadline;
+
+        return urlParams;
     }
 
     return {
