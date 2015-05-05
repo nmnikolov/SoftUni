@@ -9,6 +9,7 @@ app.userModel = (function() {
 
     UserModel.prototype.login = function(username, password) {
         var serviceUrl = this.baseUrl + 'login?username=' + username + '&password=' + password;
+
         return this.requester.get(serviceUrl, this.headers.getHeaders());
     };
 
@@ -19,11 +20,13 @@ app.userModel = (function() {
             password: password,
             fullName: fullName
         };
+
         return this.requester.post(serviceUrl, this.headers.getHeaders(), data);
     };
 
     UserModel.prototype.logout = function() {
         var serviceUrl = this.baseUrl + 'logout';
+
         return this.requester.post(serviceUrl, this.headers.getHeaders(true));
     };
 

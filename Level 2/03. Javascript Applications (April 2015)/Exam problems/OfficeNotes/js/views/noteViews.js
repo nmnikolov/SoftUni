@@ -5,25 +5,21 @@ app.noteViews = (function() {
         this.listNotes = {
             loadNotesView: loadNotesView
         };
-
-        this.listMyNotes = {
-            loadMyNotesView: loadMyNotesView
+        this.listUserNotes = {
+            loadUserNotesView: loadUserNotesView
         };
-
         this.addNote = {
             addNoteView: addNoteView
         };
-
         this.editNote = {
             editNoteView: editNoteView
         };
-
         this.deleteNote = {
             deleteNoteView: deleteNoteView
         }
     }
 
-    function loadNotesView (selector, page, data) {
+    function loadNotesView (selector, page, data, notesPerPage) {
         $.get('templates/officeNoteTemplate.html', function (template) {
             var temp = Handlebars.compile(template);
             var html = temp(data);
@@ -31,15 +27,14 @@ app.noteViews = (function() {
         }).then(function(){
             $('#pagination').pagination({
                 items: data['count'],
-                itemsOnPage: 10,
+                itemsOnPage: notesPerPage,
                 cssStyle: 'light-theme',
                 hrefTextPrefix: '#/office/'
              }).pagination('selectPage', page);
-
         });
     }
 
-    function loadMyNotesView (selector, page, data) {
+    function loadUserNotesView (selector, page, data, notesPerPage) {
         $.get('templates/myNoteTemplate.html', function (template) {
             var temp = Handlebars.compile(template);
             var html = temp(data);
@@ -47,14 +42,13 @@ app.noteViews = (function() {
         }).then(function(){
             $('#pagination').pagination({
                 items: data['count'],
-                itemsOnPage: 10,
+                itemsOnPage: notesPerPage,
                 cssStyle: 'light-theme',
                 hrefTextPrefix: '#/myNotes/'
             }).pagination('selectPage', page);
 
             $('.edit').click(function(){
                 var urlParams = getUrlData(this);
-
                 window.location.replace('#/notes/edit/' + encodeURI(urlParams));
 
                 return false;
@@ -62,12 +56,10 @@ app.noteViews = (function() {
 
             $('.delete').click(function(){
                 var urlParams = getUrlData(this);
-
                 window.location.replace('#/notes/delete/' + encodeURI(urlParams));
 
                 return false;
             });
-
         });
     }
 

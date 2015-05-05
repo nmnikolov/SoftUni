@@ -4,6 +4,7 @@ var app = app || {};
     var appId= 'u5iEfoMo5NmpIMWV3WCHhAMDpx5iLBk3pCEA0O7n';
     var restAPI = '9pbMmyBbFqKa8p2NUaSwIEQ7SYUSeGbPp5pGDRE1';
     var baseUrl = 'https://api.parse.com/1/';
+    var notesPerPage = 10;
 
     var headers = app.headers.load(appId, restAPI);
     var requester = app.requester.load();
@@ -124,7 +125,7 @@ var app = app || {};
         });
 
         this.get('#/office/:page', function() {
-            noteController.listAllNotes(selector, this.params['page']);
+            noteController.listOfficeNotes(selector, this.params['page'], notesPerPage);
         });
 
         this.get('#/office/', function() {
@@ -144,7 +145,7 @@ var app = app || {};
         });
 
         this.get('#/myNotes/:page', function() {
-            noteController.listMyNotes(selector, this.params['page']);
+            noteController.listUserNotes(selector, this.params['page'], notesPerPage);
         });
 
         this.get('#/myNotes/', function() {

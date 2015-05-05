@@ -22,28 +22,27 @@ app.noteController = (function () {
         if(action === 'delete') {
             this.viewBag.deleteNote.deleteNoteView(selector, outData);
         } else {
-
             this.viewBag.editNote.editNoteView(selector, outData);
         }
     };
 
-    NoteController.prototype.listAllNotes = function (selector, page) {
+    NoteController.prototype.listOfficeNotes = function (selector, page, notesPerPage) {
         var _this = this;
 
-        return _this.model.listAllNotes(page)
+        return this.model.listOfficeNotes(page, notesPerPage)
                     .then(function (data) {
-                        _this.viewBag.listNotes.loadNotesView(selector, page,  data);
+                        _this.viewBag.listNotes.loadNotesView(selector, page,  data, notesPerPage);
                     }, function () {
                         Noty.error('Error retrieving notes. Please try again.');
                     });
     };
 
-    NoteController.prototype.listMyNotes = function (selector, page) {
+    NoteController.prototype.listUserNotes = function (selector, page, notesPerPage) {
         var _this = this;
 
-        return _this.model.listMyNotes(page)
+        return this.model.listUserNotes(page, notesPerPage)
                     .then(function (data) {
-                        _this.viewBag.listMyNotes.loadMyNotesView(selector, page, data);
+                        _this.viewBag.listUserNotes.loadUserNotesView(selector, page, data, notesPerPage);
                     }, function () {
                         Noty.error('Error retrieving notes. Please try again.');
                     });

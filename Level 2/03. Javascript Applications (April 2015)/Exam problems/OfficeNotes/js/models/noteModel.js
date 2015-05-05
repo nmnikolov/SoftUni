@@ -7,16 +7,16 @@ app.noteModel = (function() {
         this.headers = headers;
     }
 
-    NoteModel.prototype.listAllNotes = function(page) {
+    NoteModel.prototype.listOfficeNotes = function(page, notesPerPage) {
         var where = {
             "deadline": getTodayDate()
         };
+        var url = this.serviceUrl + '?count=1&limit=' + notesPerPage + '&skip=' + ((page - 1 ) * notesPerPage) + '&include=author&where=' + JSON.stringify(where);
 
-        var url = this.serviceUrl + '?count=1&limit=10&skip=' + ((page - 1 ) * 10) + '&include=author&where=' + JSON.stringify(where);
         return this.requester.get(url, this.headers.getHeaders(true));
     };
 
-    NoteModel.prototype.listMyNotes = function(page) {
+    NoteModel.prototype.listUserNotes = function(page, notesPerPage) {
         var where = {
             "author":{
                 "__type":"Pointer",
@@ -24,8 +24,8 @@ app.noteModel = (function() {
                 "objectId": sessionStorage['userId']
             }
         };
+        var url = this.serviceUrl + '?count=1&limit=' + notesPerPage + '&skip=' + ((page - 1 ) * notesPerPage) + '&include=author&where=' + JSON.stringify(where);
 
-        var url = this.serviceUrl + '?count=1&limit=10&skip=' + ((page - 1 ) * 10) + '&include=author&where=' + JSON.stringify(where);
         return this.requester.get(url, this.headers.getHeaders(true));
     };
 
