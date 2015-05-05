@@ -14,8 +14,7 @@ app.noteModel = (function() {
         var url = this.serviceUrl +
             '?count=1&limit=' + notesPerPage +
             '&skip=' + ((page - 1 ) * notesPerPage) +
-            '&include=author&where=' +
-            JSON.stringify(where);
+            '&include=author&where=' + JSON.stringify(where);
 
         return this.requester.get(url, this.headers.getHeaders(true));
     };
@@ -31,8 +30,7 @@ app.noteModel = (function() {
         var url = this.serviceUrl +
             '?count=1&limit=' + notesPerPage +
             '&skip=' + ((page - 1 ) * notesPerPage) +
-            '&include=author&where=' +
-            JSON.stringify(where);
+            '&include=author&where=' + JSON.stringify(where);
 
         return this.requester.get(url, this.headers.getHeaders(true));
     };
