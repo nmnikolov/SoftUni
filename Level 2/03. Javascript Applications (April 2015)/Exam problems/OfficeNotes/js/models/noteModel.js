@@ -11,7 +11,11 @@ app.noteModel = (function() {
         var where = {
             "deadline": getTodayDate()
         };
-        var url = this.serviceUrl + '?count=1&limit=' + notesPerPage + '&skip=' + ((page - 1 ) * notesPerPage) + '&include=author&where=' + JSON.stringify(where);
+        var url = this.serviceUrl +
+            '?count=1&limit=' + notesPerPage +
+            '&skip=' + ((page - 1 ) * notesPerPage) +
+            '&include=author&where=' +
+            JSON.stringify(where);
 
         return this.requester.get(url, this.headers.getHeaders(true));
     };
@@ -24,7 +28,11 @@ app.noteModel = (function() {
                 "objectId": sessionStorage['userId']
             }
         };
-        var url = this.serviceUrl + '?count=1&limit=' + notesPerPage + '&skip=' + ((page - 1 ) * notesPerPage) + '&include=author&where=' + JSON.stringify(where);
+        var url = this.serviceUrl +
+            '?count=1&limit=' + notesPerPage +
+            '&skip=' + ((page - 1 ) * notesPerPage) +
+            '&include=author&where=' +
+            JSON.stringify(where);
 
         return this.requester.get(url, this.headers.getHeaders(true));
     };
