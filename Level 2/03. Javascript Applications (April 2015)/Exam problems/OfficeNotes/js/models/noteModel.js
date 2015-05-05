@@ -73,7 +73,7 @@ app.noteModel = (function() {
     var getTodayDate = function(){
         var now = new Date();
         var month = (now.getMonth() + 1) >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
-        var day = now.getDate() >= 10 ? now.getDate() + 1 : '0' + now.getDate();
+        var day = now.getDate() >= 10 ? now.getDate(): '0' + now.getDate();
         var today = '' + now.getFullYear() + '-' + month + '-' + day;
 
         return today;
