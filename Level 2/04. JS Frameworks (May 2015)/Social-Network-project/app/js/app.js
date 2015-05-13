@@ -6,7 +6,7 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/login', {
             templateUrl:'templates/login.html',
-            controller:'profileController',
+            controller:'userController',
             resolve:{
                 isLogged: function($location){
                     if(localStorage.getItem('accessToken')){
@@ -17,7 +17,7 @@ app.config(function ($routeProvider) {
         })
         .when('/register', {
             templateUrl: 'templates/register.html',
-            controller:'profileController',
+            controller:'userController',
             resolve:{
                 isLogged: function($location){
                     if(localStorage.getItem('accessToken')){

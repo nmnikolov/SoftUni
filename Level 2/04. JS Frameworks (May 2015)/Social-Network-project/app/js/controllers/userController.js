@@ -1,4 +1,4 @@
-app.controller('profileController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication) {
+app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication) {
 
     $scope.login = function(){
         if(!authentication.isLogged()){
