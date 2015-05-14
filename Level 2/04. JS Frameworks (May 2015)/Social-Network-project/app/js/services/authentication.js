@@ -1,19 +1,8 @@
 app.factory('authentication', function($http, $q, $resource, BASE_URL){
     var authentication = {};
 
-    var resource = $resource(
-        BASE_URL + 'me',
-        {},
-        {
-            get:{
-                method: "Get",
-                headers: { 'Authorization': ("Bearer " + localStorage.getItem('accessToken'))}
-            }
-        }
-    );
-
     authentication.isLogged = function(){
-        return localStorage['accessToken'];
+        return localStorage['accessToken'] !== undefined;
     };
 
     authentication.setCredentials = function (data) {
@@ -34,12 +23,5 @@ app.factory('authentication', function($http, $q, $resource, BASE_URL){
         return localStorage.getItem('username');
     };
 
-    authentication.me = function(){
-        if(this.isLogged()){
-            return resource.get();
-        }
-    };
-
     return authentication;
-
 });

@@ -7,7 +7,7 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
                 BASE_URL + 'users/:action',
                 { action: '@action' },
                 {
-                    update: {
+                    edit: {
                         method: 'PUT'
                     }
                 }
@@ -21,16 +21,8 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
             return resource.save({action: 'register'}, registerData);
         };
 
-        user.edit = function(){
-
-        };
-
         user.logout = function(){
             return resource.save({action: 'logout'});
-        };
-
-        user.me = function(){
-            return resource.get({action: 'me'});
         };
 
         user.isLogged = function(){
@@ -40,5 +32,3 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
         return user;
     }
 });
-
-//headers: { 'Authorization': 'Bearer' + user.isLogged()},

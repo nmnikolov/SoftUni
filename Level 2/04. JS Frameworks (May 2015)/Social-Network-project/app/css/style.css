@@ -19,7 +19,7 @@ header {
 
 header .navbar {
     max-width: 1170px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     border: none;
     background: #222222;
 }
@@ -41,11 +41,11 @@ header .navbar-inverse a {
     font-size: 1.2em;
 }
 
-main{
+#main{
     max-width: 1170px;
-    margin: 10px auto;
+    margin: 0 auto;
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
 }

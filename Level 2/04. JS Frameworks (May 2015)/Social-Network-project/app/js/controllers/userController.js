@@ -1,10 +1,10 @@
 app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication) {
-
     $scope.login = function(){
         if(!authentication.isLogged()){
             userService().login($scope.loginData).$promise.then(
                 function(data){
                     authentication.setCredentials(data);
+                    //$scope.isLogged();
                     $location.path('/');
                 },
                 function(error, status){
@@ -56,6 +56,21 @@ app.controller('userController', function userController($scope, $location, $htt
     };
 
     $scope.isLogged = function(){
-        return authentication.isLogged() !== undefined;
-    }
+        return authentication.isLogged();
+
+    };
+    $scope.changePassword = function(){
+        if(authentication.isLogged()){
+            userService(authentication.getAccessToken()).edit($scope.passwordUpdate).$promise.then(
+                function(data){
+                    //authentication.clearCredentials();
+                    console.log(data);
+                    $location.path('/');
+                },
+                function(error, status){
+                    $log.warn(status, error);
+                }
+            );
+        }
+    };
 });
