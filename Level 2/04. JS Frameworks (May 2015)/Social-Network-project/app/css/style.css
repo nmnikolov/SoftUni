@@ -49,3 +49,24 @@ header .navbar-inverse a {
 h2 {
     font-size: 1.4em;
 }
+
+/*.glyphicon-ok {*/
+    /*color: green;*/
+    /*vertical-align: top;*/
+    /*top: 5px;*/
+    /*font-size: 1.3em;*/
+/*}*/
+
+/*.glyphicon-remove {*/
+    /*color: red;*/
+    /*vertical-align: top;*/
+    /*top: 5px;*/
+    /*font-size: 1.3em;*/
+/*}*/
+
+#passwordChangeForm .ng-dirty.ng-valid, #loginForm .ng-dirty.ng-valid{
+    border:1px solid #008000;
+}
+#passwordChangeForm .ng-dirty.ng-invalid, #loginForm .ng-dirty.ng-invalid {
+    border:1px solid #a94442;
+}
