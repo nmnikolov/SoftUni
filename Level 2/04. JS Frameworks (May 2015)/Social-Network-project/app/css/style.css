@@ -64,9 +64,9 @@ h2 {
     /*font-size: 1.3em;*/
 /*}*/
 
-#passwordChangeForm .ng-dirty.ng-valid, #loginForm .ng-dirty.ng-valid{
+#passwordChangeForm .ng-dirty.ng-valid, #loginForm .ng-dirty.ng-valid, #registerForm .ng-dirty.ng-valid {
     border:1px solid #008000;
 }
-#passwordChangeForm .ng-dirty.ng-invalid, #loginForm .ng-dirty.ng-invalid {
+#passwordChangeForm .ng-dirty.ng-invalid, #loginForm .ng-dirty.ng-invalid, #registerForm .ng-dirty.ng-invalid {
     border:1px solid #a94442;
 }
