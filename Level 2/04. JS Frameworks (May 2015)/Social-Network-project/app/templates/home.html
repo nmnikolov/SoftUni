@@ -1,12 +1,15 @@
-<div ng-if="!isLogged()" class="form-group">
-    <div class="col-lg-12 col-lg-offset-4">
-        <span>Welcome to Social Network. Please </span>
-        <a href="#/login/"><button type="button" class="btn btn-md btn-primary">Login</button></a>
-        <span>or</span>
-        <a href="#/register/"><button type="button" class="btn btn-md btn-primary">Register</button></a>
-    </div>
-</div>
+<header ng-if="isLogged()" header-directive></header>
 
-<div ng-if="isLogged()" class="form-group">
-    News feed
-</div>
+<main>
+    <div ng-if="!isLogged()" class="form-group">
+        <div class="col-lg-12 col-lg-offset-4">
+            <span>Welcome to Social Network. Please </span>
+            <a href="#/login/"><button type="button" class="btn btn-md btn-primary">Login</button></a>
+            <span>or</span>
+            <a href="#/register/"><button type="button" class="btn btn-md btn-primary">Register</button></a>
+        </div>
+    </div>
+
+    <div ng-if="isLogged()" profile-controller-directive="" ng-include="'templates/posts.html'" class="form-group">
+    </div>
+</main>

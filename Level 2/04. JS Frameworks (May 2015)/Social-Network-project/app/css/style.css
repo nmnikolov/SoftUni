@@ -41,7 +41,7 @@ header .navbar-inverse a {
     font-size: 1.2em;
 }
 
-#main{
+main{
     max-width: 1170px;
     margin: 0 auto;
 }
@@ -69,4 +69,31 @@ h2 {
 }
 #passwordChangeForm .ng-dirty.ng-invalid, #loginForm .ng-dirty.ng-invalid, #registerForm .ng-dirty.ng-invalid {
     border:1px solid #a94442;
+}
+
+.comments li{
+    list-style: none;
+    border-top: 1px solid lightgray;
+    padding: 5px 20px;
+}
+
+.author {
+    cursor: pointer;;
+    color: #038cff;
+}
+
+.like-button {
+     cursor: pointer;
+     color: #247ab5;
+ }
+
+.unlike-button {
+    cursor: pointer;
+    color: #b54a0b;
+}
+
+#user-preview-box {
+    position: absolute;
+    display: none;
+    background: #ffffff;
 }

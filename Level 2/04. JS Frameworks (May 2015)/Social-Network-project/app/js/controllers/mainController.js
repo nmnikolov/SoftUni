@@ -1,40 +1,38 @@
-app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, userController, authentication) {
-
-    $scope.login = function(){
-        if(!userService.isLogged()){
-            userService.login($scope.loginData).$promise.then(
-                function(data){
-                    authentication.setCredentials(data);
-                },
-                function(error, status){
-                    $log.warn(status, error);
-                }
-            );
-        }
+app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, authentication, DEFAULT_PROFILE_IMAGE) {
+    $scope.isLogged = function(){
+        return authentication.isLogged();
     };
 
-    $scope.logout = function(){
-        if(userService.isLogged()){
-            userService.logout(a).$promise.then(
-                function(){
-                    authentication.clearCredentials();
-                    $location.redirectTo('/');
-                },
-                function(error, status){
-                    $log.warn(status, error);
-                }
-            );
+    $scope.username = authentication.getUsername();
+    $scope.defaultImage = DEFAULT_PROFILE_IMAGE;
+
+    $scope.showUserPreview = function(data, event, type){
+        if(type === 'post'){
+            $scope.previewData = {
+                image: data.profileImageData ? data.profileImageData : DEFAULT_PROFILE_IMAGE,
+                username: data.name
+            };
+        } else {
+            $scope.previewData = {
+                image: data.authorProfileImage ? data.profileImageData : DEFAULT_PROFILE_IMAGE,
+                username: data.authorUsername
+            };
         }
+
+        var offset = event.target.getBoundingClientRect();
+
+        angular.element('#user-preview-box').show();
+        angular.element('#user-preview-box').css({
+            left: offset.left,
+            top: offset.top
+        });
+
+        console.log($scope.previewData);
+
     };
 
-    $scope.me = function(){
-        authentication.me().$promise.then(
-            function(data){
-                console.log(data);
-            },
-            function(error, status){
-                $log.warn(status, error);
-            }
-        );
+    $scope.hideUserPreview = function(){
+        $scope.previewData = undefined;
+        angular.element('#user-preview-box').hide();
     };
 });

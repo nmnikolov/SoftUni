@@ -1,34 +1,42 @@
-<!--<header ng-controller="authenticationController">-->
-    <nav ng-if="isLogged()" class="navbar navbar-inverse" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" ng-init="navbarCollapsed=true" ng-click="navbarCollapsed = !navbarCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <span class="navbar-brand header-logo">Social Network</span>
-            </div>
+<nav  class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" ng-init="navbarCollapsed=true" ng-click="navbarCollapsed = !navbarCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand header-logo">Social Network</span>
+        </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="navbar-collapse collapse" collapse="navbarCollapsed" id="bs-example-navbar-collapse-9" aria-expanded="false" style="height: 0.800000011920929px;">
-                <ul class="nav navbar-nav">
-                    <li><a href="#/">Home</a></li>
-                    <li><a href="#/profile/edit/details/">Profile</a></li>
-                    <li><a href="#/profile/edit/password/">Password</a></li>
-                    <li><a ng-click="logout()" ng-if="isLogged" href="#/" ng-controller="userController">Logout</a></li>
-                </ul>
-                <form class="navbar-form navbar-right" id="search-form" role="search">
-                    <div class="input-group">
-                        <input type="text" id="search-input" class="form-control" placeholder="Search by tag...">
-						<span class="input-group-btn">
-						<button id="search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-                    </div><!-- /input-group -->
-                </form>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-<!--</header>-->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-collapse collapse" collapse="navbarCollapsed" id="bs-example-navbar-collapse-9" aria-expanded="false" style="height: 0.800000011920929px;">
+            <ul class="nav navbar-nav">
+                <li><a href="#/">home</a></li>
+                <li>
+                    <a href="#/{{username}}/wall/">
+                        <img ng-if="post.author.profileImageData" ng-src="{{post.author.profileImageData}}" alt="profile picture" style="width: 50px; height: 50px"/>
+                        {{username}}
+                    </a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" id="search-form" role="search">
+                <div class="input-group">
+                    <input type="text" id="search-input" class="form-control" placeholder="Search by tag...">
+                    <span class="input-group-btn">
+                    <button id="search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div><!-- /input-group -->
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/friends/">friends</a></li>
+                <li><a href="#/settings/edit/details/">profile</a></li>
+                <li><a href="#/settings/edit/password/">password</a></li>
+                <li><a ng-click="logout()" ng-if="isLogged" href="#/">logout</a></li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

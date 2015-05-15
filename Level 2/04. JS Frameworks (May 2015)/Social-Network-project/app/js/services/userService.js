@@ -4,8 +4,11 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
 
         var user = {},
             resource = $resource(
-                BASE_URL + 'users/:action',
-                { action: '@action' },
+                BASE_URL + 'users/:action1/:action2',
+                {
+                    action1: '@action1',
+                    action2: '@action2'
+                },
                 {
                     edit: {
                         method: 'PUT'
@@ -14,15 +17,21 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
             );
 
         user.login = function(loginData){
-            return resource.save({action: 'login'}, loginData);
+            return resource.save({action1: 'login'}, loginData);
         };
 
         user.register = function(registerData){
-            return resource.save({action: 'register'}, registerData);
+            return resource.save({action1: 'register'}, registerData);
         };
 
         user.logout = function(){
-            return resource.save({action: 'logout'});
+            return resource.save({action1: 'logout'});
+        };
+
+        user.getUserWall = function(username, pageSize, startPostId){
+            var action2 = 'wall?StartPostId' + (startPostId ? "=" + startPostId : "") + "&PageSize=" + pageSize;
+
+            return resource.query({ action1: username, action2: action2});
         };
 
         user.isLogged = function(){

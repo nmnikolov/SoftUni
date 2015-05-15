@@ -1,6 +1,8 @@
 app.controller('profileController', function ($scope, $location, $resource, $log, $routeParams, profileService, authentication) {
 
-    var getUserDetails = function(){
+    var feedStartPostId;
+
+    $scope.getUserDetails = function(){
         if(authentication.isLogged()) {
             profileService(authentication.getAccessToken()).me().$promise.then(
                 function (data) {
@@ -12,6 +14,7 @@ app.controller('profileController', function ($scope, $location, $resource, $log
             );
         }
     };
+
 
     $scope.editDetails = function(){
         if(authentication.isLogged()) {
@@ -40,21 +43,24 @@ app.controller('profileController', function ($scope, $location, $resource, $log
         }
     };
 
-    getUserDetails();
-    //
-    //var getProfileInformation = function(){
-    //    if(authentication.isLogged()) {
-    //        profileService(authentication.getAccessToken()).me().$promise.then(
-    //            function (data) {
-    //                $scope.me = data;
-    //                console.log($scope.me);
-    //            },
-    //            function (error, status) {
-    //                $log.warn(status, error);
-    //            }
-    //        );
-    //    }
-    //};
-    //
-    //getProfileInformation();
+    $scope.getNewsFeed = function(){
+        if(authentication.isLogged()) {
+            profileService(authentication.getAccessToken()).getNewsFeed(5, feedStartPostId).$promise.then(
+                function (data) {
+                    $scope.posts = data;
+                },
+                function (error, status) {
+                    $log.warn(status, error);
+                }
+            );
+        }
+    };
+
+    if($location.path() === '/settings/edit/details/'){
+        $scope.getUserDetails();
+    }
+
+    if($location.path() === '/'){
+        $scope.getNewsFeed();
+    }
 });

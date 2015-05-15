@@ -1,10 +1,9 @@
-app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication) {
+app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication, profileService) {
     $scope.login = function(){
         if(!authentication.isLogged()){
             userService().login($scope.loginData).$promise.then(
                 function(data){
                     authentication.setCredentials(data);
-                    //$scope.isLogged();
                     $location.path('/');
                 },
                 function(error, status){
@@ -44,9 +43,9 @@ app.controller('userController', function userController($scope, $location, $htt
 
     $scope.me = function(){
         if(authentication.isLogged()) {
-            authentication.me().$promise.then(
+            profileService(authentication.getAccessToken()).me().$promise.then(
                 function (data) {
-                    console.log(data);
+
                 },
                 function (error, status) {
                     $log.warn(status, error);
@@ -55,16 +54,23 @@ app.controller('userController', function userController($scope, $location, $htt
         }
     };
 
-    $scope.isLogged = function(){
-        return authentication.isLogged();
-
+    $scope.getUserWall = function(){
+        if(authentication.isLogged()) {
+            userService(authentication.getAccessToken()).getUserWall(authentication.getUsername(), 5).$promise.then(
+                function(data){
+                    $scope.posts = data;
+                },
+                function(error, status){
+                    $log.warn(status, error);
+                }
+            );
+        }
     };
+
     $scope.changePassword = function(){
         if(authentication.isLogged()){
             userService(authentication.getAccessToken()).edit($scope.passwordUpdate).$promise.then(
-                function(data){
-                    //authentication.clearCredentials();
-                    console.log(data);
+                function(){
                     $location.path('/');
                 },
                 function(error, status){
@@ -73,4 +79,8 @@ app.controller('userController', function userController($scope, $location, $htt
             );
         }
     };
+
+    if($routeParams['username'] && $location.path() === '/' + $routeParams['username'] +  '/wall/'){
+        $scope.getUserWall($routeParams['username']);
+    }
 });
