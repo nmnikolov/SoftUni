@@ -24,9 +24,6 @@ app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$locatio
         }
     }
 }]);
-//.config(['$httpProvider',function($httpProvider) {
-//
-//}]);
 
 app.config(function ($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
@@ -34,7 +31,7 @@ app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
         .when('/login/', {
             templateUrl:'templates/login.html',
-            controller:'mainController',
+            controller: 'mainController',
             resolve:{
                 isLogged: function($location){
                     if(localStorage.getItem('accessToken')){
@@ -45,7 +42,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/register/', {
             templateUrl: 'templates/register.html',
-            controller:'mainController',
+            controller: 'mainController',
             resolve:{
                 isLogged: function($location){
                     if(localStorage.getItem('accessToken')){
@@ -56,7 +53,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/:username/wall/', {
             templateUrl: 'templates/wall.html',
-            controller:'mainController',
+            controller: 'mainController',
             resolve:{
                 isLogged: function($location){
                     if(!localStorage.getItem('accessToken')){
@@ -67,7 +64,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/settings/edit/details/', {
             templateUrl: 'templates/profile-details.html',
-            controller:'mainController',
+            controller: 'mainController',
             resolve:{
                 isLogged: function($location){
                     if(!localStorage.getItem('accessToken')){
@@ -78,7 +75,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/settings/edit/password/', {
             templateUrl: 'templates/profile-password.html',
-            controller:'mainController',
+            controller: 'mainController',
             resolve:{
                 isLogged: function($location){
                     if(!localStorage.getItem('accessToken')){
@@ -86,6 +83,10 @@ app.config(function ($routeProvider, $httpProvider) {
                     }
                 }
             }
+        })
+        .when('/friends/', {
+            templateUrl: 'templates/friends.html',
+            controller: 'mainController'
         })
         .when('/', {
             templateUrl: 'templates/home.html',

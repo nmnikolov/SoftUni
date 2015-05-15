@@ -1,0 +1,15 @@
+<header ng-if="isLogged()" header-directive></header>
+
+<main profile-controller-directive="">
+    <legend><h2>Friends ({{friendsList.length}} total)</h2></legend>
+    <div class="form-group col-sm-11">
+        <label for="input1" class="col-sm-4 control-label">Search by Payee</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="input1" placeholder="Payee Name" ng-model="filterFriends.name">
+        </div>
+    </div>
+    <ul ng-repeat="friend in friendsList | filter: filterFriends">
+        <img ng-src="{{friend.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 150px; height: 150px"/>
+        <span>{{friend.name}}</span>
+    </ul>
+</main>

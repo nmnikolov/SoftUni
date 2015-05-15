@@ -26,9 +26,6 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
             left: offset.left,
             top: offset.top
         });
-
-        console.log($scope.previewData);
-
     };
 
     $scope.hideUserPreview = function(){

@@ -56,6 +56,24 @@ app.controller('profileController', function ($scope, $location, $resource, $log
         }
     };
 
+    $scope.getOwnFiendsList = function(){
+        if(authentication.isLogged()) {
+            profileService(authentication.getAccessToken()).getFriendsList().$promise.then(
+                function (data) {
+                    console.log(data);
+                    $scope.friendsList = data;
+                },
+                function (error, status) {
+                    $log.warn(status, error);
+                }
+            );
+        }
+    };
+
+    if($location.path() === '/friends/'){
+        $scope.getOwnFiendsList();
+    }
+
     if($location.path() === '/settings/edit/details/'){
         $scope.getUserDetails();
     }
