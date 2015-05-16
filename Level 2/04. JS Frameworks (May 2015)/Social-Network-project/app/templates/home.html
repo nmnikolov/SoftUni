@@ -10,6 +10,11 @@
         </div>
     </div>
 
-    <div ng-if="isLogged()" profile-controller-directive="" ng-include="'templates/posts.html'" class="form-group">
-    </div>
+    <!--<div ng-if="isLogged()" profile-controller-directive="" ng-include="'templates/posts.html'" class="form-group">-->
+        <div ng-if="isLogged()" profile-controller-directive="" ng-include="'templates/posts.html'" class="form-group row col-xs-12 col-md-12" infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='busy' infinite-scroll-distance="1">
+        </div>
+
+        <div ng-include="'templates/user-preview-box.html'">
+        </div>
+    <!--</div>-->
 </main>

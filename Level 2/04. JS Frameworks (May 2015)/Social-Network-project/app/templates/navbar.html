@@ -24,11 +24,14 @@
             </ul>
             <form class="navbar-form navbar-right" id="search-form" role="search">
                 <div class="input-group">
-                    <input type="text" id="search-input" class="form-control" placeholder="Search by tag...">
+                    <input type="text" id="search-input" class="form-control" placeholder="Search by username...">
                     <span class="input-group-btn">
                     <button id="search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div><!-- /input-group -->
+                <div id="search-results" ng-if="!searchResults">
+
+                </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/friends/">friends</a></li>

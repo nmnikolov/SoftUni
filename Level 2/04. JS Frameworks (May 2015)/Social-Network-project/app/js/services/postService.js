@@ -1,4 +1,4 @@
-app.factory('postService', function($http, $q, $resource, BASE_URL, authentication){
+app.factory('postService', function($http, $q, $resource, BASE_URL){
     return function(token){
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
