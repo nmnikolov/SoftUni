@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, authentication, DEFAULT_PROFILE_IMAGE) {
+app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, authentication, DEFAULT_PROFILE_IMAGE, Offset) {
     $scope.isLogged = function(){
         return authentication.isLogged();
     };
@@ -19,7 +19,7 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
             };
         }
 
-        var offset = event.target.getBoundingClientRect();
+        var offset = Offset.getOffset(event.target);
 
         angular.element('#user-preview-box').show();
         angular.element('#user-preview-box').css({
@@ -32,4 +32,6 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
         $scope.previewData = undefined;
         angular.element('#user-preview-box').hide();
     };
+
+
 });
