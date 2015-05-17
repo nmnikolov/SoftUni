@@ -1,9 +1,9 @@
 <li class="media" ng-repeat="comment in post.comments">
     <div class="media-left">
-        <img class="media-object" ng-src="{{comment.authorProfileImage}}"  err-src="{{defaultImage}}" alt="..." style="width: 50px; height: 50px">
+        <img class="media-object" ng-src="{{comment.author.profileImageData}}"  err-src="{{defaultImage}}" alt="..." style="width: 50px; height: 50px">
     </div>
     <div class="media-body">
-        <span class="glyphicon glyphicon-user"></span><span class="author" ng-mouseenter="showUserPreview(comment, $event, 'comment')"> {{comment.authorUsername}}</span>
+        <span class="glyphicon glyphicon-user"></span><span class="author" ng-mouseenter="showUserPreview(comment, $event, 'comment')"> {{comment.author.name}}</span>
         <span>{{comment.date | date: "dd MMM yyyy hh:mm:ss"}}</span>
         <p>{{comment.commentContent}}</p>
     </div>

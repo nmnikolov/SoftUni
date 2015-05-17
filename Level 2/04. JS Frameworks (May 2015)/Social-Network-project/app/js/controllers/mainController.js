@@ -14,7 +14,7 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
             };
         } else {
             $scope.previewData = {
-                image: data.authorProfileImage ? data.profileImageData : DEFAULT_PROFILE_IMAGE,
+                image: data.author.profileImageData ? data.author.profileImageData : DEFAULT_PROFILE_IMAGE,
                 username: data.authorUsername
             };
         }
@@ -32,6 +32,4 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
         $scope.previewData = undefined;
         angular.element('#user-preview-box').hide();
     };
-
-
 });
