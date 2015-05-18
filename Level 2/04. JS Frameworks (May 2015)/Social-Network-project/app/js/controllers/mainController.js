@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, authentication, DEFAULT_PROFILE_IMAGE, Offset, notifyService) {
+app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, authentication, DEFAULT_PROFILE_IMAGE, Offset, notifyService, usSpinnerService) {
     $scope.isLogged = function(){
         return authentication.isLogged();
     };
@@ -8,6 +8,7 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
 
     $scope.showUserPreview = function(username, event, type){
         if (authentication.isLogged()){
+            usSpinnerService.spin('spinner-1');
             userService(authentication.getAccessToken()).getUserFullData(username).$promise.then(
                 function(data){
                     $scope.previewData = {
@@ -26,8 +27,10 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
                             $scope.previewData.status = 'invite';
                         }
                     }
+                    usSpinnerService.stop('spinner-1');
                 },
                 function(error){
+                    usSpinnerService.stop('spinner-1');
                     notifyService.showError("Unsuccessful register!", error);
                 }
             );

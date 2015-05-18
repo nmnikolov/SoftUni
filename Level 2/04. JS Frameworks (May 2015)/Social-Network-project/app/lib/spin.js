@@ -134,9 +134,9 @@
     fps: 20,              // Frames per second when using setTimeout()
     zIndex: 2e9,          // Use a high z-index by default
     className: 'spinner', // CSS class to assign to the element
-    top: '50%',           // center vertically
+    top: '90%',           // center vertically
     left: '50%',          // center horizontally
-    position: 'absolute'  // element position
+    position: 'fixed'  // element position
   }
 
   /** The constructor */

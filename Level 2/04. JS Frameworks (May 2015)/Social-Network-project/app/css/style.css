@@ -15,17 +15,21 @@ body {
 
 header {
     background: #222222;
+    margin-bottom: 60px;
 }
 
 header .navbar {
-    max-width: 1170px;
     margin: 0 auto 20px;
     border: none;
     background: #222222;
 }
 
-.navbar-nav li {
+header .navbar-nav li {
     margin: 0 2px;
+}
+
+header .navbar .container-fluid {
+    max-width: 1170px;
 }
 
 header .navbar-inverse .navbar-nav>.active>a {

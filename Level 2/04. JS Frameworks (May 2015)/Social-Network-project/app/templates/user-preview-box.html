@@ -1,7 +1,4 @@
 <div id="user-preview-box" ng-mouseleave="hideUserPreview()" class="col-lg-3 col-md-5 col-sm-6 col-xs-8">
-    <div ng-if="!previewData" style="min-width: 150px; min-height: 150px">
-        <p>loading</p>
-    </div>
     <div ng-if="previewData" class="media">
         <div class="media-left">
             <img ng-src="{{previewData.image}}" alt="profile picture" style="width: 150px; height: 150px"/>

@@ -5,11 +5,14 @@ app.controller('profileController', function ($scope, $location, $resource, $log
 
     $scope.getUserDetails = function(){
         if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).me().$promise.then(
                 function (data) {
                     $scope.me = data;
+                    usSpinnerService.stop('spinner-1');
                 },
                 function (error) {
+                    usSpinnerService.stop('spinner-1');
                     notifyService.showError("Unsuccessful Connection to Database!", error)
                 }
             );
@@ -17,12 +20,15 @@ app.controller('profileController', function ($scope, $location, $resource, $log
     };
 
     $scope.editDetails = function(){
+        usSpinnerService.spin('spinner-1');
         if(authentication.isLogged()) {
             profileService(authentication.getAccessToken()).update($scope.me).$promise.then(
                 function () {
+                    usSpinnerService.stop('spinner-1');
                     notifyService.showInfo('Profile successfully edited.');
                 },
                 function (error) {
+                    usSpinnerService.stop('spinner-1');
                     notifyService.showError('Unsuccessful update!', error);
                 }
             );
@@ -31,12 +37,15 @@ app.controller('profileController', function ($scope, $location, $resource, $log
 
     $scope.editPassword = function(){
         if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).update($scope.passwordUpdate, 'changepassword').$promise.then(
                 function () {
+                    usSpinnerService.stop('spinner-1');
                     notifyService.showInfo('Password successfully changed.');
                     $location.path('/');
                 },
                 function (error) {
+                    usSpinnerService.stop('spinner-1');
                     notifyService.showError('Unsuccessful password change!', error);
                 }
             );
@@ -71,12 +80,15 @@ app.controller('profileController', function ($scope, $location, $resource, $log
 
     $scope.getOwnFiendsList = function(){
         if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).getFriendsList().$promise.then(
                 function (data) {
                     $scope.friendsList = data;
+                    usSpinnerService.stop('spinner-1');
                 },
                 function (error, status) {
                     $log.warn(status, error);
+                    usSpinnerService.stop('spinner-1');
                 }
             );
         }

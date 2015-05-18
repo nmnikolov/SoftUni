@@ -11,13 +11,11 @@
     </div>
 
     <div ng-if="isLogged()">
-        <legend><h2>Edit Profile</h2></legend>
+        <legend><h2>News feed</h2></legend>
         <div  profile-controller-directive="" ng-include="'templates/posts.html'" class="form-group row col-xs-12 col-md-12" infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
         </div>
     </div>
 
     <div ng-include="'templates/user-preview-box.html'" user-controller-directive="">
     </div>
-
-
 </main>

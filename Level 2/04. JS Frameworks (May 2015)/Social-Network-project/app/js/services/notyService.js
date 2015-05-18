@@ -5,8 +5,8 @@ app.factory('notifyService',
                 noty({
                         text: msg,
                         type: 'success',
-                        layout: 'topLeft',
-                        timeout: 1000}
+                        layout: 'bottomLeft',
+                        timeout: 2000}
                 );
             },
             showError: function(msg, serverError) {
