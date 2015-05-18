@@ -36,7 +36,7 @@ app.factory('notifyService',
                 noty({
                         text: msg,
                         type: 'error',
-                        layout: 'topLeft',
+                        layout: 'bottomLeft',
                         timeout: 5000}
                 );
             }
