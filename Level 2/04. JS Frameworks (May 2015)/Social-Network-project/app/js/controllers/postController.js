@@ -1,22 +1,39 @@
-app.controller('postController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication) {
+app.controller('postController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication, postService, notifyService) {
 
     $scope.addPost = function(){
+
+    };
+
+    $scope.likePost = function(postId){
         if(authentication.isLogged()) {
-            userService(authentication.getAccessToken()).getUserWall(authentication.getUsername(), 5).$promise.then(
+            postService(authentication.getAccessToken()).like(postId).$promise.then(
                 function(data){
-                    console.log(data);
-                    $scope.posts = data;
+                    notifyService.showInfo("Post successfuly liked.");
+                    //$scope.posts = data;
                 },
                 function(error, status){
                     $log.warn(status, error);
+                    notifyService.showError("Unsuccessful like!", error);
                 }
             );
         }
     };
 
-    if($location.path() === '/me/'){
+    $scope.unlikePost = function(postId){
+        if(authentication.isLogged()) {
+            postService(authentication.getAccessToken()).unlike(postId).$promise.then(
+                function(data){
+                    notifyService.showInfo("Post successfuly unliked.");
+                    //$scope.posts = data;
+                },
+                function(error, status){
+                    $log.warn(status, error);
+                    notifyService.showError("Unsuccessful unlike!", error);
+                }
+            );
+        }
+    };
 
-    }
 });
 
 

@@ -1,6 +1,6 @@
 <header ng-if="isLogged()" header-directive></header>
 
-<main profile-controller-directive="">
+<main profile-controller-directive="" ng-init="getOwnFiendsList()">
     <legend><h2>Friends ({{friendsList.length}} total)</h2></legend>
     <div class="form-group col-sm-11">
         <label for="input1" class="col-sm-4 control-label">Search by name</label>
@@ -8,8 +8,8 @@
             <input type="text" class="form-control" id="input1" placeholder="Payee Name" ng-model="filterFriends.name">
         </div>
     </div>
-    <ul ng-repeat="friend in friendsList | filter: filterFriends">
+    <ul ng-repeat="friend in friendsList | filter: filterFriends" class="media-list">
         <img ng-src="{{friend.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 150px; height: 150px"/>
-        <span>{{friend.name}}</span>
+        <a href="#/{{friend.username}}/wall/"><span>{{friend.name}}</span></a>
     </ul>
 </main>

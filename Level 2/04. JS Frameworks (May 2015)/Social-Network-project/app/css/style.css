@@ -129,4 +129,28 @@ h2 {
 #loading {
     position: absolute;
     color: #ff0000;
- }
+}
+
+.error-template {
+    padding: 40px 15px;text-align: center;
+}
+.error-actions {
+    margin-top:15px;margin-bottom:15px;
+}
+.error-actions .btn-primary {
+    margin-right:10px;
+    background: #df691a !important;
+    border: none;
+}
+
+.btn, #search-input, input {
+    border-radius: 0 !important;
+}
+
+#search-results {
+    z-index: 1001;
+}
+
+#search-results .name {
+    color: #000000;
+}

@@ -1,0 +1,21 @@
+app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
+    return {
+        response: function(response){
+            //if (response.status === 401) {
+            //    console.log("Response 401");
+            //}
+            return response || $q.when(response);
+        },
+        responseError: function(rejection) {
+            if (rejection.status === 401) {
+                //console.log("Response Error 401",rejection);
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('username');
+                $location.path('/');
+            } else if(rejection.status === 404){
+                $location.path('/404/');
+            }
+            return $q.reject(rejection);
+        }
+    }
+}]);

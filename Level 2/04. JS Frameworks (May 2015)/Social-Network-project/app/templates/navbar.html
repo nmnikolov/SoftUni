@@ -18,19 +18,19 @@
                 <li>
                     <a href="#/{{username}}/wall/">
                         <img ng-if="post.author.profileImageData" ng-src="{{post.author.profileImageData}}" alt="profile picture" style="width: 50px; height: 50px"/>
-                        {{username}}
+                        <span>{{username}}</span>
                     </a>
                 </li>
             </ul>
             <form class="navbar-form navbar-right" id="search-form" role="search">
                 <div class="input-group">
-                    <input type="text" id="search-input" class="form-control" placeholder="Search by username...">
-                    <span class="input-group-btn">
-                    <button id="search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
+                    <input type="text" id="search-input" ng-model="searchTerm" ng-change="searchUser()" ng-blur="clearSearchResults()" class="form-control" placeholder="Search by name...">
                 </div><!-- /input-group -->
-                <div id="search-results" ng-if="!searchResults">
-
+                <div id="search-results" ng-if="searchResults" class="list-group">
+                        <a href="#/{{user.username}}/wall/" ng-repeat="user in searchResults" class="list-group-item">
+                            <img ng-src="{{user.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
+                            <span class="name">{{user.name}}</span>
+                        </a>
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">

@@ -34,6 +34,18 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
             return resource.query({ action1: username, action2: action2});
         };
 
+        user.searchUser = function(searchTerm){
+            var action1 = "search?searchTerm=" + searchTerm;
+
+            return resource.query({ action1: action1 });
+        };
+
+        user.getUserFullData = function(username){
+            var action1 = username;
+
+            return resource.get({ action1: username });
+        };
+
         user.isLogged = function(){
             return authentication.isLogged();
         };

@@ -16,6 +16,14 @@ app.factory('postService', function($http, $q, $resource, BASE_URL){
             return resource.save(postData);
         };
 
+        post.like = function(postId){
+            return resource.save({option1: postId, option2: "likes"})
+        };
+
+        post.unlike = function(postId){
+            return resource.remove({option1: postId, option2: "likes"})
+        };
+
         return post;
     }
 });

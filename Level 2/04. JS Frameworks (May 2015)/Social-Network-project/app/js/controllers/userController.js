@@ -1,4 +1,4 @@
-app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication, profileService, notifyService, PAGE_SIZE) {
+app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication, profileService, notifyService, PAGE_SIZE, $timeout) {
     var feedStartPostId;
     $scope.posts = [];
     $scope.busy = false;
@@ -52,7 +52,6 @@ app.controller('userController', function userController($scope, $location, $htt
         if(authentication.isLogged()) {
             profileService(authentication.getAccessToken()).me().$promise.then(
                 function (data) {
-
                 },
                 function (error, status) {
                     $log.warn(status, error);
@@ -68,7 +67,7 @@ app.controller('userController', function userController($scope, $location, $htt
             }
             $scope.busy = true;
 
-            userService(authentication.getAccessToken()).getUserWall(authentication.getUsername(), PAGE_SIZE, feedStartPostId).$promise.then(
+            userService(authentication.getAccessToken()).getUserWall($routeParams['username'], PAGE_SIZE, feedStartPostId).$promise.then(
                 function (data) {
                     $scope.posts = $scope.posts.concat(data);
                     if($scope.posts.length > 0){
@@ -77,7 +76,7 @@ app.controller('userController', function userController($scope, $location, $htt
                     $scope.busy = false;
                 },
                 function (error, status) {
-                    $log.warn(status, error);
+                    //$log.warn(status, error);
                 }
             );
         }
@@ -96,7 +95,26 @@ app.controller('userController', function userController($scope, $location, $htt
         }
     };
 
-    if($routeParams['username'] && $location.path() === '/' + $routeParams['username'] +  '/wall/'){
-        //$scope.getUserWall($routeParams['username']);
-    }
+    $scope.searchUser = function(){
+        if(authentication.isLogged() && $scope.searchTerm.trim() !== ""){
+            userService(authentication.getAccessToken()).searchUser($scope.searchTerm).$promise.then(
+                function(data){
+                    $scope.searchResults = data;
+                    console.log(data);
+                },
+                function(error, status){
+                    $log.warn(status, error);
+                }
+            );
+        } else {
+            $scope.searchResults = undefined;
+        }
+    };
+
+    $scope.clearSearchResults = function(){
+        $timeout(function() {
+            $scope.searchResults = undefined;
+            $scope.searchTerm = "";
+        }, 300);
+    };
 });

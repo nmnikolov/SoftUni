@@ -1,4 +1,4 @@
-app.controller('profileController', function ($scope, $location, $resource, $log, $routeParams, profileService, authentication, notifyService, PAGE_SIZE) {
+app.controller('profileController', function ($scope, $location, $resource, $log, $routeParams, profileService, authentication, notifyService, PAGE_SIZE, usSpinnerService) {
     var feedStartPostId;
     $scope.posts = [];
     $scope.busy = false;
@@ -50,6 +50,8 @@ app.controller('profileController', function ($scope, $location, $resource, $log
             }
             $scope.busy = true;
 
+            usSpinnerService.spin('spinner-1');
+
             profileService(authentication.getAccessToken()).getNewsFeed(PAGE_SIZE, feedStartPostId).$promise.then(
                 function (data) {
                     $scope.posts = $scope.posts.concat(data);
@@ -57,9 +59,11 @@ app.controller('profileController', function ($scope, $location, $resource, $log
                         feedStartPostId = $scope.posts[$scope.posts.length - 1].id;
                     }
                     $scope.busy = false;
+                    usSpinnerService.stop('spinner-1');
                 },
                 function (error, status) {
                     $log.warn(status, error);
+                    usSpinnerService.stop('spinner-1');
                 }
             );
         }
@@ -104,12 +108,4 @@ app.controller('profileController', function ($scope, $location, $resource, $log
     $scope.clickUpload = function(){
         angular.element('#profile-image').trigger('click');
     };
-
-    if($location.path() === '/friends/'){
-        $scope.getOwnFiendsList();
-    }
-
-    if($location.path() === '/settings/edit/details/'){
-        $scope.getUserDetails();
-    }
 });

@@ -1,9 +1,11 @@
 <header ng-if="isLogged()" header-directive></header>
 
 <main >
-    <div ng-if="isLogged()" user-controller-directive="" ng-include="'templates/posts.html'" class="form-group row col-xs-12 col-md-12" infinite-scroll='loadUserWall()' infinite-scroll-disabled='busy' infinite-scroll-distance="1">
+    <div ng-if="isLogged()" ng-init="loadUserWall()" user-controller-directive="" ng-include="'templates/posts.html'" class="form-group row col-xs-12 col-md-12" infinite-scroll='loadUserWall()' infinite-scroll-disabled='busy' infinite-scroll-distance="0">
     </div>
 
     <div ng-include="'templates/user-preview-box.html'">
     </div>
 </main>
+
+

@@ -1,4 +1,17 @@
-<div id="user-preview-box" ng-mouseleave="hideUserPreview()">
-    <img ng-src="{{previewData.image}}" alt="profile picture" style="width: 150px; height: 150px"/>
-    <span>{{previewData.username}}</span>
+<div id="user-preview-box" ng-mouseleave="hideUserPreview()" class="col-lg-3 col-md-5 col-sm-6 col-xs-8">
+    <div ng-if="!previewData" style="min-width: 150px; min-height: 150px">
+        <p>loading</p>
+    </div>
+    <div ng-if="previewData" class="media">
+        <div class="media-left">
+            <img ng-src="{{previewData.image}}" alt="profile picture" style="width: 150px; height: 150px"/>
+        </div>
+        <div class="media-body">
+            <a href="#/{{previewData.username}}/wall/"><div>{{previewData.name}}</div></a>
+
+            <button ng-if="previewData.status === 'invite'" type="submit" class="btn btn-lg btn-danger">Invite</button>
+            <button ng-if="previewData.status === 'friend'" class="btn btn-lg btn-success" disabled>Friend</button>
+            <button ng-if="previewData.status === 'pending'" class="btn btn-lg btn-warning" disabled>Pending</button>
+        </div>
+    </div>
 </div>
