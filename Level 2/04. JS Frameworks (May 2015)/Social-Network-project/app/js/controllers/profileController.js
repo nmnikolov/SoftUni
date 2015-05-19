@@ -152,6 +152,16 @@ app.controller('profileController', function ($scope, $location, $resource, $log
         }
     };
 
+    $scope.getPendingRequest = function(){
+        if(authentication.isLogged()) {
+            profileService(authentication.getAccessToken()).sendFriendRequest(previewData.username).$promise.then(
+                function (data) {
+
+                }
+            );
+        }
+    };
+
     $scope.clickUpload = function(){
         angular.element('#profile-image').trigger('click');
     };

@@ -115,7 +115,6 @@ app.controller('userController', function userController($scope, $location, $htt
             userService(authentication.getAccessToken()).searchUser($scope.searchTerm).$promise.then(
                 function(data){
                     $scope.searchResults = data;
-                    console.log(data);
                 },
                 function(error, status){
                     $log.warn(status, error);

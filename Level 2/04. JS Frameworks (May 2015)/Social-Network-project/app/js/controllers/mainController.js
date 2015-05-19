@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $location, $resource, $log, $routeParams, userService, authentication, DEFAULT_PROFILE_IMAGE, Offset, notifyService, usSpinnerService) {
+app.controller('mainController', function ($scope, $location, $resource, $log, $interval, $routeParams, userService, profileService, authentication, DEFAULT_PROFILE_IMAGE, Offset, notifyService, usSpinnerService) {
     $scope.isLogged = function(){
         return authentication.isLogged();
     };
@@ -6,7 +6,9 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
     $scope.username = authentication.getUsername();
     $scope.defaultImage = DEFAULT_PROFILE_IMAGE;
 
-    $scope.showUserPreview = function(username, event){
+
+
+    $scope.showUserPreview = function(username){
         $scope.previewData = {};
         if (authentication.isLogged()){
             usSpinnerService.spin('spinner-1');
@@ -35,14 +37,6 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
                     notifyService.showError("Unsuccessful register!", error);
                 }
             );
-
-            var offset = Offset.getOffset(event.target);
-
-            angular.element('#user-preview-box').show();
-            //angular.element('#user-preview-box').css({
-            //    left: offset.left,
-            //    top: offset.top
-            //});
         }
     };
 
@@ -50,4 +44,19 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
         $scope.previewData = undefined;
         angular.element('#user-preview-box').hide();
     };
+
+    function getFriendRequests(){
+        if (authentication.isLogged()){
+            profileService(authentication.getAccessToken()).getPendingRequests().$promise.then(
+                function(data){
+                    $scope.pendingRequests = data;
+                }
+            );
+        }
+    }
+
+    getFriendRequests();
+    var interval = $interval(getFriendRequests, 60000);
+
+    $scope.$on('$destroy', function () { $interval.cancel(interval); });
 });

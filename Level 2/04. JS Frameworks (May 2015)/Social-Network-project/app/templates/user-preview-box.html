@@ -3,7 +3,7 @@
         <img ng-src="{{previewData.image}}" alt="profile picture" style="width: 150px; height: 150px"/>
     </div>
     <div class="media-body">
-        <a href="#/{{previewData.username}}/wall/">
+        <a ng-click="hidePopover()" href="#/{{previewData.username}}/wall/">
             <h4>{{previewData.name}}</h4>
         </a>
         <button ng-click="sendFriendRequest(previewData)" ng-if="previewData.status === 'invite'" type="submit" class="btn btn-lg btn-danger">Invite</button>

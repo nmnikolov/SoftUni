@@ -76,6 +76,17 @@ app.config(function ($routeProvider, $httpProvider) {
                 }
             }
         })
+        .when('/friends/requests/', {
+            templateUrl: 'templates/pending-requests.html',
+            controller: 'mainController',
+            resolve:{
+                isLogged: function($location){
+                    if(!localStorage.getItem('accessToken')){
+                        $location.path('/');
+                    }
+                }
+            }
+        })
         .when('/404/', {
             templateUrl: 'templates/not-found.html',
             controller: 'mainController',
