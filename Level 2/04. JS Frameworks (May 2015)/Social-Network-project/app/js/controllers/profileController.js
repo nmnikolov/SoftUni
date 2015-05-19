@@ -28,6 +28,7 @@ app.controller('profileController', function ($scope, $location, $resource, $log
                     notifyService.showInfo('Profile successfully edited.');
                 },
                 function (error) {
+                    $log.warn(error);
                     usSpinnerService.stop('spinner-1');
                     notifyService.showError('Unsuccessful update!', error);
                 }
@@ -94,6 +95,22 @@ app.controller('profileController', function ($scope, $location, $resource, $log
         }
     };
 
+    $scope.getOwnFriendsListPreview = function(){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            profileService(authentication.getAccessToken()).getFriendsListPreview().$promise.then(
+                function (data) {
+                    data.userFriendsUrl = '#/friends/';
+                    $scope.friendsListPreview = data;
+                    usSpinnerService.stop('spinner-1');
+                },
+                function (error, status) {
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
+
     $scope.uploadProfileImage = function(event){
         var file = event.target.files[0],
             reader;
@@ -120,4 +137,11 @@ app.controller('profileController', function ($scope, $location, $resource, $log
     $scope.clickUpload = function(){
         angular.element('#profile-image').trigger('click');
     };
+
+    $('#sidebar').affix({
+        offset: {
+            top: $('header').height()
+        }
+    });
+
 });

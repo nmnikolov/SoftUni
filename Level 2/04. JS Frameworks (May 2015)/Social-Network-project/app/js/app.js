@@ -1,4 +1,4 @@
-var app = angular.module('SocialNetworkApp', ['ngRoute', 'ngResource', 'infinite-scroll', 'ui.bootstrap', 'angularSpinner']);
+var app = angular.module('SocialNetworkApp', ['ngRoute', 'ngResource', 'infinite-scroll', 'ui.bootstrap', 'angularSpinner', 'rt.popup']);
 
 app.constant({
     'BASE_URL':'http://softuni-social-network.azurewebsites.net/api/',

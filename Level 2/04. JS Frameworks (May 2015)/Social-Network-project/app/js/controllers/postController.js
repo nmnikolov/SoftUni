@@ -4,14 +4,15 @@ app.controller('postController', function userController($scope, $location, $htt
 
     };
 
-    $scope.likePost = function(postId){
+    $scope.likePost = function(post){
         if(authentication.isLogged()) {
             usSpinnerService.spin('spinner-1');
-            postService(authentication.getAccessToken()).like(postId).$promise.then(
-                function(data){
+            postService(authentication.getAccessToken()).like(post.id).$promise.then(
+                function(){
                     notifyService.showInfo("Post successfuly liked.");
                     usSpinnerService.stop('spinner-1');
-                    //$scope.posts = data;
+                    post.liked = true;
+                    post.likesCount++;
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
@@ -21,14 +22,15 @@ app.controller('postController', function userController($scope, $location, $htt
         }
     };
 
-    $scope.unlikePost = function(postId){
+    $scope.unlikePost = function(post){
         if(authentication.isLogged()) {
             usSpinnerService.spin('spinner-1');
-            postService(authentication.getAccessToken()).unlike(postId).$promise.then(
-                function(data){
+            postService(authentication.getAccessToken()).unlike(post.id).$promise.then(
+                function(){
                     notifyService.showInfo("Post successfuly unliked.");
                     usSpinnerService.stop('spinner-1');
-                    //$scope.posts = data;
+                    post.liked = false;
+                    post.likesCount--;
                 },
                 function(error){
                     notifyService.showError("Unsuccessful unlike!", error);
@@ -37,7 +39,6 @@ app.controller('postController', function userController($scope, $location, $htt
             );
         }
     };
-
 });
 
 

@@ -9,6 +9,7 @@ html {
 body {
     max-width: 100%;
     font-size: 16px;
+    background: #E9EAED;
 }
 
 /*--- Header ---*/
@@ -75,6 +76,10 @@ h2 {
     border:1px solid #a94442;
 }
 
+.comments {
+    padding-left: 50px;
+}
+
 .comments li{
     list-style: none;
     border-top: 1px solid lightgray;
@@ -136,10 +141,12 @@ h2 {
 }
 
 .error-template {
-    padding: 40px 15px;text-align: center;
+    padding: 40px 15px;
+    text-align: center;
 }
 .error-actions {
-    margin-top:15px;margin-bottom:15px;
+    margin-top:15px;
+    margin-bottom:15px;
 }
 .error-actions .btn-primary {
     margin-right:10px;
@@ -157,4 +164,90 @@ h2 {
 
 #search-results .name {
     color: #000000;
+}
+
+/*.friends-preview {*/
+    /*position: fixed;*/
+/*}*/
+
+.pull-right {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.pull-right div {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.row {
+    /*width: 100%;*/
+}
+
+.input-group-addon {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+.welcome {
+    text-align: center;
+    padding: 80px;
+}
+
+.white {
+    background: #ffffff;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.welcome, #loginForm, #registerForm {
+    margin-top: 100px;
+}
+
+#loginForm, #registerForm {
+    padding: 15px;
+}
+
+.well {
+    background-image: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%);
+    border-color: #B0B0B0;
+}
+
+.popover {
+    padding: 30px;
+    height: 220px;
+    max-width: 350px;
+    text-align: center;
+}
+
+.popover .media-body {
+    vertical-align: middle;
+}
+
+.media {
+    margin-top: 0;
+}
+
+.preview-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    color: lightgray;
+}
+
+.preview-close:hover{
+    color: gray;
 }

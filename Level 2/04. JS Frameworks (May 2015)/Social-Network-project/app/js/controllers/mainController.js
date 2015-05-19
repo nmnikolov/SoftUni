@@ -6,7 +6,8 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
     $scope.username = authentication.getUsername();
     $scope.defaultImage = DEFAULT_PROFILE_IMAGE;
 
-    $scope.showUserPreview = function(username, event, type){
+    $scope.showUserPreview = function(username, event){
+        $scope.previewData = {};
         if (authentication.isLogged()){
             usSpinnerService.spin('spinner-1');
             userService(authentication.getAccessToken()).getUserFullData(username).$promise.then(
@@ -38,10 +39,10 @@ app.controller('mainController', function ($scope, $location, $resource, $log, $
             var offset = Offset.getOffset(event.target);
 
             angular.element('#user-preview-box').show();
-            angular.element('#user-preview-box').css({
-                left: offset.left,
-                top: offset.top
-            });
+            //angular.element('#user-preview-box').css({
+            //    left: offset.left,
+            //    top: offset.top
+            //});
         }
     };
 
