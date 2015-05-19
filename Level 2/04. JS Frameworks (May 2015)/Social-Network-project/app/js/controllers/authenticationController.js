@@ -1,1 +1,0 @@
-app.controller('authenticationController', function ($scope, $location, $resource, $log, $routeParams, authentication) {});

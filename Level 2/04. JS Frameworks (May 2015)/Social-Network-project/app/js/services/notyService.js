@@ -1,5 +1,4 @@
-app.factory('notifyService',
-    function () {
+app.factory('notifyService', function () {
         return {
             showInfo: function(msg) {
                 noty({

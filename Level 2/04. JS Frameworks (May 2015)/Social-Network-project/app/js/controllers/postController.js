@@ -1,4 +1,4 @@
-app.controller('postController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication, postService, notifyService, usSpinnerService) {
+app.controller('postController', function ($scope, $log, userService, authentication, postService, notifyService, usSpinnerService) {
 
     $scope.addPost = function(){
 

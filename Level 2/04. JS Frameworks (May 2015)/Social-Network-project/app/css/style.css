@@ -160,7 +160,7 @@ h2 {
 }
 
 #search-results {
-    z-index: 1001;
+    /*z-index: 1001;*/
 }
 
 #search-results .name {
@@ -252,6 +252,11 @@ h2 {
     color: lightgray;
 }
 
-.preview-close:hover{
+.preview-close:hover {
     color: gray;
+}
+
+#friend-requests-box {
+    position: absolute;
+    width: 350px;
 }

@@ -1,4 +1,4 @@
-app.controller('userController', function userController($scope, $location, $http, $resource, $log, $routeParams, userService, authentication, profileService, notifyService, PAGE_SIZE, $timeout, usSpinnerService) {
+app.controller('userController', function userController($scope, $location, $log, $routeParams, userService, authentication, profileService, notifyService, PAGE_SIZE, $timeout, usSpinnerService) {
     var feedStartPostId;
     $scope.posts = [];
     $scope.busy = false;
@@ -86,8 +86,9 @@ app.controller('userController', function userController($scope, $location, $htt
                     $scope.busy = false;
                     usSpinnerService.stop('spinner-1');
                 },
-                function (error, status) {
+                function (error) {
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Error loading user wall!", error);
                     //$log.warn(status, error);
                 }
             );

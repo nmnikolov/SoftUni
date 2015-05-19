@@ -4,11 +4,8 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
 
         var user = {},
             resource = $resource(
-                BASE_URL + 'users/:action1/:action2',
-                {
-                    action1: '@action1',
-                    action2: '@action2'
-                },
+                BASE_URL + 'users/:option1/:option2',
+                { option1: '@option1', option2: '@option2' },
                 {
                     edit: {
                         method: 'PUT'
@@ -17,33 +14,31 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
             );
 
         user.login = function(loginData){
-            return resource.save({action1: 'login'}, loginData);
+            return resource.save({option1: 'login'}, loginData);
         };
 
         user.register = function(registerData){
-            return resource.save({action1: 'register'}, registerData);
+            return resource.save({option1: 'register'}, registerData);
         };
 
         user.logout = function(){
-            return resource.save({action1: 'logout'});
+            return resource.save({option1: 'logout'});
         };
 
         user.getUserWall = function(username, pageSize, startPostId){
-            var action2 = 'wall?StartPostId' + (startPostId ? "=" + startPostId : "") + "&PageSize=" + pageSize;
+            var option2 = 'wall?StartPostId' + (startPostId ? "=" + startPostId : "") + "&PageSize=" + pageSize;
 
-            return resource.query({ action1: username, action2: action2});
+            return resource.query({ option1: username, option2: option2});
         };
 
         user.searchUser = function(searchTerm){
-            var action1 = "search?searchTerm=" + searchTerm;
+            var option1 = "search?searchTerm=" + searchTerm;
 
-            return resource.query({ action1: action1 });
+            return resource.query({ option1: option1 });
         };
 
         user.getUserFullData = function(username){
-            var action1 = username;
-
-            return resource.get({ action1: username });
+            return resource.get({ option1: username });
         };
 
         user.isLogged = function(){

@@ -1,4 +1,4 @@
-app.controller('profileController', function ($scope, $location, $resource, $log, $routeParams, profileService, authentication, notifyService, PAGE_SIZE, usSpinnerService) {
+app.controller('profileController', function ($scope, $location, $log, profileService, authentication, notifyService, PAGE_SIZE, usSpinnerService) {
     var feedStartPostId;
     $scope.posts = [];
     $scope.busy = false;
