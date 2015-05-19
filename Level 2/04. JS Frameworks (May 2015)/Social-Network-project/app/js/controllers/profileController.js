@@ -134,6 +134,24 @@ app.controller('profileController', function ($scope, $location, $resource, $log
         }
     };
 
+    $scope.sendFriendRequest = function(previewData){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            profileService(authentication.getAccessToken()).sendFriendRequest(previewData.username).$promise.then(
+                function (data) {
+                    notifyService.showInfo("Friend request successfully sent to " + previewData.username + '.');
+                    previewData.status = 'pending';
+                    usSpinnerService.stop('spinner-1');
+                },
+                function (error) {
+                    $log.warn(error);
+                    notifyService.showError("Unsuccessful invitation sent!", error);
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
+
     $scope.clickUpload = function(){
         angular.element('#profile-image').trigger('click');
     };

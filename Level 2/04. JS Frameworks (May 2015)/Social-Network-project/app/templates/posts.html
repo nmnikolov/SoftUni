@@ -1,6 +1,6 @@
 <div ng-repeat="post in posts" post-controller-directive="" class="post">
     <div class="well .alert-success col-xs-12 col-md-12">
-        <div class="col-xs-12 col-md-12">
+        <div class="form-group col-xs-12 col-md-12">
             <img ng-src="{{post.author.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
             <span class="glyphicon glyphicon-user"></span>
             <span class="author" popup-show="templates/user-preview-box.html" ng-click="showUserPreview(post.author.username, $event, 'post')">
@@ -9,11 +9,11 @@
             <span>{{post.date | date : "dd MMM yyyy hh:mm:ss"}}</span>
         </div>
 
-        <div class="col-xs-12 col-md-12">
+        <div class="form-group col-xs-12 col-md-12">
             <span>{{post.postContent}}</span>
         </div>
 
-        <div class="col-xs-12 col-md-12">
+        <div class="form-group col-xs-12 col-md-12">
             <span ng-if="!post.liked" ng-click="likePost(post);" class="like-button">like</span>
             <span ng-if="post.liked" ng-click="unlikePost(post);" class="unlike-button">unlike</span>
             <span class="glyphicon glyphicon-thumbs-up" title="likes"></span> <span class="views post-details" title="likes">{{post.likesCount}}</span>

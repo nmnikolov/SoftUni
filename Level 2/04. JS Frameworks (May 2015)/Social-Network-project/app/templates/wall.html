@@ -1,6 +1,9 @@
 <header ng-if="isLogged()" header-directive></header>
 
 <main >
+    <legend>
+        <h2>{{user}}</h2>
+    </legend>
     <div ng-if="isLogged()" ng-init="loadUserWall()" user-controller-directive="" ng-include="'templates/posts.html'" class="form-group row col-xs-12 col-md-12" infinite-scroll='loadUserWall()' infinite-scroll-disabled='busy' infinite-scroll-distance="0">
     </div>
 

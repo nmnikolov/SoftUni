@@ -132,4 +132,5 @@ app.controller('userController', function userController($scope, $location, $htt
             $scope.searchTerm = "";
         }, 300);
     };
+
 });
