@@ -6,6 +6,7 @@ app.controller('postController', function ($scope, $log, $routeParams, userServi
             usSpinnerService.spin('spinner-1');
             postService(authentication.getAccessToken()).addPost($scope.postData).$promise.then(
                 function(data){
+                    $scope.postData.postContent = "";
                     $scope.posts.unshift(data);
                     notifyService.showInfo("Post successfuly added.");
                     usSpinnerService.stop('spinner-1');

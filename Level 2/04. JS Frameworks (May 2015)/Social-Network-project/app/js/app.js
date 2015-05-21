@@ -1,4 +1,4 @@
-var app = angular.module('SocialNetworkApp', ['ngRoute', 'ngResource', 'infinite-scroll', 'ui.bootstrap', 'angularSpinner', 'rt.popup']);
+var app = angular.module('SocialNetworkApp', ['ngAnimate', 'ngRoute', 'ngResource', 'infinite-scroll', 'ui.bootstrap', 'angularSpinner', 'rt.popup']);
 
 
 

@@ -260,3 +260,7 @@ h2 {
     position: absolute;
     width: 350px;
 }
+
+.comment-toggle {
+    cursor: pointer;
+}

@@ -25,13 +25,15 @@
             <span>{{post.postContent}}</span>
         </div>
 
-        <div class="form-group col-xs-12 col-md-12">
+        <div class="form-group col-xs-12 col-md-12" comment-controller-directive>
             <span ng-if="isOwnWall || isOwnFeed || isFriend(post.author.username) || isFriend(post.wallOwner.username)">
-                <span ng-if="!post.liked" ng-click="likePost(post);" class="like-button">like</span>
-                <span ng-if="post.liked" ng-click="unlikePost(post);" class="unlike-button">unlike</span>
+                <span ng-if="!post.liked" ng-click="likePost(post);" class="like-button">Like</span>
+                <span ng-if="post.liked" ng-click="unlikePost(post);" class="unlike-button">Unlike</span>
             </span>
             <span class="glyphicon glyphicon-thumbs-up" title="likes"></span> <span class="views post-details" title="likes">{{post.likesCount}}</span>
             <span class="fa fa-comments" title="comments"></span> <span class="comments-count post-details" title="comments">{{post.totalCommentsCount}}</span>
+            <span ng-click="expand = !expand" class="comment-toggle">comment</span>
+            <div ng-include="'templates/comment-box.html'"></div>
         </div>
 
         <ul ng-if="post.totalCommentsCount > 0" class="comments media-object col-xs-12" ng-include="'templates/comments.html'">
