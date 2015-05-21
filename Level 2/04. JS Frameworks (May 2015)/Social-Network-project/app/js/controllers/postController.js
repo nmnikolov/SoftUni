@@ -1,7 +1,21 @@
-app.controller('postController', function ($scope, $log, userService, authentication, postService, notifyService, usSpinnerService) {
+app.controller('postController', function ($scope, $log, $routeParams, userService, authentication, postService, notifyService, usSpinnerService) {
 
     $scope.addPost = function(){
-
+        $scope.postData.username = $routeParams['username'];
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            postService(authentication.getAccessToken()).addPost($scope.postData).$promise.then(
+                function(data){
+                    $scope.posts.unshift(data);
+                    notifyService.showInfo("Post successfuly added.");
+                    usSpinnerService.stop('spinner-1');
+                },
+                function(error){
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Unsuccessful post add!", error);
+                }
+            );
+        }
     };
 
     $scope.likePost = function(post){

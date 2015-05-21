@@ -77,19 +77,36 @@ app.controller('userController', function userController($scope, $location, $log
             $scope.busy = true;
             usSpinnerService.spin('spinner-1');
 
-            userService(authentication.getAccessToken()).getUserWall($routeParams['username'], PAGE_SIZE, feedStartPostId).$promise.then(
+            profileService(authentication.getAccessToken()).getFriendsList().$promise.then(
                 function (data) {
-                    $scope.posts = $scope.posts.concat(data);
-                    if($scope.posts.length > 0){
-                        feedStartPostId = $scope.posts[$scope.posts.length - 1].id;
-                    }
-                    $scope.busy = false;
+                    $scope.friends = [];
+
+                    angular.forEach(data, function (key) {
+                        $scope.friends.push(key.username);
+                    });
+
+                    //console.log($scope.friends.indexOf('alabala') !== -1 ? 'friend' : 'not friend');
+
+                    userService(authentication.getAccessToken()).getUserWall($routeParams['username'], PAGE_SIZE, feedStartPostId).$promise.then(
+                        function (data) {
+                            $scope.posts = $scope.posts.concat(data);
+                            if($scope.posts.length > 0){
+                                feedStartPostId = $scope.posts[$scope.posts.length - 1].id;
+                            }
+
+                            $scope.busy = false;
+                            console.log($scope.posts);
+                            usSpinnerService.stop('spinner-1');
+                        },
+                        function (error) {
+                            usSpinnerService.stop('spinner-1');
+                            notifyService.showError("Error loading user wall!", error);
+                            //$log.warn(status, error);
+                        }
+                    );
+                }, function(error){
                     usSpinnerService.stop('spinner-1');
-                },
-                function (error) {
-                    usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Error loading user wall!", error);
-                    //$log.warn(status, error);
+                    notifyService.showError("Error loading user wall", error);
                 }
             );
         }
@@ -126,6 +143,24 @@ app.controller('userController', function userController($scope, $location, $log
         }
     };
 
+    $scope.getWallOwner = function(){
+        if (authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            userService(authentication.getAccessToken()).getUserFullData($routeParams['username']).$promise.then(
+                function(data){
+                    $scope.wallOwner = data;
+                    console.log($scope.wallOwner);
+                    console.log($scope.wallOwner.profileImageData);
+                    angular.element('.wall-header').css({'background-image': $scope.wallOwner.coverImageData });
+                },
+                function(error){
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Unsuccessful user load!", error);
+                }
+            );
+        }
+    };
+
     $scope.clearSearchResults = function(){
         $timeout(function() {
             $scope.searchResults = undefined;
@@ -133,4 +168,40 @@ app.controller('userController', function userController($scope, $location, $log
         }, 300);
     };
 
+    $scope.showUserPreview = function(username){
+        $scope.previewData = {};
+        if (authentication.isLogged()){
+            usSpinnerService.spin('spinner-1');
+
+            userService(authentication.getAccessToken()).getUserFullData(username).$promise.then(
+                function(data){
+                    $scope.previewData = {
+                        image: data.profileImageData ? data.profileImageData : $scope.defaultImage,
+                        name: data.name,
+                        username: data.username,
+                        status: false
+                    };
+
+                    if(authentication.getUsername() !== data.username){
+                        if(data.isFriend){
+                            $scope.previewData.status = 'friend';
+                        } else if(data.hasPendingRequest){
+                            $scope.previewData.status = 'pending';
+                        } else {
+                            $scope.previewData.status = 'invite';
+                        }
+                    }
+                    usSpinnerService.stop('spinner-1');
+                },
+                function(error){
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Unsuccessful register!", error);
+                }
+            );
+        }
+    };
+
+    $scope.isFriend = function(username){
+        return $scope.friends.indexOf(username) !== -1;
+    }
 });

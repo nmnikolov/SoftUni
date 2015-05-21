@@ -12,7 +12,7 @@ app.factory('postService', function($http, $q, $resource, BASE_URL){
                 }
             );
 
-        post.add = function(postData){
+        post.addPost = function(postData){
             return resource.save(postData);
         };
 

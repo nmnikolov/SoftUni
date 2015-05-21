@@ -69,6 +69,7 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                         feedStartPostId = $scope.posts[$scope.posts.length - 1].id;
                     }
                     $scope.busy = false;
+                    $scope.isNewsFeed = true;
                     usSpinnerService.stop('spinner-1');
                 },
                 function (error, status) {

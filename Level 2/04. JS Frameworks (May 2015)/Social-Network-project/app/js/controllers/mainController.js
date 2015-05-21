@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $log, $interval, userService, profileService, authentication, DEFAULT_PROFILE_IMAGE, notifyService, usSpinnerService) {
+app.controller('mainController', function ($scope, $log, $interval, userService, $location, $routeParams, profileService, authentication, DEFAULT_PROFILE_IMAGE, notifyService, usSpinnerService) {
     $scope.isLogged = function(){
         return authentication.isLogged();
     };
@@ -6,43 +6,8 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
     $scope.username = authentication.getUsername();
     $scope.defaultImage = DEFAULT_PROFILE_IMAGE;
     $scope.showPendingRequest = false;
-
-    $scope.showUserPreview = function(username){
-        $scope.previewData = {};
-        if (authentication.isLogged()){
-            usSpinnerService.spin('spinner-1');
-            userService(authentication.getAccessToken()).getUserFullData(username).$promise.then(
-                function(data){
-                    $scope.previewData = {
-                        image: data.profileImageData ? data.profileImageData : DEFAULT_PROFILE_IMAGE,
-                        name: data.name,
-                        username: data.username,
-                        status: false
-                    };
-
-                    if(authentication.getUsername() !== data.username){
-                        if(data.isFriend){
-                            $scope.previewData.status = 'friend';
-                        } else if(data.hasPendingRequest){
-                            $scope.previewData.status = 'pending';
-                        } else {
-                            $scope.previewData.status = 'invite';
-                        }
-                    }
-                    usSpinnerService.stop('spinner-1');
-                },
-                function(error){
-                    usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful register!", error);
-                }
-            );
-        }
-    };
-
-    $scope.hideUserPreview = function(){
-        $scope.previewData = undefined;
-        angular.element('#user-preview-box').hide();
-    };
+    $scope.isOwnWall = authentication.getUsername() === $routeParams['username'];
+    $scope.isOwnFeed = $location.path() === '/';
 
     function getFriendRequests(){
         if (authentication.isLogged()){
