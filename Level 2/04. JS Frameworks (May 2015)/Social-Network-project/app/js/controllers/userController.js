@@ -98,7 +98,6 @@ app.controller('userController', function userController($scope, $location, $log
                         function (error) {
                             usSpinnerService.stop('spinner-1');
                             notifyService.showError("Error loading user wall!", error);
-                            //$log.warn(status, error);
                         }
                     );
                 }, function(error){
@@ -146,6 +145,16 @@ app.controller('userController', function userController($scope, $location, $log
             userService(authentication.getAccessToken()).getUserFullData($routeParams['username']).$promise.then(
                 function(data){
                     $scope.wallOwner = data;
+                    if(authentication.getUsername() !== data.username){
+                        if(data.isFriend){
+                            $scope.wallOwner.status = 'friend';
+                        } else if(data.hasPendingRequest){
+                            $scope.wallOwner.status = 'pending';
+                        } else {
+                            $scope.wallOwner.status = 'invite';
+                        }
+                    }
+
                     angular.element('.wall-header').css({'background-image': $scope.wallOwner.coverImageData });
                 },
                 function(error){
