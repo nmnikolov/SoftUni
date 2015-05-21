@@ -8,8 +8,8 @@
         <p>{{comment.commentContent}}</p>
     </div>
     <div class="col-xs-12 col-md-12">
-        <span ng-if="!comment.liked" ng-click="comment.liked = !comment.liked; comment.likesCount = comment.likesCount + 1" class="like-button">like</span>
-        <span ng-if="comment.liked" ng-click="comment.liked = !comment.liked; comment.likesCount = comment.likesCount - 1" class="unlike-button">unlike</span>
+        <span ng-if="!comment.liked" ng-click="likeComment(post, comment);" class="like-button">Like</span>
+        <span ng-if="comment.liked" ng-click="unlikeComment(post, comment);" class="unlike-button">Unlike</span>
         <span class="glyphicon glyphicon-thumbs-up" title="likes"></span> <span class="views post-details" title="likes">{{comment.likesCount}}</span>
     </div>
 </li>

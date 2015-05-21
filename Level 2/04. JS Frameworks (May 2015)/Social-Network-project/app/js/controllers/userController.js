@@ -85,8 +85,6 @@ app.controller('userController', function userController($scope, $location, $log
                         $scope.friends.push(key.username);
                     });
 
-                    //console.log($scope.friends.indexOf('alabala') !== -1 ? 'friend' : 'not friend');
-
                     userService(authentication.getAccessToken()).getUserWall($routeParams['username'], PAGE_SIZE, feedStartPostId).$promise.then(
                         function (data) {
                             $scope.posts = $scope.posts.concat(data);

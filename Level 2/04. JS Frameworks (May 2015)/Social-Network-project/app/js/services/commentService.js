@@ -12,17 +12,17 @@ app.factory('commentService', function($http, $q, $resource, BASE_URL){
                 }
             );
 
-        comment.addComment = function(commentId, commentData){
-            return resource.save({option1: commentId}, commentData);
+        comment.addComment = function(posttId, commentData){
+            return resource.save({option1: posttId}, commentData);
         };
 
-        comment.like = function(postId){
-            return resource.save({option1: postId, option2: "likes"})
+        comment.like = function(postId, commentId){
+            return resource.save({option1: postId, option2: commentId, option3: "likes"})
         };
-        //
-        //comment.unlike = function(postId){
-        //    return resource.remove({option1: postId, option2: "likes"})
-        //};
+
+        comment.unlike = function(postId, commentId){
+            return resource.remove({option1: postId, option2: commentId, option3: "likes"})
+        };
 
         return comment;
     }

@@ -20,15 +20,15 @@ app.controller('commentController', function ($scope, $log, authentication, comm
         }
     };
 
-    $scope.likeComment= function(post){
+    $scope.likeComment= function(post, comment){
         if(authentication.isLogged()) {
             usSpinnerService.spin('spinner-1');
-            commentService(authentication.getAccessToken()).like(post.id).$promise.then(
+            commentService(authentication.getAccessToken()).like(post.id, comment.id).$promise.then(
                 function(){
-                    notifyService.showInfo("Post successfuly liked.");
+                    notifyService.showInfo("Comment successfuly liked.");
                     usSpinnerService.stop('spinner-1');
-                    post.liked = true;
-                    post.likesCount++;
+                    comment.liked = true;
+                    comment.likesCount++;
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
@@ -37,24 +37,24 @@ app.controller('commentController', function ($scope, $log, authentication, comm
             );
         }
     };
-    //
-    //$scope.unlikeComment = function(post){
-    //    if(authentication.isLogged()) {
-    //        usSpinnerService.spin('spinner-1');
-    //        postService(authentication.getAccessToken()).unlike(post.id).$promise.then(
-    //            function(){
-    //                notifyService.showInfo("Post successfuly unliked.");
-    //                usSpinnerService.stop('spinner-1');
-    //                post.liked = false;
-    //                post.likesCount--;
-    //            },
-    //            function(error){
-    //                notifyService.showError("Unsuccessful unlike!", error);
-    //                usSpinnerService.stop('spinner-1');
-    //            }
-    //        );
-    //    }
-    //};
+
+    $scope.unlikeComment = function(post, comment){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            commentService(authentication.getAccessToken()).unlike(post.id, comment.id).$promise.then(
+                function(){
+                    notifyService.showInfo("Comment successfuly unliked.");
+                    usSpinnerService.stop('spinner-1');
+                    comment.liked = false;
+                    comment.likesCount--;
+                },
+                function(error){
+                    notifyService.showError("Unsuccessful unlike!", error);
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
 });
 
 
