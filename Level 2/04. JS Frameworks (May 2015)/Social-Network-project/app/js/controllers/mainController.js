@@ -24,6 +24,8 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
             usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).acceptRequest(request.id).$promise.then(
                 function(){
+                    var index =  $scope.pendingRequests.indexOf(request);
+                    $scope.pendingRequests.splice(index,1);
                     usSpinnerService.stop('spinner-1');
                     notifyService.showInfo("Friend request successfully accepted.");
                 }, function(error){
@@ -40,6 +42,8 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
             usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).rejectRequest(request.id).$promise.then(
                 function(){
+                    var index =  $scope.pendingRequests.indexOf(request);
+                    $scope.pendingRequests.splice(index,1);
                     usSpinnerService.stop('spinner-1');
                     notifyService.showInfo("Friend request successfully rejected.");
                 }, function(error){
@@ -55,4 +59,5 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
     var interval = $interval(getFriendRequests, 60000);
 
     $scope.$on('$destroy', function () { $interval.cancel(interval); });
+
 });

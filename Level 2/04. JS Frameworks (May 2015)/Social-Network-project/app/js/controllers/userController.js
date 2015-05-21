@@ -95,7 +95,6 @@ app.controller('userController', function userController($scope, $location, $log
                             }
 
                             $scope.busy = false;
-                            console.log($scope.posts);
                             usSpinnerService.stop('spinner-1');
                         },
                         function (error) {
@@ -149,8 +148,6 @@ app.controller('userController', function userController($scope, $location, $log
             userService(authentication.getAccessToken()).getUserFullData($routeParams['username']).$promise.then(
                 function(data){
                     $scope.wallOwner = data;
-                    console.log($scope.wallOwner);
-                    console.log($scope.wallOwner.profileImageData);
                     angular.element('.wall-header').css({'background-image': $scope.wallOwner.coverImageData });
                 },
                 function(error){
