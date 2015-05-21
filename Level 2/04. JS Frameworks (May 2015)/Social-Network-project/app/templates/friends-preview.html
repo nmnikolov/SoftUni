@@ -1,4 +1,4 @@
-<div class="panel pull-right panel-info friends-preview col-xs-12" ng-if="friendsListPreview" .visible-lg>
+<div class="panel pull-right panel-info friends-preview col-xs-12" ng-if="friendsListPreview">
     <div class="panel-heading">Friends - <a href="{{friendsListPreview.userFriendsUrl}}">{{friendsListPreview.totalCount}} total</a></div>
     <div class="panel-body" ng-repeat="friend in friendsListPreview.friends">
         <a href="#/{{friend.username}}/wall/">
@@ -6,5 +6,4 @@
             <span>{{friend.name}}</span>
         </a>
     </div>
-
 </div>

@@ -1,7 +1,6 @@
 app.controller('commentController', function ($scope, $log, authentication, commentService, notifyService, usSpinnerService) {
 
     $scope.addComment = function(post){
-        console.log(post);
         if(authentication.isLogged()) {
             usSpinnerService.spin('spinner-1');
             commentService(authentication.getAccessToken()).addComment(post.id, $scope.commentData).$promise.then(

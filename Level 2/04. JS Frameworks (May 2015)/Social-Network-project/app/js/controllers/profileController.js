@@ -139,7 +139,7 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
         if(authentication.isLogged()) {
             usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).sendFriendRequest(previewData.username).$promise.then(
-                function (data) {
+                function () {
                     notifyService.showInfo("Friend request successfully sent to " + previewData.username + '.');
                     previewData.status = 'pending';
                     usSpinnerService.stop('spinner-1');

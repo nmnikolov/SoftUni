@@ -8,8 +8,10 @@
         <p>{{comment.commentContent}}</p>
     </div>
     <div class="col-xs-12 col-md-12">
-        <span ng-if="!comment.liked" ng-click="likeComment(post, comment);" class="like-button">Like</span>
-        <span ng-if="comment.liked" ng-click="unlikeComment(post, comment);" class="unlike-button">Unlike</span>
+        <span ng-if="isOwnWall || isOwnFeed || isFriend(post.author.username) || isFriend(post.wallOwner.username)">
+            <span ng-if="!comment.liked" ng-click="likeComment(post, comment);" class="like-button">Like</span>
+            <span ng-if="comment.liked" ng-click="unlikeComment(post, comment);" class="unlike-button">Unlike</span>
+        </span>
         <span class="glyphicon glyphicon-thumbs-up" title="likes"></span> <span class="views post-details" title="likes">{{comment.likesCount}}</span>
     </div>
 </li>
