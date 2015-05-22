@@ -28,6 +28,15 @@ app.factory('commentService', function($http, $q, $resource, BASE_URL){
             return resource.remove({option1: postId, option2: commentId, option3: "likes"})
         };
 
+        comment.removeComment = function(postId, commentId){
+            return resource.remove({option1: postId, option2: commentId});
+        };
+
+        comment.editComment = function(postId, commentId, commentContent){
+            var commentData = { 'commentContent': commentContent};
+            return resource.edit({option1: postId, option2: commentId}, commentData);
+        };
+
         return comment;
     }
 });

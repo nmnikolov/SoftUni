@@ -31,8 +31,8 @@
             <span ng-if="!post.editing">{{post.postContent}}</span>
             <form ng-show="post.editing" name="editPostForm" ng-submit="editPost(post); post.editing = false">
                 <input type="text" ng-model="post.newPostContent" ng-minlength="1" required class="form-group col-xs-12"/>
-                <button class="btn" type="submit" ng-disabled="editPostForm.$invalid">Save</button>
-                <button class="btn" ng-click="editing = false">Cancel</button>
+                <button class="btn btn-success" type="submit" ng-disabled="editPostForm.$invalid">Save</button>
+                <a class="btn btn-default" ng-click="post.editing = false">Cancel</a>
             </form>
         </div>
 
