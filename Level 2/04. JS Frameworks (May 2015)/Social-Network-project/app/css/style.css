@@ -81,7 +81,7 @@ h2 {
     padding-left: 50px;
 }
 
-.comments li{
+.comments > li{
     list-style: none;
     border-top: 1px solid lightgray;
     padding: 5px 20px;
@@ -306,7 +306,7 @@ h2 {
     text-align: center;
 }
 
-.drop-down {
+.post-caret {
     position: absolute;
     top: 0;
     right: 0;
@@ -315,10 +315,32 @@ h2 {
     color: lightgray;
 }
 
-.drop-down-carret {
+.drop-down-post-caret {
     color: #505050;
 }
 
 .dropdown-menu-right {
     min-width: 0;
+}
+
+.comment-caret {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 17px;
+    cursor: pointer;
+    color: #505050;
+}
+
+.comment {
+    padding: 10px !important;
+}
+
+.comment-content {
+    margin: 5px 0;
+    padding-left: 0;
+}
+
+.comment-details {
+    padding-left: 0;
 }

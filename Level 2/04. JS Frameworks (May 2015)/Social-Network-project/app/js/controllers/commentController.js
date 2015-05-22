@@ -72,23 +72,40 @@ app.controller('commentController', function ($scope, $log, authentication, comm
         }
     };
 
+    $scope.editComment = function(post, comment){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            commentService(authentication.getAccessToken()).editComment(post.id, comment.id, comment.newCommentContent).$promise.then(
+                function(){
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showInfo("Comment successfuly edited.");
+                    comment.commentContent = comment.newCommentContent;
+                },
+                function(error){
+                    notifyService.showError("Unsuccessful comment edit!", error);
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
+
     $scope.deleteComment = function(post, comment){
         if(authentication.isLogged()) {
-            //usSpinnerService.spin('spinner-1');
-            //commentService(authentication.getAccessToken()).unlike(post.id, comment.id).$promise.then(
-            //    function(){
-            //        notifyService.showInfo("Comment successfuly unliked.");
-            //        usSpinnerService.stop('spinner-1');
-            //        comment.liked = false;
-            //        comment.likesCount--;
-            //    },
-            //    function(error){
-            //        notifyService.showError("Unsuccessful unlike!", error);
-            //        usSpinnerService.stop('spinner-1');
-            //    }
-            //);
+            usSpinnerService.spin('spinner-1');
+            commentService(authentication.getAccessToken()).removeComment(post.id, comment.id).$promise.then(
+                function(){
+                    var index =  post.comments.indexOf(comment);
+                    post.comments.splice(index, 1);
+                    post.totalCommentsCount--;
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showInfo("Comment successfuly removed.");
+
+                },
+                function(error){
+                    notifyService.showError("Unsuccessful comment edit!", error);
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
         }
     };
 });
-
-

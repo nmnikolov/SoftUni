@@ -9,6 +9,11 @@ app.factory('commentService', function($http, $q, $resource, BASE_URL){
                     option1: '@option1',
                     option2: '@option2',
                     option3: '@option3'
+                },
+                {
+                    edit: {
+                        method: 'PUT'
+                    }
                 }
             );
 
