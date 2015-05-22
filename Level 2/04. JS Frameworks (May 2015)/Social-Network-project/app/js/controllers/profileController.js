@@ -101,7 +101,7 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
             usSpinnerService.spin('spinner-1');
             profileService(authentication.getAccessToken()).getFriendsListPreview().$promise.then(
                 function (data) {
-                    data.userFriendsUrl = '#/friends/';
+                    data.userFriendsUrl = '#/user/' + $scope.username + '/friends/';
                     $scope.friendsListPreview = data;
                     usSpinnerService.stop('spinner-1');
                 },

@@ -301,3 +301,24 @@ h2 {
 .pointer {
     cursor: pointer;
 }
+
+.pending-requests{
+    text-align: center;
+}
+
+.drop-down {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 17px;
+    cursor: pointer;
+    color: lightgray;
+}
+
+.drop-down-carret {
+    color: #505050;
+}
+
+.dropdown-menu-right {
+    min-width: 0;
+}

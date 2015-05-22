@@ -131,7 +131,7 @@ app.controller('userController', function userController($scope, $location, $log
             userService(authentication.getAccessToken()).getUserFullData($routeParams['username']).$promise.then(
                 function(data){
                     $scope.wallOwner = data;
-                    if(authentication.getUsername() !== data.username){
+                    if(authentication.getUsername() !== $scope.wallOwner.username){
                         if(data.isFriend){
                             $scope.wallOwner.status = 'friend';
                         } else if(data.hasPendingRequest){
@@ -141,8 +141,14 @@ app.controller('userController', function userController($scope, $location, $log
                         }
                     }
 
+                    usSpinnerService.stop('spinner-1');
+
                     if($scope.wallOwner.isFriend && $location.path() === '/user/' + $routeParams['username'] + '/wall/'){
                         $scope.getUserFriendsListPreview();
+                    }
+
+                    if(!$scope.wallOwner.isFriend && $routeParams['username'] !== $scope.username && $location.path() === '/user/' + $routeParams['username'] + '/friends/'){
+                        $location.path('/');
                     }
                 },
                 function(error){
@@ -199,8 +205,23 @@ app.controller('userController', function userController($scope, $location, $log
             usSpinnerService.spin('spinner-1');
             userService(authentication.getAccessToken()).getUserFriendsPreview($routeParams['username']).$promise.then(
                 function (data) {
-                    data.userFriendsUrl = '#/friends/';
+                    data.userFriendsUrl = '#/user/' + $routeParams['username'] + '/friends/';
                     $scope.friendsListPreview = data;
+                    usSpinnerService.stop('spinner-1');
+                },
+                function (error) {
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
+
+    $scope.getUserFriends = function(){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            userService(authentication.getAccessToken()).getUserFriends($routeParams['username']).$promise.then(
+                function (data) {
+                    $scope.friendsList = data;
                     usSpinnerService.stop('spinner-1');
                 },
                 function (error) {

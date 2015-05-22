@@ -71,6 +71,24 @@ app.controller('commentController', function ($scope, $log, authentication, comm
             );
         }
     };
+
+    $scope.deleteComment = function(post, comment){
+        if(authentication.isLogged()) {
+            //usSpinnerService.spin('spinner-1');
+            //commentService(authentication.getAccessToken()).unlike(post.id, comment.id).$promise.then(
+            //    function(){
+            //        notifyService.showInfo("Comment successfuly unliked.");
+            //        usSpinnerService.stop('spinner-1');
+            //        comment.liked = false;
+            //        comment.likesCount--;
+            //    },
+            //    function(error){
+            //        notifyService.showError("Unsuccessful unlike!", error);
+            //        usSpinnerService.stop('spinner-1');
+            //    }
+            //);
+        }
+    };
 });
 
 

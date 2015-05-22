@@ -9,6 +9,11 @@ app.factory('postService', function($http, $q, $resource, BASE_URL){
                     option1: '@option1',
                     option2: '@option2',
                     option3: '@option3'
+                },
+                {
+                    edit: {
+                        method: 'PUT'
+                    }
                 }
             );
 
@@ -22,6 +27,15 @@ app.factory('postService', function($http, $q, $resource, BASE_URL){
 
         post.unlike = function(postId){
             return resource.remove({option1: postId, option2: "likes"})
+        };
+
+        post.removePost = function(postId){
+            return resource.remove({option1: postId});
+        };
+
+        post.editPost = function(postId, postContent){
+            var postData = { 'postContent': postContent};
+            return resource.edit({option1: postId}, postData);
         };
 
         return post;

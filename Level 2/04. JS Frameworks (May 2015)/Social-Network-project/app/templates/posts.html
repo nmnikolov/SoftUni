@@ -6,21 +6,34 @@
             </div>
             <div class="media-body">
                 <span class="author" popup-show="templates/user-preview-box.html" ng-click="showUserPreview(post.author.username, $event, 'post')">
-                {{post.author.name}}
-            </span>
-            <span ng-if="post.author.username !== post.wallOwner.username && isNewsFeed">
-                <span class="fa fa-angle-double-right">
+                    {{post.author.name}}
                 </span>
-                <span class="author" popup-show="templates/user-preview-box.html" ng-click="showUserPreview(post.wallOwner.username, $event, 'post')">
-                    {{post.wallOwner.name}}
+                <span ng-if="post.author.username !== post.wallOwner.username && isNewsFeed">
+                    <span class="fa fa-angle-double-right"></span>
+                    <span class="author" popup-show="templates/user-preview-box.html" ng-click="showUserPreview(post.wallOwner.username, $event, 'post')">
+                        {{post.wallOwner.name}}
+                    </span>
                 </span>
-            </span>
                 <div>{{post.date | date : "dd MMM yyyy hh:mm:ss"}}</div>
+            </div>
+            <div ng-if="post.author.username === username || isOwnWall" class="btn-group drop-down" role="group">
+                <span type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="fa fa-chevron-down drop-down-carret"></span>
+                </span>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li ng-if="post.author.username === username" ng-click="post.editing = true; post.newPostContent = post.postContent"><a>edit</a></li>
+                    <li ng-if="post.author.username === username || isOwnWall"><a ng-click="deletePost(post)">delete</a></li>
+                </ul>
             </div>
         </div>
 
         <div class="form-group col-xs-12 col-md-12">
-            <span>{{post.postContent}}</span>
+            <span ng-if="!post.editing">{{post.postContent}}</span>
+            <form ng-show="post.editing" name="editPostForm" ng-submit="editPost(post); post.editing = false">
+                <input type="text" ng-model="post.newPostContent" ng-minlength="1" required class="form-group col-xs-12"/>
+                <button class="btn" type="submit" ng-disabled="editPostForm.$invalid">Save</button>
+                <button class="btn" ng-click="editing = false">Cancel</button>
+            </form>
         </div>
 
         <div class="form-group col-xs-12 col-md-12" >
@@ -36,7 +49,7 @@
             </span>
         </div>
 
-        <ul ng-if="post.totalCommentsCount > 0" class="comments media-object col-xs-12" ng-include="'templates/comments.html'">        </ul>
+        <ul ng-if="post.totalCommentsCount > 0" class="comments media-object col-xs-12" ng-include="'templates/comments.html'"></ul>
 
     </div>
 </div>

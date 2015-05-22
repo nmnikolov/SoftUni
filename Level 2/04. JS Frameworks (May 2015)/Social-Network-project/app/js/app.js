@@ -61,7 +61,7 @@ app.config(function ($routeProvider, $httpProvider) {
                 }
             }
         })
-        .when('/friends/', {
+        .when('/user/:username/friends/', {
             templateUrl: 'templates/friends.html',
             controller: 'mainController',
             resolve:{

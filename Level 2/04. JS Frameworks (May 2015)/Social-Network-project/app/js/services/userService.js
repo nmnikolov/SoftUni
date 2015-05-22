@@ -53,6 +53,10 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
             return resource.get({ option1: username, option2: 'friends', option3: 'preview' });
         };
 
+        user.getUserFriends = function(username){
+            return resource.query({ option1: username, option2: 'friends' });
+        };
+
         user.isLogged = function(){
             return authentication.isLogged();
         };

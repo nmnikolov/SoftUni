@@ -54,6 +54,42 @@ app.controller('postController', function ($scope, $log, $routeParams, userServi
             );
         }
     };
+
+    $scope.deletePost = function(post){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            postService(authentication.getAccessToken()).removePost(post.id).$promise.then(
+                function(){
+                    var index =  $scope.posts.indexOf(post);
+                    $scope.posts.splice(index, 1);
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showInfo("Post successfuly removed.");
+                },
+                function(error){
+                    notifyService.showError("Unsuccessful post remove!", error);
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
+
+    $scope.editPost = function(post){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            postService(authentication.getAccessToken()).editPost(post.id, post.newPostContent).$promise.then(
+                function(){
+                    post.postContent = post.newPostContent;
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showInfo("Post successfuly edited.");
+                },
+                function(error){
+                    notifyService.showError("Unsuccessful post edit!", error);
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
+
 });
 
 
