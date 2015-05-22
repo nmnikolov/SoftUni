@@ -2,7 +2,7 @@
 
 <main user-controller-directive ng-init="getWallOwner()">
 
-    <div profile-controller-directive class="wall-header col-xs-12" ng-style="{'background-image':'url(' + (wallOwner.coverImageData ? wallOwner.coverImageData : 'images/default_cover.jpg') +')'}" >
+    <div profile-controller-directive class="wall-header col-xs-12" ng-if="wallOwner" ng-style="{'background-image':'url(' + (wallOwner.coverImageData ? wallOwner.coverImageData : 'images/default_cover.jpg') +')'}" >
         <div ng-if="wallOwner" class="media-left">
             <img ng-src="{{wallOwner.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 125px; height: 125px"/>
         </div>
@@ -18,9 +18,11 @@
     <div class="form-group col-md-9 col-xs-12">
         <div ng-if="isOwnWall || wallOwner.isFriend" ng-include="'templates/post-box.html'" class="row well">
         </div>
-        <div ng-if="isLogged()" ng-include="'templates/posts.html'" class="row" infinite-scroll='loadUserWall()' infinite-scroll-disabled='busy' infinite-scroll-distance="0">
+        <div ng-if="isLogged() && wallOwner" ng-include="'templates/posts.html'" class="row" infinite-scroll='loadUserWall()' infinite-scroll-disabled='busy' nfinite-scroll-distance="0">
         </div>
     </div>
-    <div class="media col-md-3" ng-include="'templates/friends-preview.html'">
+    <div profile-controller-directive="">
+        <div class="media col-md-3" ng-if="isOwnWall" ng-init="getOwnFriendsListPreview()" ng-include="'templates/friends-preview.html'"></div>
+        <div class="media col-md-3" ng-if="!isOwnWall && friendsListPreview" ng-init="getUserFriendsListPreview()" ng-include="'templates/friends-preview.html'"></div>
     </div>
 </main>

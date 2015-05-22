@@ -297,3 +297,7 @@ h2 {
     position: relative;
     left: 50px;
 }
+
+.pointer {
+    cursor: pointer;
+}

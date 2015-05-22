@@ -19,6 +19,23 @@ app.controller('commentController', function ($scope, $log, authentication, comm
         }
     };
 
+    $scope.getPostComments = function(post){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+
+            commentService(authentication.getAccessToken()).getPostComments(post.id).$promise.then(
+                function(data){
+                    post.comments = data;
+                    usSpinnerService.stop('spinner-1');
+                },
+                function(error){
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Unable to retrieve comments!", error);
+                }
+            );
+        }
+    };
+
     $scope.likeComment= function(post, comment){
         if(authentication.isLogged()) {
             usSpinnerService.spin('spinner-1');

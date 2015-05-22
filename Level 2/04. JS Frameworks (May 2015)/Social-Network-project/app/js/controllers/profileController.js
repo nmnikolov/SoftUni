@@ -167,10 +167,10 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
         angular.element('#profile-image').trigger('click');
     };
 
-    $('#sidebar').affix({
-        offset: {
-            top: $('header').height()
-        }
-    });
+    //$('#sidebar').affix({
+    //    offset: {
+    //        top: $('header').height()
+    //    }
+    //});
 
 });

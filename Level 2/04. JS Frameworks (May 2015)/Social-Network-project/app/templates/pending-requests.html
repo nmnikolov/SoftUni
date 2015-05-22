@@ -11,7 +11,7 @@
         </div>
         <ul ng-repeat="friend in friendsList | filter: filterFriends" class="media-list">
             <img ng-src="{{friend.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 150px; height: 150px"/>
-            <a href="#/{{friend.username}}/wall/"><span>{{friend.name}}</span></a>
+            <a href="#/user/{{friend.username}}/wall/"><span>{{friend.name}}</span></a>
         </ul>
     </div>
 </main>

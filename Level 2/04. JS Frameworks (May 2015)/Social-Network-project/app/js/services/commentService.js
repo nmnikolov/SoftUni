@@ -4,7 +4,7 @@ app.factory('commentService', function($http, $q, $resource, BASE_URL){
 
         var comment = {},
             resource = $resource(
-                BASE_URL + 'Posts/:option1/comments/:option2/:option3',
+                BASE_URL + 'posts/:option1/comments/:option2/:option3',
                 {
                     option1: '@option1',
                     option2: '@option2',
@@ -12,8 +12,12 @@ app.factory('commentService', function($http, $q, $resource, BASE_URL){
                 }
             );
 
-        comment.addComment = function(posttId, commentData){
-            return resource.save({option1: posttId}, commentData);
+        comment.addComment = function(postId, commentData){
+            return resource.save({option1: postId}, commentData);
+        };
+
+        comment.getPostComments = function(postId){
+            return resource.query({option1: postId});
         };
 
         comment.like = function(postId, commentId){

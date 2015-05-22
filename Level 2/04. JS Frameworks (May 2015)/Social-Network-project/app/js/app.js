@@ -28,7 +28,7 @@ app.config(function ($routeProvider, $httpProvider) {
                 }
             }
         })
-        .when('/:username/wall/', {
+        .when('/user/:username/wall/', {
             templateUrl: 'templates/wall.html',
             controller: 'mainController',
             resolve:{

@@ -18,13 +18,10 @@
             <h2>News feed</h2>
         </legend>
         <div class="form-group col-md-9">
-            <div ng-init="getOwnFriendsListPreview()" ng-include="'templates/posts.html'"  infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0" class="row">
+            <div  ng-include="'templates/posts.html'"  infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0" class="row">
             </div>
         </div>
-        <div class="media col-md-3" ng-include="'templates/friends-preview.html'">
+        <div class="media col-md-3" ng-init="getOwnFriendsListPreview()" ng-include="'templates/friends-preview.html'">
         </div>
     </div>
-
-    <!--<div ng-include="'templates/user-preview-box.html'" user-controller-directive="">-->
-    <!--</div>-->
 </main>

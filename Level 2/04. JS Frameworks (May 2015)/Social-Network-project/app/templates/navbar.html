@@ -22,14 +22,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#/{{username}}/wall/"><span class="glyphicon glyphicon-home"></span></a>
+                    <a href="#/user/{{username}}/wall/"><span class="glyphicon glyphicon-home"></span></a>
                 </li>
                 <li ng-mouseenter="showPendingRequest=true" ng-mouseleave="showPendingRequest=false">
                     <a href="#/friends/requests/" class="glyphicon glyphicon-user"><span ng-if="pendingRequests.length > 0" class="badge"> {{pendingRequests.length}}</span>
                     </a>
                     <div id="friend-requests-box" ng-if="showPendingRequest && pendingRequests.length > 0" class="list-group">
                         <div ng-repeat="request in pendingRequests" class="list-group-item">
-                            <a href="#/{{request.user.username}}/wall/">
+                            <a href="#/user/{{request.user.username}}/wall/">
                                 <img ng-src="{{request.user.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
                                 <span class="name"  style="color:black">{{request.user.name}}</span>
                             </a>
@@ -47,7 +47,7 @@
 
                 <div id="search-results" ng-if="searchResults" class="list-group">
                     <div ng-repeat="user in searchResults" class="list-group-item">
-                        <a href="#/{{user.username}}/wall/">
+                        <a href="#/user/{{user.username}}/wall/">
                             <img ng-src="{{user.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
                             <span class="name">{{user.name}}</span>
                         </a>

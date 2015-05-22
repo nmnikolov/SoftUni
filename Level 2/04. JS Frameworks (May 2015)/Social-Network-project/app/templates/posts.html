@@ -1,5 +1,5 @@
 <div ng-repeat="post in posts" post-controller-directive class="post">
-    <div class="well .alert-success col-xs-12 col-md-12">
+    <div class="well .alert-success col-xs-12 col-md-12" comment-controller-directive>
         <div class="form-group col-xs-12 col-md-12">
             <div class="media-left">
                 <img ng-src="{{post.author.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
@@ -14,29 +14,29 @@
                 <span class="author" popup-show="templates/user-preview-box.html" ng-click="showUserPreview(post.wallOwner.username, $event, 'post')">
                     {{post.wallOwner.name}}
                 </span>
-
             </span>
                 <div>{{post.date | date : "dd MMM yyyy hh:mm:ss"}}</div>
             </div>
-
         </div>
 
         <div class="form-group col-xs-12 col-md-12">
             <span>{{post.postContent}}</span>
         </div>
 
-        <div class="form-group col-xs-12 col-md-12" comment-controller-directive>
-            <span ng-if="isOwnWall || isOwnFeed || isFriend(post.author.username) || isFriend(post.wallOwner.username)">
+        <div class="form-group col-xs-12 col-md-12" >
+            <span ng-if="isOwnWall || isOwnFeed || post.author.isFriend || post.wallOwner.isFriend">
                 <span ng-if="!post.liked" ng-click="likePost(post);" class="like-button">Like</span>
                 <span ng-if="post.liked" ng-click="unlikePost(post);" class="unlike-button">Unlike</span>
             </span>
             <span class="glyphicon glyphicon-thumbs-up" title="likes"></span> <span class="views post-details" title="likes">{{post.likesCount}}</span>
             <span class="fa fa-comments" title="comments"></span> <span class="comments-count post-details" title="comments">{{post.totalCommentsCount}}</span>
-            <span ng-click="expand = !expand" class="comment-toggle">comment</span>
+            <span ng-if="isOwnWall || isOwnFeed || post.author.isFriend || post.wallOwner.isFriend">
+                <span ng-click="expand = !expand" class="comment-toggle">comment</span>
             <div ng-include="'templates/comment-box.html'"></div>
+            </span>
         </div>
 
-        <ul ng-if="post.totalCommentsCount > 0" class="comments media-object col-xs-12" ng-include="'templates/comments.html'">
-        </ul>
+        <ul ng-if="post.totalCommentsCount > 0" class="comments media-object col-xs-12" ng-include="'templates/comments.html'">        </ul>
+
     </div>
 </div>

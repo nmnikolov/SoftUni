@@ -76,33 +76,19 @@ app.controller('userController', function userController($scope, $location, $log
             }
             $scope.busy = true;
             usSpinnerService.spin('spinner-1');
-
-            profileService(authentication.getAccessToken()).getFriendsList().$promise.then(
+            userService(authentication.getAccessToken()).getUserWall($routeParams['username'], PAGE_SIZE, feedStartPostId).$promise.then(
                 function (data) {
-                    $scope.friends = [];
+                    $scope.posts = $scope.posts.concat(data);
+                    if($scope.posts.length > 0){
+                        feedStartPostId = $scope.posts[$scope.posts.length - 1].id;
+                    }
 
-                    angular.forEach(data, function (key) {
-                        $scope.friends.push(key.username);
-                    });
-
-                    userService(authentication.getAccessToken()).getUserWall($routeParams['username'], PAGE_SIZE, feedStartPostId).$promise.then(
-                        function (data) {
-                            $scope.posts = $scope.posts.concat(data);
-                            if($scope.posts.length > 0){
-                                feedStartPostId = $scope.posts[$scope.posts.length - 1].id;
-                            }
-
-                            $scope.busy = false;
-                            usSpinnerService.stop('spinner-1');
-                        },
-                        function (error) {
-                            usSpinnerService.stop('spinner-1');
-                            notifyService.showError("Error loading user wall!", error);
-                        }
-                    );
-                }, function(error){
+                    $scope.busy = false;
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Error loading user wall", error);
+                },
+                function (error) {
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Error loading user wall!", error);
                 }
             );
         }
@@ -155,7 +141,9 @@ app.controller('userController', function userController($scope, $location, $log
                         }
                     }
 
-                    angular.element('.wall-header').css({'background-image': $scope.wallOwner.coverImageData });
+                    if($scope.wallOwner.isFriend && $location.path() === '/user/' + $routeParams['username'] + '/wall/'){
+                        $scope.getUserFriendsListPreview();
+                    }
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
@@ -177,7 +165,7 @@ app.controller('userController', function userController($scope, $location, $log
         if (authentication.isLogged()){
             usSpinnerService.spin('spinner-1');
 
-            userService(authentication.getAccessToken()).getUserFullData(username).$promise.then(
+            userService(authentication.getAccessToken()).getUserPreviewData(username).$promise.then(
                 function(data){
                     $scope.previewData = {
                         image: data.profileImageData ? data.profileImageData : $scope.defaultImage,
@@ -195,6 +183,7 @@ app.controller('userController', function userController($scope, $location, $log
                             $scope.previewData.status = 'invite';
                         }
                     }
+
                     usSpinnerService.stop('spinner-1');
                 },
                 function(error){
@@ -205,7 +194,19 @@ app.controller('userController', function userController($scope, $location, $log
         }
     };
 
-    $scope.isFriend = function(username){
-        return $scope.friends.indexOf(username) !== -1;
-    }
+    $scope.getUserFriendsListPreview = function(){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            userService(authentication.getAccessToken()).getUserFriendsPreview($routeParams['username']).$promise.then(
+                function (data) {
+                    data.userFriendsUrl = '#/friends/';
+                    $scope.friendsListPreview = data;
+                    usSpinnerService.stop('spinner-1');
+                },
+                function (error) {
+                    usSpinnerService.stop('spinner-1');
+                }
+            );
+        }
+    };
 });

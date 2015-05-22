@@ -4,8 +4,12 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
 
         var user = {},
             resource = $resource(
-                BASE_URL + 'users/:option1/:option2',
-                { option1: '@option1', option2: '@option2' },
+                BASE_URL + 'users/:option1/:option2/:option3',
+                {
+                    option1: '@option1',
+                    option2: '@option2',
+                    option3: '@option3'
+                },
                 {
                     edit: {
                         method: 'PUT'
@@ -39,6 +43,14 @@ app.factory('userService', function($http, $q, $resource, BASE_URL, authenticati
 
         user.getUserFullData = function(username){
             return resource.get({ option1: username });
+        };
+
+        user.getUserPreviewData = function(username){
+            return resource.get({ option1: username, option2: 'preview' });
+        };
+
+        user.getUserFriendsPreview = function(username){
+            return resource.get({ option1: username, option2: 'friends', option3: 'preview' });
         };
 
         user.isLogged = function(){
