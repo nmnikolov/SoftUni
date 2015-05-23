@@ -6,11 +6,13 @@ app.controller('postController', function ($scope, $routeParams, userService, au
             usSpinnerService.spin('spinner-1');
             postService(authentication.getAccessToken()).addPost($scope.postData).$promise.then(
                 function(data){
+                    $scope.postData.postContent = "";
                     $scope.posts.unshift(data);
                     notifyService.showInfo("Post successfully added.");
                     usSpinnerService.stop('spinner-1');
                 },
                 function(error){
+                    $scope.postData.postContent = "";
                     usSpinnerService.stop('spinner-1');
                     notifyService.showError("Failed to add post!", error);
                 }
