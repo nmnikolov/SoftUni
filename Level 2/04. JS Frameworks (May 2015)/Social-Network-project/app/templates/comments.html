@@ -4,7 +4,7 @@
     </div>
     <div class="media-body">
         <span class="author" popup-show="templates/user-preview-box.html" ng-click="showUserPreview(comment.author.username, $event, 'comment')"> {{comment.author.name}}</span>
-        <div>{{comment.date | date: "dd MMM yyyy hh:mm:ss"}}</div>
+        <div ng-init="toLocalTimeZone(comment)">{{comment.date | date: "dd MMM yyyy HH:mm:ss"}}</div>
     </div>
 
     <div class="comment-content col-xs-12 col-md-12">

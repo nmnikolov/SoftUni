@@ -53,6 +53,10 @@ app.controller('mainController', function ($scope, $interval, userService, $loca
         }
     };
 
+    $scope.toLocalTimeZone = function(item){
+        item.date = new Date(item.date);
+    };
+
     getFriendRequests();
     var interval = $interval(getFriendRequests, 60000);
 

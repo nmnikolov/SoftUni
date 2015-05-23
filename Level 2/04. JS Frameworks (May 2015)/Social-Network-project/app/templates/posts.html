@@ -1,5 +1,5 @@
 <div ng-repeat="post in posts" post-controller-directive class="post">
-    <div class="well .alert-success col-xs-12 col-md-12" comment-controller-directive>
+    <div class="well .alert-success col-xs-12 col-md-12" comment-controller-directive ng-init="toLocalTimeZone(post)">
         <div class="form-group col-xs-12 col-md-12">
             <div class="media-left">
                 <img ng-src="{{post.author.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
@@ -14,7 +14,7 @@
                         {{post.wallOwner.name}}
                     </span>
                 </span>
-                <div>{{post.date | date : "dd MMM yyyy hh:mm:ss"}}</div>
+                <div>{{post.date | date: "dd MMM yyyy HH:mm:ss"}}</div>
             </div>
             <div ng-if="post.author.username === username || isOwnWall" class="btn-group drop-down post-caret" role="group">
                 <span type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
