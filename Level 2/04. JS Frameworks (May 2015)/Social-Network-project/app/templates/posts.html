@@ -43,8 +43,8 @@
             </span>
             <span class="glyphicon glyphicon-thumbs-up" title="likes"></span> <span class="views post-details" title="likes">{{post.likesCount}}</span>
             <span class="fa fa-comments" title="comments"></span> <span class="comments-count post-details" title="comments">{{post.totalCommentsCount}}</span>
-            <span ng-if="isOwnWall || isOwnFeed || post.author.isFriend || post.wallOwner.isFriend" ng-init="expande=false">
-                <span ng-click="expand = !expand" class="comment-toggle">comment</span>
+            <span ng-if="isOwnWall || isOwnFeed || post.author.isFriend || post.wallOwner.isFriend" ng-init="post.expandComment=false">
+                <span ng-click="post.expandComment = !post.expandComment" class="comment-toggle">comment</span>
                 <div ng-include="'templates/comment-box.html'"></div>
             </span>
 
