@@ -108,7 +108,7 @@ h2 {
     background: #ffffff;
 }
 
-#profile-image {
+#profile-image, #cover-image {
     display: none;
 }
 
@@ -256,11 +256,6 @@ h2 {
     color: gray;
 }
 
-#friend-requests-box {
-    position: absolute;
-    width: 350px;
-}
-
 .comment-toggle {
     cursor: pointer;
 }
@@ -343,4 +338,37 @@ h2 {
 
 .comment-details {
     padding-left: 0;
+}
+
+#friend-requests-box {
+    position: absolute;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+#friend-requests-box .action {
+    vertical-align: middle;
+}
+
+#friend-requests-box .media-body {
+    vertical-align: middle !important;
+}
+
+#friend-requests-box .name {
+    color: #000000 !important;
+    font-size: 1em;
+}
+
+.cover-upload {
+    text-align: center;
+    height: 180px;
+}
+
+.cover-upload-section {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    background: #ffffff;
+    padding: 5px;
 }

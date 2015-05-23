@@ -1,4 +1,4 @@
-app.controller('profileController', function ($scope, $location, $log, profileService, authentication, notifyService, PAGE_SIZE, usSpinnerService) {
+app.controller('profileController', function ($scope, $location, profileService, authentication, notifyService, PAGE_SIZE, usSpinnerService) {
     var feedStartPostId;
     $scope.posts = [];
     $scope.busy = false;
@@ -28,11 +28,51 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                     notifyService.showInfo('Profile successfully edited.');
                 },
                 function (error) {
-                    $log.warn(error);
                     usSpinnerService.stop('spinner-1');
                     notifyService.showError('Unsuccessful update!', error);
                 }
             );
+        }
+    };
+
+    $scope.uploadImage = function(event){
+        var previewElement,
+            inputElement,
+            file,
+            reader,
+            sizeLimit;
+
+        switch(event.target.id){
+            case 'profile-image':
+                previewElement = $('.picture-preview');
+                inputElement = $('#profile-image');
+                sizeLimit = 131072;
+                break;
+            case 'cover-image':
+                previewElement = $('.cover-preview');
+                inputElement = $('#cover-image');
+                sizeLimit = 131072;
+                break;
+        }
+
+        file = event.target.files[0];
+
+        if(file && !file.type.match(/image\/.*/)){
+            notifyService.showError("Invalid file format.");
+        } else if(file && file.size > sizeLimit) {
+            notifyService.showError("File size limit exceeded.");
+        } else if(file) {
+            reader = new FileReader();
+            reader.onload = function() {
+                previewElement.attr('src', reader.result);
+                inputElement.attr('data-picture-data', reader.result);
+                if(event.target.id === 'profile-image'){
+                    $scope.me.profileImageData = reader.result;
+                } else {
+                    $scope.me.coverImageData = reader.result;
+                }
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -59,7 +99,6 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                 return;
             }
             $scope.busy = true;
-
             usSpinnerService.spin('spinner-1');
 
             profileService(authentication.getAccessToken()).getNewsFeed(PAGE_SIZE, feedStartPostId).$promise.then(
@@ -73,7 +112,6 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                     usSpinnerService.stop('spinner-1');
                 },
                 function (error, status) {
-                    $log.warn(status, error);
                     usSpinnerService.stop('spinner-1');
                 }
             );
@@ -89,7 +127,6 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                     usSpinnerService.stop('spinner-1');
                 },
                 function (error, status) {
-                    $log.warn(status, error);
                     usSpinnerService.stop('spinner-1');
                 }
             );
@@ -105,35 +142,14 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                     $scope.friendsListPreview = data;
                     usSpinnerService.stop('spinner-1');
                 },
-                function (error, status) {
+                function (error) {
                     usSpinnerService.stop('spinner-1');
                 }
             );
         }
     };
 
-    $scope.uploadProfileImage = function(event){
-        var file = event.target.files[0],
-            reader;
 
-        if(!file.type.match(/image\/.*/)){
-            $('.picture-preview').attr('src', '');
-            $scope.me.profileImageData = undefined;
-            notifyService.showError("Invalid file format.");
-        } else if(file.size > 131072) {
-            $('.picture-preview').attr('src', '');
-            $scope.me.profileImageData = undefined;
-            notifyService.showError("File size limit exceeded.");
-        } else {
-            reader = new FileReader();
-            reader.onload = function() {
-                $('.picture-preview').attr('src', reader.result);
-                $('#profile-image').attr('data-picture-data', reader.result);
-                $scope.me.profileImageData = reader.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    };
 
     $scope.sendFriendRequest = function(previewData){
         if(authentication.isLogged()) {
@@ -145,7 +161,6 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
                     usSpinnerService.stop('spinner-1');
                 },
                 function (error) {
-                    $log.warn(error);
                     notifyService.showError("Unsuccessful invitation sent!", error);
                     usSpinnerService.stop('spinner-1');
                 }
@@ -153,24 +168,7 @@ app.controller('profileController', function ($scope, $location, $log, profileSe
         }
     };
 
-    $scope.getPendingRequest = function(){
-        if(authentication.isLogged()) {
-            profileService(authentication.getAccessToken()).sendFriendRequest(previewData.username).$promise.then(
-                function (data) {
-
-                }
-            );
-        }
+    $scope.clickUpload = function(element){
+        angular.element(element).trigger('click');
     };
-
-    $scope.clickUpload = function(){
-        angular.element('#profile-image').trigger('click');
-    };
-
-    //$('#sidebar').affix({
-    //    offset: {
-    //        top: $('header').height()
-    //    }
-    //});
-
 });

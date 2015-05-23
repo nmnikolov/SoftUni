@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $log, $interval, userService, $location, $routeParams, profileService, authentication, DEFAULT_PROFILE_IMAGE, notifyService, usSpinnerService) {
+app.controller('mainController', function ($scope, $interval, userService, $location, $routeParams, profileService, authentication, DEFAULT_PROFILE_IMAGE, notifyService, usSpinnerService) {
     $scope.isLogged = function(){
         return authentication.isLogged();
     };
@@ -29,7 +29,6 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
                     usSpinnerService.stop('spinner-1');
                     notifyService.showInfo("Friend request successfully accepted.");
                 }, function(error){
-                    $log.warn(error);
                     usSpinnerService.stop('spinner-1');
                     notifyService.showError("Unsuccessful request accept!", error);
                 }
@@ -47,7 +46,6 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
                     usSpinnerService.stop('spinner-1');
                     notifyService.showInfo("Friend request successfully rejected.");
                 }, function(error){
-                    $log.warn(error);
                     usSpinnerService.stop('spinner-1');
                     notifyService.showError("Unsuccessful request reject!", error);
                 }
@@ -59,5 +57,4 @@ app.controller('mainController', function ($scope, $log, $interval, userService,
     var interval = $interval(getFriendRequests, 60000);
 
     $scope.$on('$destroy', function () { $interval.cancel(interval); });
-
 });

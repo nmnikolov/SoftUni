@@ -27,16 +27,24 @@
                 <li ng-mouseenter="showPendingRequest=true" ng-mouseleave="showPendingRequest=false">
                     <a href="#/friends/requests/" class="glyphicon glyphicon-user"><span ng-if="pendingRequests.length > 0" class="badge"> {{pendingRequests.length}}</span>
                     </a>
-                    <div id="friend-requests-box" ng-if="showPendingRequest && pendingRequests.length > 0" class="list-group">
-                        <div ng-repeat="request in pendingRequests" class="list-group-item">
-                            <a href="#/user/{{request.user.username}}/wall/">
+                    <ul id="friend-requests-box" ng-if="showPendingRequest && pendingRequests.length > 0">
+                        <li ng-repeat="request in pendingRequests" class="list-group-item">
+                            <a href="#/user/{{request.user.username}}/wall/" class="media-left">
                                 <img ng-src="{{request.user.profileImageData}}" err-src="{{defaultImage}}" alt="profile picture" style="width: 50px; height: 50px"/>
-                                <span class="name"  style="color:black">{{request.user.name}}</span>
                             </a>
-                            <button ng-click="acceptFriendRequest(request)" class="btn btn-success btn-sm">accept</button>
-                            <button ng-click="rejectFriendRequest(request)" class="btn btn-danger btn-sm">reject</button>
-                        </div>
-                    </div>
+                            <div class="media-body">
+                                <div class="media-body">
+                                    <a class="name" href="#/user/{{request.user.username}}/wall/" style="color:black">{{request.user.name}}</a>
+                                </div>
+                                <div class="media-right action">
+                                    <span ng-click="acceptFriendRequest(request)" class="media-left btn btn-success btn-sm">accept</span>
+                                </div>
+                                <div class="media-right action">
+                                    <span ng-click="rejectFriendRequest(request)" class="media-right btn btn-default btn-sm">reject</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
