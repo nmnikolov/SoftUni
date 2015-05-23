@@ -1,4 +1,4 @@
-app.controller('commentController', function ($scope, $log, authentication, commentService, notifyService, usSpinnerService) {
+app.controller('commentController', function ($scope,authentication, commentService, notifyService, usSpinnerService) {
 
     $scope.addComment = function(post){
         if(authentication.isLogged()) {
@@ -99,7 +99,6 @@ app.controller('commentController', function ($scope, $log, authentication, comm
                     post.totalCommentsCount--;
                     usSpinnerService.stop('spinner-1');
                     notifyService.showInfo("Comment successfuly removed.");
-
                 },
                 function(error){
                     notifyService.showError("Unsuccessful comment edit!", error);

@@ -1,4 +1,4 @@
-app.controller('postController', function ($scope, $log, $routeParams, userService, authentication, postService, notifyService, usSpinnerService) {
+app.controller('postController', function ($scope, $routeParams, userService, authentication, postService, notifyService, usSpinnerService) {
 
     $scope.addPost = function(){
         $scope.postData.username = $routeParams['username'];
@@ -89,7 +89,6 @@ app.controller('postController', function ($scope, $log, $routeParams, userServi
             );
         }
     };
-
 });
 
 

@@ -9,7 +9,6 @@ app.factory('notifyService', function () {
                 );
             },
             showError: function(msg, serverError) {
-                // Collect errors to display from the server response
                 var errors = [];
                 if (serverError && serverError.data.error_description) {
                     errors.push(serverError.data.error_description);

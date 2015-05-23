@@ -11,7 +11,6 @@ app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$locatio
                 $location.path('/');
 
             } else if (rejection.status === 401) {
-                //console.log("Response Error 401",rejection);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('username');
                 $location.path('/');

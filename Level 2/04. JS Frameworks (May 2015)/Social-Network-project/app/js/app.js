@@ -1,7 +1,5 @@
 var app = angular.module('SocialNetworkApp', ['ngAnimate', 'ngRoute', 'ngResource', 'infinite-scroll', 'ui.bootstrap', 'angularSpinner', 'rt.popup']);
 
-
-
 app.config(function ($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
 
@@ -99,16 +97,6 @@ app.config(function ($routeProvider, $httpProvider) {
             controller: 'mainController'
         })
         .otherwise({redirectTo: '/'})
-});
-
-app.directive('customOnChange', function() {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var onChangeFunc = scope.$eval(attrs.customOnChange);
-            element.bind('change', onChangeFunc);
-        }
-    };
 });
 
 app.constant({
