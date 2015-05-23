@@ -13,7 +13,7 @@ app.controller('profileController', function ($scope, $location, profileService,
                 },
                 function (error) {
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful Connection to Database!", error)
+                    notifyService.showError("Failed to load user details!", error)
                 }
             );
         }
@@ -29,7 +29,24 @@ app.controller('profileController', function ($scope, $location, profileService,
                 },
                 function (error) {
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError('Unsuccessful update!', error);
+                    notifyService.showError('Failed to edit profile!', error);
+                }
+            );
+        }
+    };
+
+    $scope.editPassword = function(){
+        if(authentication.isLogged()) {
+            usSpinnerService.spin('spinner-1');
+            profileService(authentication.getAccessToken()).update($scope.passwordUpdate, 'changepassword').$promise.then(
+                function () {
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showInfo('Password successfully changed.');
+                    $location.path('/');
+                },
+                function (error) {
+                    usSpinnerService.stop('spinner-1');
+                    notifyService.showError('Failed to change password!', error);
                 }
             );
         }
@@ -51,7 +68,7 @@ app.controller('profileController', function ($scope, $location, profileService,
             case 'cover-image':
                 previewElement = $('.cover-preview');
                 inputElement = $('#cover-image');
-                sizeLimit = 131072;
+                sizeLimit = 1048576;
                 break;
         }
 
@@ -76,23 +93,6 @@ app.controller('profileController', function ($scope, $location, profileService,
         }
     };
 
-    $scope.editPassword = function(){
-        if(authentication.isLogged()) {
-            usSpinnerService.spin('spinner-1');
-            profileService(authentication.getAccessToken()).update($scope.passwordUpdate, 'changepassword').$promise.then(
-                function () {
-                    usSpinnerService.stop('spinner-1');
-                    notifyService.showInfo('Password successfully changed.');
-                    $location.path('/');
-                },
-                function (error) {
-                    usSpinnerService.stop('spinner-1');
-                    notifyService.showError('Unsuccessful password change!', error);
-                }
-            );
-        }
-    };
-
     $scope.loadNewsFeed = function(){
         if(authentication.isLogged()) {
             if ($scope.busy){
@@ -111,8 +111,9 @@ app.controller('profileController', function ($scope, $location, profileService,
                     $scope.isNewsFeed = true;
                     usSpinnerService.stop('spinner-1');
                 },
-                function (error, status) {
+                function (error) {
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Failed to load news feed.", error);
                 }
             );
         }
@@ -126,8 +127,9 @@ app.controller('profileController', function ($scope, $location, profileService,
                     $scope.friendsList = data;
                     usSpinnerService.stop('spinner-1');
                 },
-                function (error, status) {
+                function (error) {
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Failed to load friends", error);
                 }
             );
         }
@@ -144,6 +146,7 @@ app.controller('profileController', function ($scope, $location, profileService,
                 },
                 function (error) {
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Failed to load friends", error);
                 }
             );
         }
@@ -161,7 +164,7 @@ app.controller('profileController', function ($scope, $location, profileService,
                     usSpinnerService.stop('spinner-1');
                 },
                 function (error) {
-                    notifyService.showError("Unsuccessful invitation sent!", error);
+                    notifyService.showError("Failed to send friend request!", error);
                     usSpinnerService.stop('spinner-1');
                 }
             );

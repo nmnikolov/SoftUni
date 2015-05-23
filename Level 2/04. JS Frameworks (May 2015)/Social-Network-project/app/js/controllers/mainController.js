@@ -14,6 +14,8 @@ app.controller('mainController', function ($scope, $interval, userService, $loca
             profileService(authentication.getAccessToken()).getPendingRequests().$promise.then(
                 function(data){
                     $scope.pendingRequests = data;
+                }, function(error){
+                    notifyService.showError("Failed to load friend requests!", error);
                 }
             );
         }
@@ -30,7 +32,7 @@ app.controller('mainController', function ($scope, $interval, userService, $loca
                     notifyService.showInfo("Friend request successfully accepted.");
                 }, function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful request accept!", error);
+                    notifyService.showError("Failed to accept friend request!", error);
                 }
             );
         }
@@ -47,7 +49,7 @@ app.controller('mainController', function ($scope, $interval, userService, $loca
                     notifyService.showInfo("Friend request successfully rejected.");
                 }, function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful request reject!", error);
+                    notifyService.showError("Failed to reject friend request!", error);
                 }
             );
         }

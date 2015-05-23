@@ -15,7 +15,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful login!", error);
+                    notifyService.showError("Login failed!", error);
                 }
             );
         }
@@ -33,7 +33,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful register!", error);
+                    notifyService.showError("Registration failed!", error);
                 }
             );
         }
@@ -45,13 +45,13 @@ app.controller('userController', function userController($scope, $location, $rou
             userService(authentication.getAccessToken()).logout().$promise.then(
                 function(){
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showInfo("Good bye, " + $scope.username + '!');
                     authentication.clearCredentials();
-                    notifyService.showInfo("Good bye.");
                     $location.path('/');
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful logout!", error);
+                    notifyService.showError("Logout failed!", error);
                 }
             );
         }
@@ -76,23 +76,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function (error) {
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Error loading user wall!", error);
-                }
-            );
-        }
-    };
-
-    $scope.changePassword = function(){
-        if(authentication.isLogged()){
-            usSpinnerService.spin('spinner-1');
-            userService(authentication.getAccessToken()).edit($scope.passwordUpdate).$promise.then(
-                function(){
-                    usSpinnerService.stop('spinner-1');
-                    $location.path('/');
-                },
-                function(error){
-                    usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful password change!", error);
+                    notifyService.showError("Failed to load user wall!", error);
                 }
             );
         }
@@ -103,8 +87,6 @@ app.controller('userController', function userController($scope, $location, $rou
             userService(authentication.getAccessToken()).searchUser($scope.searchTerm).$promise.then(
                 function(data){
                     $scope.searchResults = data;
-                },
-                function(error, status){
                 }
             );
         } else {
@@ -140,7 +122,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful user load!", error);
+                    notifyService.showError("Failed to load user data!", error);
                 }
             );
         }
@@ -181,7 +163,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful register!", error);
+                    notifyService.showError("Failed to load user preview!", error);
                 }
             );
         }
@@ -198,6 +180,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function (error) {
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Failed to load user friends!", error);
                 }
             );
         }
@@ -213,6 +196,7 @@ app.controller('userController', function userController($scope, $location, $rou
                 },
                 function (error) {
                     usSpinnerService.stop('spinner-1');
+                    notifyService.showError("Failed to load user friends!", error);
                 }
             );
         }

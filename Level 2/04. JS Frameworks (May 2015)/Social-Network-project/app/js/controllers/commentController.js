@@ -8,12 +8,12 @@ app.controller('commentController', function ($scope,authentication, commentServ
                     $scope.commentData.commentContent = "";
                     post.comments.unshift(data);
                     post.totalCommentsCount++;
-                    notifyService.showInfo("Comment successfuly added.");
+                    notifyService.showInfo("Comment successfully added.");
                     usSpinnerService.stop('spinner-1');
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful comment add!", error);
+                    notifyService.showError("Failed to add comment!", error);
                 }
             );
         }
@@ -30,7 +30,7 @@ app.controller('commentController', function ($scope,authentication, commentServ
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unable to retrieve comments!", error);
+                    notifyService.showError("Failed to load comments!", error);
                 }
             );
         }
@@ -42,11 +42,11 @@ app.controller('commentController', function ($scope,authentication, commentServ
             commentService(authentication.getAccessToken()).editComment(post.id, comment.id, comment.newCommentContent).$promise.then(
                 function(){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showInfo("Comment successfuly edited.");
+                    notifyService.showInfo("Comment successfully edited.");
                     comment.commentContent = comment.newCommentContent;
                 },
                 function(error){
-                    notifyService.showError("Unsuccessful comment edit!", error);
+                    notifyService.showError("Failed to edit comment!", error);
                     usSpinnerService.stop('spinner-1');
                 }
             );
@@ -62,10 +62,10 @@ app.controller('commentController', function ($scope,authentication, commentServ
                     post.comments.splice(index, 1);
                     post.totalCommentsCount--;
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showInfo("Comment successfuly removed.");
+                    notifyService.showInfo("Comment successfully deleted.");
                 },
                 function(error){
-                    notifyService.showError("Unsuccessful comment edit!", error);
+                    notifyService.showError("Failed to delete comment!", error);
                     usSpinnerService.stop('spinner-1');
                 }
             );
@@ -77,14 +77,14 @@ app.controller('commentController', function ($scope,authentication, commentServ
             usSpinnerService.spin('spinner-1');
             commentService(authentication.getAccessToken()).like(post.id, comment.id).$promise.then(
                 function(){
-                    notifyService.showInfo("Comment successfuly liked.");
+                    notifyService.showInfo("Comment successfully liked.");
                     usSpinnerService.stop('spinner-1');
                     comment.liked = true;
                     comment.likesCount++;
                 },
                 function(error){
                     usSpinnerService.stop('spinner-1');
-                    notifyService.showError("Unsuccessful like!", error);
+                    notifyService.showError("Failed to like comment!", error);
                 }
             );
         }
@@ -95,13 +95,13 @@ app.controller('commentController', function ($scope,authentication, commentServ
             usSpinnerService.spin('spinner-1');
             commentService(authentication.getAccessToken()).unlike(post.id, comment.id).$promise.then(
                 function(){
-                    notifyService.showInfo("Comment successfuly unliked.");
+                    notifyService.showInfo("Comment successfully unliked.");
                     usSpinnerService.stop('spinner-1');
                     comment.liked = false;
                     comment.likesCount--;
                 },
                 function(error){
-                    notifyService.showError("Unsuccessful unlike!", error);
+                    notifyService.showError("Failed to unlike comment!", error);
                     usSpinnerService.stop('spinner-1');
                 }
             );
