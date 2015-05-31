@@ -16,11 +16,16 @@
 
         public List<Class> Classes { get; set; }
 
-        public string Name {
-            get { return this.name; }
+        public string Name 
+        {
+            get
+            {
+                return this.name;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Name cannot be empty");
                 }

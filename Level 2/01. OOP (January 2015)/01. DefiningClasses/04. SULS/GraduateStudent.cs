@@ -2,8 +2,8 @@
 {
     public class GraduateStudent : Student
     {
-        public GraduateStudent(string firstName, string Lastname, int age, string studentNumber, double averageGrade)
-            : base(firstName, Lastname, age, studentNumber, averageGrade)
+        public GraduateStudent(string firstName, string lastName, int age, string studentNumber, double averageGrade)
+            : base(firstName, lastName, age, studentNumber, averageGrade)
         {           
         }
     }

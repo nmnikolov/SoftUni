@@ -1,15 +1,12 @@
 ﻿namespace School.Models
 {
-    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
-    using System.Collections.Generic;
     using Interfaces;
 
     public class Teacher : Person, IDetailable
     {
-
         public Teacher(string name, string details = null)
         {
             this.Name = name;
@@ -36,7 +33,7 @@
             StringBuilder result = new StringBuilder(base.ToString());
             if (disciplinesName.Length > 0)
             {
-                result.AppendFormat("Disciplines: {0}\n", String.Join(", ", disciplinesName));
+                result.AppendFormat("Disciplines: {0}\n", string.Join(", ", disciplinesName));
             }
 
             return result.ToString();

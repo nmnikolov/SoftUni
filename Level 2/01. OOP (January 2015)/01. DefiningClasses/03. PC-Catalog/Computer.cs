@@ -1,23 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _03.PCCatalog
+﻿namespace _03.PCCatalog
 {
-    class Computer
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public class Computer
     {
         private string name;
 
         private List<Component> components = new List<Component>();
 
-        private decimal totalPrice; 
+        private decimal totalPrice;
+
+        public Computer(string name, params Component[] list)
+        {
+            this.totalPrice = 0m;
+            this.Name = name;
+            this.AddComponents(list);
+        }
 
         public string Name
         {
-            get { return this.name; }
+            get
+            {
+                return this.name;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Computer name cannot be empty.");
                 }
@@ -26,31 +37,28 @@ namespace _03.PCCatalog
             }
         }
 
-        public decimal TotalPrice {
-            get { return this.totalPrice; }
-        }
-
-        public Computer(string name, params Component[] list)
+        public decimal TotalPrice 
         {
-            this.totalPrice = 0m;
-            this.Name = name;
-            AddComponents(list);   
+            get
+            {
+                return this.totalPrice;
+            }
         }
-
+        
         public void AddComponents(params Component[] list)
         {
             foreach (Component component in list.Where(component => component != null))
             {
-                components.Add(component);
+                this.components.Add(component);
                 this.totalPrice += component.Price;
             }
         }
 
         public override string ToString()
         {
-            string result = String.Format("MODEL: {0}\n", this.name);
-            result = components.Aggregate(result, (current, t) => current + t);
-            result += String.Format("\nTOTAL PRICE: {0:F2} BGN\n", this.TotalPrice);
+            string result = string.Format("MODEL: {0}\n", this.name);
+            result = this.components.Aggregate(result, (current, t) => current + t);
+            result += string.Format("\nTOTAL PRICE: {0:F2} BGN\n", this.TotalPrice);
             return result;
         }
     }

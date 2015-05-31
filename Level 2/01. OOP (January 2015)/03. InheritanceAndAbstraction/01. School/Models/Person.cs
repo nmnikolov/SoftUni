@@ -11,11 +11,14 @@
 
         public string Name
         {
-            get { return this.name; }
+            get
+            {
+                return this.name;
+            }
 
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new Exception("Name cannot be empty;");
                 }
@@ -32,8 +35,8 @@
             {
                 result.AppendFormat("Details: {0}\n", this.Details);
             }
-            return result.ToString();
 
+            return result.ToString();
         }
     }
 }

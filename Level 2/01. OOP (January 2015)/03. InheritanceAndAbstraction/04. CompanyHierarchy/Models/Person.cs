@@ -22,7 +22,10 @@
 
         public string Id
         {
-            get { return this.id; }
+            get
+            {
+                return this.id;
+            }
 
             set
             {
@@ -37,10 +40,14 @@
 
         public string FirstName
         {
-            get { return this.firstName; }
+            get
+            {
+                return this.firstName;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Firstname cannot be empty.");
                 }
@@ -51,10 +58,14 @@
         
         public string LastName
         {
-            get { return this.lastName; }
+            get
+            {
+                return this.lastName;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Lastname cannot be empty.");
                 }

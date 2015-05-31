@@ -16,7 +16,7 @@
 
         public override double CalculatePerimeter()
         {
-            double perimeter = this.Width * 2 + this.Height * 2;
+            var perimeter = (this.Width * 2) + (this.Height * 2);
 
             return perimeter;
         }

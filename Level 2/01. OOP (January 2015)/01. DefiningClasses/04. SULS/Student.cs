@@ -1,20 +1,30 @@
-﻿using System;
-
-namespace _04.SULS
+﻿namespace _04.SULS
 {
+    using System;
+
     public class Student : Person
     {
         private string studentNumber;
 
         private double averageGrade;
 
+        public Student(string firstName, string lastName, int age, string studentNumber, double averageGrade)
+            : base(firstName, lastName, age)
+        {
+            this.StudentNumber = studentNumber;
+            this.AverageGrade = averageGrade;
+        }
+
         public string StudentNumber
         {
-            get { return this.studentNumber; }
+            get
+            {
+                return this.studentNumber;
+            }
 
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Student number cannot be empty");
                 }
@@ -25,7 +35,10 @@ namespace _04.SULS
 
         public double AverageGrade
         {
-            get { return this.averageGrade; }
+            get
+            {
+                return this.averageGrade;
+            }
 
             set
             {
@@ -37,17 +50,10 @@ namespace _04.SULS
                 this.averageGrade = value;
             }
         }
-
-        public Student(string firstName, string Lastname, int age, string studentNumber, double averageGrade)
-            : base(firstName, Lastname, age)
-        {
-            this.StudentNumber = studentNumber;
-            this.AverageGrade = averageGrade;
-        }
-
+        
         public override string ToString()
         {
-            string result = base.ToString() + String.Format("Role: {0}\nStudent number: {1}\nAverage grade: {2}\n", this.GetType().Name, this.studentNumber, this.averageGrade);
+            string result = base.ToString() + string.Format("Role: {0}\nStudent number: {1}\nAverage grade: {2}\n", this.GetType().Name, this.studentNumber, this.averageGrade);
             return result;
         }
     }

@@ -2,9 +2,9 @@
 {
     using System;
 
-    class SquareRoot
+    public class SquareRoot
     {
-        static void Main()
+        public static void Main()
         {
             try
             {

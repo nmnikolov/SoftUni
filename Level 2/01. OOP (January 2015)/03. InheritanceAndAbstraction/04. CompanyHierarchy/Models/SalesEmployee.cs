@@ -11,6 +11,8 @@
         {
             this.Sales = sales ?? new HashSet<Sale>();
         }
+        
+        public ISet<Sale> Sales { get; set; }
 
         public void AddSales(ISet<Sale> sales)
         {
@@ -19,8 +21,6 @@
                 this.Sales.Add(sale);
             }
         }
-        
-        public ISet<Sale> Sales { get; set; }
 
         public override string ToString()
         {

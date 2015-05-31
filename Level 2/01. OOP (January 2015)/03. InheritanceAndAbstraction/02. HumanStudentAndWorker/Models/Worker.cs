@@ -1,8 +1,7 @@
-﻿using System.Text;
-
-namespace HumanStudentWorker.Models
+﻿namespace HumanStudentWorker.Models
 {
     using System;
+    using System.Text;
     using Interfaces;
 
     public class Worker : Human, INamable
@@ -20,7 +19,11 @@ namespace HumanStudentWorker.Models
 
         public decimal WeekSalary
         {
-            get { return this.weekSalary; }
+            get
+            {
+                return this.weekSalary;
+            }
+
             set
             {
                 if (value < 0m)
@@ -34,7 +37,11 @@ namespace HumanStudentWorker.Models
 
         public int WorkHoursPerDay
         {
-            get { return this.workHoursPerDay; }
+            get
+            {
+                return this.workHoursPerDay;
+            }
+
             set
             {
                 if (value < 0 || value > 24)

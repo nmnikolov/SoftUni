@@ -10,10 +10,11 @@
 
         public Path3D(params Point3D[] list)
         {
-            AddPoints(list);
+            this.AddPoints(list);
         }
 
-        public List<Point3D> Path {
+        public List<Point3D> Path 
+        {
             get { return this.path; }
         }
 
@@ -30,8 +31,7 @@
             StringBuilder result = new StringBuilder("Path:\n");
             for (int i = 0; i < this.Path.Count; i++)
             {
-                result.AppendFormat("point{0}: x={1} y={2} z={3}\n", (i + 1),
-                    this.Path[i].X, this.Path[i].Y, this.Path[i].Z);
+                result.AppendFormat("point{0}: x={1} y={2} z={3}\n", i + 1, this.Path[i].X, this.Path[i].Y, this.Path[i].Z);
             }
 
             return result.ToString();

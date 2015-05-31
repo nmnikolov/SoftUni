@@ -3,7 +3,7 @@
     using System;
     using Models;
 
-    class Test
+    public class Test
     {
         public static void Main()
         {

@@ -5,7 +5,7 @@
     using System.Linq;
     using Models;
 
-    class Test
+    public class Test
     {
         public static void Main()
         {
@@ -70,7 +70,6 @@
                 {
                     Console.WriteLine(human);
                 }
-
             }
             catch (Exception ex)
             {

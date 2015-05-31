@@ -9,7 +9,7 @@
         private decimal salary;
 
         protected Employee(string id, string firstName, string lastName, decimal salary, Department department)
-            :base(id, firstName, lastName)
+            : base(id, firstName, lastName)
         {
             this.Salary = salary;
             this.Department = department;
@@ -19,7 +19,11 @@
 
         public decimal Salary
         {
-            get { return this.salary; }
+            get
+            {
+                return this.salary;
+            }
+
             set
             {
                 if (value < 0m)

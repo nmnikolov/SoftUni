@@ -16,7 +16,11 @@
 
         public decimal PurchasesAmmount
         {
-            get { return this.purchasesAmmount; }
+            get
+            {
+                return this.purchasesAmmount;
+            }
+
             set
             {
                 if (value < 0m)

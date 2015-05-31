@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Models;
 
-    class ShapesTest
+    public class ShapesTest
     {
         public static void Main()
         {
@@ -22,8 +22,7 @@
 
                 foreach (var shape in shapes)
                 {
-                    Console.WriteLine("Shape: {0}\nArea: {1:N2}\nPerimeter: {2:N2}\n", shape.GetType().Name,
-                        shape.CalculateArea(), shape.CalculatePerimeter());
+                    Console.WriteLine("Shape: {0}\nArea: {1:N2}\nPerimeter: {2:N2}\n", shape.GetType().Name, shape.CalculateArea(), shape.CalculatePerimeter());
                 }
             }
             catch (OverflowException ex)

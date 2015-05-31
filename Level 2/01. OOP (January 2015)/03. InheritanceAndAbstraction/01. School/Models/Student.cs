@@ -7,9 +7,9 @@
 
     public class Student : Person, IDetailable
     {
-        private static readonly List<string> uniqueNumbers = new List<string>();
+        private static readonly List<string> UniqueNumbers = new List<string>();
 
-        private string uniqueNumber ;
+        private string uniqueNumber;
 
         public Student(string name, string uniqueNumber, string details = null)
         {
@@ -20,15 +20,19 @@
 
         public string UniqueNumber
         {
-            get { return this.uniqueNumber; }
+            get
+            {
+                return this.uniqueNumber;
+            }
+
             set
             {
-                if (uniqueNumbers.Contains(value))
+                if (UniqueNumbers.Contains(value))
                 {
                     throw new ArgumentException("Student with this unique number already exists.");
                 }
 
-                uniqueNumbers.Add(value);
+                UniqueNumbers.Add(value);
                 this.uniqueNumber = value;               
             }
         }

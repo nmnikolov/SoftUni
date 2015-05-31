@@ -7,8 +7,6 @@
     {
         private string productName;
 
-        private DateTime saleDate ;
-
         private decimal price;
 
         public Sale(string productName, DateTime saleDate, decimal price)
@@ -20,11 +18,16 @@
 
         public DateTime SaleDate { get; set; }
 
-        public string ProductName {
-            get { return this.productName; }
+        public string ProductName 
+        {
+            get
+            {
+                return this.productName;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Product name cannot be empty.");
                 }
@@ -35,7 +38,11 @@
 
         public decimal Price
         {
-            get { return this.price; }
+            get
+            {
+                return this.price;
+            }
+
             set
             {
                 if (value < 0m)

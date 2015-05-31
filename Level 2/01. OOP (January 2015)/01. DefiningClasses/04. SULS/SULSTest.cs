@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _04.SULS
+﻿namespace _04.SULS
 {
-    class SULSTest
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public class SULSTest
     {
         public static void Main()
         {

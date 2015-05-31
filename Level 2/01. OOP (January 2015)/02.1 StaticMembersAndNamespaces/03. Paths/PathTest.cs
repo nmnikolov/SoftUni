@@ -4,7 +4,7 @@
     using System.IO;
     using Point;
 
-    class PathTest
+    public class PathTest
     {
         public static void Main()
         {
@@ -14,7 +14,7 @@
                 Point3D point2 = new Point3D(-3, 33333, 3);
                 Path3D path = new Path3D(point1, point2);
 
-                //Storage.SavePathToFile("text.txt", path.ToString());
+                // Storage.SavePathToFile("text.txt", path.ToString());
                 Console.WriteLine("Load from file:\n" + Storage.LoadPathFromFile("text.txt"));
             }
             catch (FileNotFoundException ex)

@@ -1,15 +1,15 @@
 ﻿namespace School.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using System.Text;
-    using System.Collections.Generic;
     using Interfaces;
 
     public class Class : IDetailable
     {
-        private static readonly List<string> classesNames = new List<string>();
+        private static readonly List<string> ClassesNames = new List<string>();
 
         private string className;
 
@@ -29,19 +29,24 @@
 
         public string ClassName
         {
-            get { return this.className; }
+            get
+            {
+                return this.className;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Name cannot be empty.");
                 }
-                if (classesNames.Contains(value))
+
+                if (ClassesNames.Contains(value))
                 {
                     throw new DuplicateNameException("Class with this name already exists.");
                 }
 
-                classesNames.Add(value);
+                ClassesNames.Add(value);
                 this.className = value;
             }
         }
@@ -77,12 +82,12 @@
 
             if (teachers.Length > 0)
             {
-                result.AppendFormat("Teachers: {0}\n", String.Join(", ", teachers));
+                result.AppendFormat("Teachers: {0}\n", string.Join(", ", teachers));
             }
 
             if (students.Length > 0)
             {
-                result.AppendFormat("Students: {0}\n", String.Join(", ", students));
+                result.AppendFormat("Students: {0}\n", string.Join(", ", students));
             }
 
             return result.ToString();

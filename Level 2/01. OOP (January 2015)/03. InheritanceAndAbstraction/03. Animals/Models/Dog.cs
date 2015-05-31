@@ -5,7 +5,7 @@
     public class Dog : Animal
     {
         public Dog(string name, int age, Gender gender)
-            :base(name, age, gender)
+            : base(name, age, gender)
         {
         }
 

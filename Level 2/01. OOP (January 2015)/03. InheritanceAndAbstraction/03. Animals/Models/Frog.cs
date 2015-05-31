@@ -2,10 +2,10 @@
 {
     using System;
 
-    class Frog : Animal
+    public class Frog : Animal
     {
         public Frog(string name, int age, Gender gender)
-            :base(name, age, gender)
+            : base(name, age, gender)
         {
         }
 

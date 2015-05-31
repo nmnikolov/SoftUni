@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-namespace HumanStudentWorker.Models
+﻿namespace HumanStudentWorker.Models
 {
     using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
     using System.Text.RegularExpressions;
     using Interfaces;
 
@@ -23,7 +22,11 @@ namespace HumanStudentWorker.Models
 
         public string FacultyNumber
         {
-            get { return this.facultyNumber; }
+            get
+            {
+                return this.facultyNumber;
+            }
+
             set
             {
                 if (!Regex.IsMatch(value, @"^[a-zA-Z\d]{5,10}$"))
@@ -35,6 +38,7 @@ namespace HumanStudentWorker.Models
                 {
                     throw new DuplicateNameException("Student with this faculty number already exists.");
                 }
+
                 facultyNumbers.Add(value);
                 this.facultyNumber = value;
             }

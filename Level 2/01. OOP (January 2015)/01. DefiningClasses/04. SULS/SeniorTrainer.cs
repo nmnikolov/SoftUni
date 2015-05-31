@@ -1,13 +1,12 @@
-﻿using System;
-
-namespace _04.SULS
+﻿namespace _04.SULS
 {
+    using System;
+
     public class SeniorTrainer : Trainer
     {
         public SeniorTrainer(string firstName, string lastName, int age)
             : base(firstName, lastName, age)
         {
-            
         }
 
         public void DeleteCourse(string courseName)

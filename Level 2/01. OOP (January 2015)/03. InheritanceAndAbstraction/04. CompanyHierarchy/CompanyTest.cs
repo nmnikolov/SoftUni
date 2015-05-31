@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using Models;
 
-    class CompanyTest
+    public class CompanyTest
     {
-        static void Main()
+        public static void Main()
         {
             Manager manager1 = new Manager("000001", "Manager1", "Manager1 Last name", 123m, Department.Marketing);
             Manager manager2 = new Manager("000002", "Manager2", "Manager2 Last name", 351.23m, Department.Production);
@@ -23,13 +23,21 @@
             Sale sale = new Sale("graphic card", DateTime.Now, 140m);
             Project project = new Project("Php", "Php course", DateTime.Now);
 
-            manager1.AddEmployees(new HashSet<Employee>(){salesEmployee1, developer3});
-            salesEmployee1.AddSales(new HashSet<Sale>(){sale});
-            developer1.AddProjects(new HashSet<Project>(){project});
+            manager1.AddEmployees(new HashSet<Employee> { salesEmployee1, developer3 });
+            salesEmployee1.AddSales(new HashSet<Sale> { sale });
+            developer1.AddProjects(new HashSet<Project> { project });
 
-            IList <Employee> employees= new List<Employee>()
+            IList<Employee> employees = new List<Employee>
             {
-                manager1, manager2, manager3, salesEmployee1, salesEmployee2, salesEmployee3, developer1, developer2, developer3
+                manager1,
+                manager2,
+                manager3,
+                salesEmployee1,
+                salesEmployee2,
+                salesEmployee3,
+                developer1,
+                developer2,
+                developer3
             };
 
             foreach (var employee in employees)

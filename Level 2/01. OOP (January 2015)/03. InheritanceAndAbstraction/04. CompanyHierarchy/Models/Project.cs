@@ -7,8 +7,6 @@
     {
         private string name;
 
-        private string details;
-
         public Project(string name, string details, DateTime startDate)
         {
             this.Name = name;
@@ -19,11 +17,16 @@
 
         public string Details { get; set; }
 
-        public string Name {
-            get { return this.name; }
+        public string Name 
+        {
+            get
+            {
+                return this.name;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Project name cannot be empty.");
                 }

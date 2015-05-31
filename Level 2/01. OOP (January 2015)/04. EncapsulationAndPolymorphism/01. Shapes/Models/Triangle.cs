@@ -14,7 +14,11 @@
 
         public double ThirdSide
         {
-            get { return this.thirdSide; }
+            get
+            {
+                return this.thirdSide;
+            }
+
             set
             {
                 if (value <= 0)
@@ -31,7 +35,7 @@
             double p = (this.Width + this.Height + this.ThirdSide) / 2;
             double area = Math.Sqrt(p * (p - this.Height) * (p - this.Width) * (p - this.ThirdSide));
 
-            if (Double.IsNaN(area))
+            if (double.IsNaN(area))
             {
                 throw new ArgumentException("Not a Triangle if one side is bigger than the other two combined");
             }

@@ -1,8 +1,7 @@
-﻿using System.Text;
-
-namespace HumanStudentWorker.Models
+﻿namespace HumanStudentWorker.Models
 {
     using System;
+    using System.Text;
 
     public abstract class Human
     {
@@ -11,10 +10,14 @@ namespace HumanStudentWorker.Models
 
         public string FirstName
         {
-            get { return this.firstName; }
+            get
+            {
+                return this.firstName;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Fist name cannot be empty.");
                 }
@@ -25,10 +28,14 @@ namespace HumanStudentWorker.Models
 
         public string LastName
         {
-            get { return this.lastName; }
+            get
+            {
+                return this.lastName;
+            }
+
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Last name cannot be empty.");
                 }

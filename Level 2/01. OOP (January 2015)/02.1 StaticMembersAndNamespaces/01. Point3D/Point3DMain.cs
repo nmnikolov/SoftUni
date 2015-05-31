@@ -2,7 +2,7 @@
 {
     using System;
 
-    class Point3DMain
+    public class Point3DMain
     {
         public static void Main()
         {

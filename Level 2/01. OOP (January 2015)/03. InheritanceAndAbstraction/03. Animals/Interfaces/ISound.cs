@@ -1,6 +1,6 @@
 ﻿namespace Animal.Interfaces
 {
-    interface ISound
+    public interface ISound
     {
         void ProduceSound();
     }

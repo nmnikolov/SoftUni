@@ -1,6 +1,6 @@
 ﻿namespace School.Interfaces
 {
-    interface IDetailable
+    public interface IDetailable
     {
         string Details { get; set; }
     }

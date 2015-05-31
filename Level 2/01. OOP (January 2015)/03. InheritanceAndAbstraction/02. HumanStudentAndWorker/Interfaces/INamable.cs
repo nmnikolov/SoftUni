@@ -1,8 +1,9 @@
 ﻿namespace HumanStudentWorker.Interfaces
 {
-    interface INamable
+    public interface INamable
     {
         string FirstName { get; set; }
+
         string LastName { get; set; }
     }
 }

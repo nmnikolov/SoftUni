@@ -1,13 +1,12 @@
-﻿using System;
-
-namespace _04.SULS
+﻿namespace _04.SULS
 {
+    using System;
+
     public class Trainer : Person
     {
         public Trainer(string firstName, string lastName, int age) 
             : base(firstName, lastName, age)
-        {            
-            
+        {           
         }
 
         public void CreateCourse(string courseName)
@@ -17,7 +16,7 @@ namespace _04.SULS
 
         public override string ToString() 
         {
-            string result = base.ToString() + String.Format("Role: {0}\n", this.GetType().Name);
+            string result = base.ToString() + string.Format("Role: {0}\n", this.GetType().Name);
             return result;
         }
     }

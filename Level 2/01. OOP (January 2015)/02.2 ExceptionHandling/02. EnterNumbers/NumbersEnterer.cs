@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    class NumbersEnterer
+    public class NumbersEnterer
     {
         public static void Main()
         {

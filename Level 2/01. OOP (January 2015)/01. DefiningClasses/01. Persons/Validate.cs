@@ -1,15 +1,14 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _01.Persons
+﻿namespace _01.Persons
 {
+    using System.Text.RegularExpressions;
+
     public static class Validate
     {
-        private const string emailPattern = @"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$";
+        private const string EmailPattern = @"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$";
 
         public static bool IsEmail(string email)
         {
-            Regex r = new Regex(emailPattern);
+            Regex r = new Regex(EmailPattern);
             return r.Match(email).Success;
         }
     }

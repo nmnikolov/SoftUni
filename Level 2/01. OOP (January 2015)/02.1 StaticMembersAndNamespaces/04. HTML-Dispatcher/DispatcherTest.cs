@@ -2,7 +2,7 @@
 {
     using System;
 
-    class DispatcherTest
+    public class DispatcherTest
     {
         public static void Main()
         {
@@ -14,7 +14,7 @@
                 div.AddContent("<p>Hello</p>");
 
                 Console.WriteLine(div);
-                Console.WriteLine(div*2);
+                Console.WriteLine(div * 2);
                 Console.WriteLine();
 
                 string url = HTMLDispatcher.CreateURL("www.abv.bg", "Abv", "Link to abv.bg");

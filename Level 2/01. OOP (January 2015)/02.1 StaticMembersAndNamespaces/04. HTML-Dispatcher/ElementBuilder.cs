@@ -7,7 +7,9 @@
 
     public class ElementBuilder
     {
-        private readonly string[] tags = {"!DOCTYPE", "a", "abbr", "address", "area", "article", "aside",
+        private readonly string[] tags = 
+        { 
+            "!DOCTYPE", "a", "abbr", "address", "area", "article", "aside",
             "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code",
             "col", "colgroup", "command", "datalist", "dd", "del", "details", "dfn", "div", "dl", "dt", "em", "embed",
             "fieldset", "figcaption", "figure", "footer", "form", "h1 - h6", "head", "header", "hgroup", "hr", "html",
@@ -15,17 +17,21 @@
             "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "pre",
             "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span",
             "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time",
-            "title", "tr", "track", "u", "ul", "var", "video", "wbr"};
+            "title", "tr", "track", "u", "ul", "var", "video", "wbr" 
+        };
 
-        private readonly string[] voidElements = {"area", "base", "br", "col", "embed", "hr", "img", "input",
-            "keygen", "link", "meta", "param", "source", "track", "wbr"};
+        private readonly string[] voidElements = 
+        { 
+            "area", "base", "br", "col", "embed", "hr", "img", "input",
+            "keygen", "link", "meta", "param", "source", "track", "wbr" 
+        };
 
         private string name;
 
         public ElementBuilder(string name)
         {
             this.Name = name;
-            this.Content = "";
+            this.Content = string.Empty;
             this.Attributes = new Dictionary<string, string>();
         }
 
@@ -35,16 +41,19 @@
 
         public string Name
         {
-            get { return this.name; }
+            get
+            {
+                return this.name;
+            }
 
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Name cannot be empty");
                 }
 
-                if (!tags.Contains(value))
+                if (!this.tags.Contains(value))
                 {
                     throw new ArgumentOutOfRangeException("name", "Invalid tag name.");
                 }
@@ -52,14 +61,26 @@
                 this.name = value;
             }
         }
+
+        public static string operator *(ElementBuilder element, int count)
+        {
+            StringBuilder result = new StringBuilder(element.ToString());
+            for (int i = 1; i < count; i++)
+            {
+                result.Append(element);
+            }
+
+            return result.ToString();
+        }
             
         public void AddAttribute(string attribute, string value)
         {
-            if (String.IsNullOrEmpty(attribute))
+            if (string.IsNullOrEmpty(attribute))
             {
                 throw new ArgumentException("Attribute cannot be empty");
             }
-            if (String.IsNullOrEmpty(value))
+
+            if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("Attribute value cannot be empty");
             }
@@ -72,16 +93,6 @@
             this.Content += elementContent;
         }
 
-        public static string operator *(ElementBuilder element, int count)
-        {
-            StringBuilder result = new StringBuilder(element.ToString());
-            for (int i = 1; i < count; i++)
-            {
-                result.Append(element.ToString());
-            }
-            return result.ToString();
-        }
-
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
@@ -91,7 +102,7 @@
                 result.AppendFormat(" {0}=\"{1}\"", this.Attributes.ElementAt(i).Key, this.Attributes.ElementAt(i).Value);
             }
 
-            if (voidElements.Contains(this.Name))
+            if (this.voidElements.Contains(this.Name))
             {
                 result.Append(" />");
             }
