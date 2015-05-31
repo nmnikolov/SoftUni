@@ -5,7 +5,7 @@ app.views.menuView = (function(){
     function menuView(selector, data) {
         var defer = Q.defer();
 
-        $.get('templates/navigation.html', function(template) {
+        $.get('templates/user-header.html', function(template) {
             var temp = Handlebars.compile(template);
             var html = temp(data);
             $(selector).html(html);
@@ -24,3 +24,4 @@ app.views.menuView = (function(){
         }
     }
 }());
+
