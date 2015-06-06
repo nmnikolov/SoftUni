@@ -1,4 +1,4 @@
-﻿namespace _01.Persons
+﻿namespace Persons
 {
     using System;
 
@@ -51,7 +51,7 @@
             {
                 if (value < 1 || value > 100)
                 {
-                    throw new ArgumentOutOfRangeException("age", "Age must be in the range [1..100].");
+                    throw new ArgumentException("Age must be in the range [1..100].");
                 }
 
                 this.age = value;
@@ -67,7 +67,7 @@
 
             set
             {
-                if (value != null && !Validate.IsEmail(value))
+                if (!string.IsNullOrEmpty(value) && !Validate.IsEmail(value))
                 {
                     throw new ArgumentException("Invalid Email.");
                 }
@@ -78,7 +78,7 @@
 
         public override string ToString()
         {
-            string result = string.Format("Name: {0}\nAge: {1}\nEmail: {2}", this.name, this.age, this.email ?? "not provided");
+            string result = string.Format("Name: {0}\nAge: {1}\nEmail: {2}\n", this.name, this.age, this.email ?? "not provided");
 
             return result;
         }

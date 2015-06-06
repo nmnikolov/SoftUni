@@ -1,4 +1,4 @@
-﻿namespace _01.Persons
+﻿namespace Persons
 {
     using System.Text.RegularExpressions;
 
