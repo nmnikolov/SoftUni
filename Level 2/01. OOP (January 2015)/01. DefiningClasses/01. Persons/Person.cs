@@ -1,6 +1,7 @@
 ﻿namespace Persons
 {
     using System;
+    using System.Text;
 
     public class Person
     {
@@ -78,9 +79,15 @@
 
         public override string ToString()
         {
-            string result = string.Format("Name: {0}\nAge: {1}\nEmail: {2}\n", this.name, this.age, this.email ?? "not provided");
+            StringBuilder result = new StringBuilder();
+            result.AppendFormat("Name: {0}", this.Name)
+                .AppendLine()
+                .AppendFormat("Age: {0}", this.Age)
+                .AppendLine()
+                .AppendFormat("Email: {0}", this.Email ?? "not provided")
+                .AppendLine();
 
-            return result;
+            return result.ToString();
         }
     }
 }
