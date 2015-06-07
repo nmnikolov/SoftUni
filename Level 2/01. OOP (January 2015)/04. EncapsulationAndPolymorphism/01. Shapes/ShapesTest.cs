@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Models;
 
     public class ShapesTest
@@ -20,10 +21,10 @@
                     new Triangle(6.8, 9.4, 3.5)
                 };
 
-                foreach (var shape in shapes)
+                shapes.ToList().ForEach(shape =>
                 {
                     Console.WriteLine("Shape: {0}\nArea: {1:N2}\nPerimeter: {2:N2}\n", shape.GetType().Name, shape.CalculateArea(), shape.CalculatePerimeter());
-                }
+                });
             }
             catch (OverflowException ex)
             {
