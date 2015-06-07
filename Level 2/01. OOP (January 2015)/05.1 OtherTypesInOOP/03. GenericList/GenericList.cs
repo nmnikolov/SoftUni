@@ -7,7 +7,7 @@
     public class GenericList<T>
         where T : IComparable<T>
     {
-        const byte Capacity = 16;
+        private const byte Capacity = 16;
         
         public GenericList(int capacity = Capacity)
         {
@@ -28,6 +28,7 @@
                 {
                     newList[i] = this.Elements[i];
                 }
+
                 this.Elements = newList;
             }
 
@@ -135,14 +136,6 @@
             return false;
         }
 
-        private void IndexValidation(int index)
-        {
-            if (index < 0 || index >= this.Count)
-            {
-                throw new IndexOutOfRangeException("Index out of range.");
-            }
-        }
-
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
@@ -153,6 +146,14 @@
             }
 
             return result.ToString();
+        }
+
+        private void IndexValidation(int index)
+        {
+            if (index < 0 || index >= this.Count)
+            {
+                throw new IndexOutOfRangeException("Index out of range.");
+            }
         }
     }
 }

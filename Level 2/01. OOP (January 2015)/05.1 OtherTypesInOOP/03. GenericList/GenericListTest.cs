@@ -2,7 +2,7 @@
 {
     using System;
 
-    class GenericListTest
+    public class GenericListTest
     {
         public static void Main()
         {

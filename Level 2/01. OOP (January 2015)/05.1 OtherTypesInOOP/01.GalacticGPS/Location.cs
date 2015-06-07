@@ -18,8 +18,13 @@
 
         public Planet Planet { get; set; }
 
-        public double Latitude {
-            get { return this.latitude; }
+        public double Latitude 
+        {
+            get
+            {
+                return this.latitude;
+            }
+
             set
             {
                 if (value < -90 || value > 90)
@@ -31,7 +36,13 @@
             }
         }
 
-        public double Longitude { get { return this.longitude; }
+        public double Longitude 
+        {
+            get
+            {
+                return this.longitude;
+            }
+
             set
             {
                 if (value < -180 || value > 180)
@@ -45,7 +56,7 @@
 
         public override string ToString()
         {
-            String result = String.Format("{0}, {1} - {2}", this.Latitude, this.Longitude, this.Planet);
+            string result = string.Format("{0}, {1} - {2}", this.Latitude, this.Longitude, this.Planet);
 
             return result;
         }
