@@ -32,7 +32,7 @@ SELECT DISTINCT Salary FROM Employees
 
 --------------------------------------------------------------------------------------------------
 -- Problem 10 : Write a SQL query to find all information about the employees whose job title is 
---				"Sales Representative"
+--		"Sales Representative"
 --------------------------------------------------------------------------------------------------
 SELECT * FROM Employees AS e
 WHERE e.JobTitle = 'Sales Representative'
@@ -59,7 +59,7 @@ WHERE e.LastName Like('%ei%')
 
 --------------------------------------------------------------------------------------------------
 -- Problem 13 : Write a SQL query to find the salary of all employees whose salary is in the range
---				[20000...30000]
+--		[20000...30000]
 --------------------------------------------------------------------------------------------------
 SELECT e.Salary FROM Employees AS e
 WHERE e.Salary BETWEEN 20000 AND 30000
@@ -67,7 +67,7 @@ ORDER BY e.Salary
 
 --------------------------------------------------------------------------------------------------
 -- Problem 14 : Write a SQL query to find the names of all employees whose salary is 
---				25000, 14000, 12500 or 23600
+--		25000, 14000, 12500 or 23600
 --------------------------------------------------------------------------------------------------
 SELECT * FROM Employees AS e
 WHERE e.Salary IN (25000, 14000, 12500, 23600)
@@ -81,7 +81,7 @@ WHERE e.ManagerID IS NULL
 
 --------------------------------------------------------------------------------------------------
 -- Problem 16 : Write a SQL query to find all employees that have salary more than 50000. 
---				Order them in decreasing order by salary
+--		Order them in decreasing order by salary
 --------------------------------------------------------------------------------------------------
 SELECT * FROM Employees AS e
 WHERE e.Salary >= 50000
@@ -183,7 +183,7 @@ SELECT t.Name FROM Towns AS t
 
 --------------------------------------------------------------------------------------------------
 -- Problem 23 : Write a SQL query to find all the employees and the manager for each of them 
---				along with the employees that do not have manager
+--		along with the employees that do not have manager
 --------------------------------------------------------------------------------------------------
 SELECT
 	e.EmployeeID,
@@ -203,7 +203,7 @@ ORDER BY e.EmployeeID ASC
 
 --------------------------------------------------------------------------------------------------
 -- Problem 24 : Write a SQL query to find the names of all employees from the departments "Sales"
---				 and "Finance" whose hire year is between 1995 and 2005
+--		and "Finance" whose hire year is between 1995 and 2005
 --------------------------------------------------------------------------------------------------
 SELECT
 	e.FirstName,
