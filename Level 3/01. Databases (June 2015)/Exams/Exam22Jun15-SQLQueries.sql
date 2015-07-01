@@ -1,0 +1,187 @@
+------------------------------------
+-- Problem 1
+------------------------------------
+--SELECT t.TeamName FROM Teams AS t
+
+------------------------------------
+-- Problem 2
+------------------------------------
+--SELECT TOP 50
+--	c.CountryName,
+--	c.Population
+--FROM Countries AS c
+--ORDER BY c.Population DESC, c.CountryName ASC
+
+------------------------------------
+-- Problem 3
+------------------------------------
+--SELECT
+--	c.CountryName,
+--	c.CountryCode,
+--	(CASE WHEN c.CurrencyCode = 'EUR' THEN 'Inside' ELSE 'Outside' END) AS Eurozone
+--FROM Countries AS c
+--ORDER BY c.CountryName ASC 
+
+------------------------------------
+-- Problem 4
+------------------------------------
+--SELECT
+--	t.TeamName AS [Team Name],
+--	t.CountryCode AS [Country Code]
+--FROM Teams AS t
+--WHERE t.TeamName LIKE '%[0-9]%'
+--ORDER BY t.CountryCode
+
+------------------------------------
+-- Problem 5
+------------------------------------
+--SELECT 
+--	h.CountryName AS [Home Team],
+--	a.CountryName AS [Away Team],
+--	it.MatchDate AS [Match Date]
+--FROM InternationalMatches AS it
+--JOIN Countries AS h
+--ON it.HomeCountryCode = h.CountryCode
+--JOIN Countries AS a
+--ON it.AwayCountryCode = a.CountryCode
+--ORDER BY it.MatchDate DESC
+
+------------------------------------
+-- Problem 6
+------------------------------------
+--SELECT 
+--	t.TeamName AS [Team Name],
+--	l.LeagueName AS [League],
+--	ISNULL(c.CountryName, 'International') AS [League Country]
+--FROM Teams AS t
+--LEFT JOIN Leagues_Teams as lt
+--ON t.Id = lt.TeamId
+--LEFT JOIN Leagues AS l
+--ON lt.LeagueId = l.Id
+--LEFT JOIN Countries AS c
+--ON l.CountryCode = c.CountryCode
+--ORDER BY t.TeamName ASC, l.LeagueName ASC
+
+------------------------------------
+-- Problem 7
+------------------------------------
+--SELECT 
+--	m.TeamName AS Team,
+--	COUNT(*) AS [Matches Count]
+--FROM (
+--    	SELECT 
+--			h.TeamName
+--		FROM TeamMatches AS th
+--		JOIN Teams AS h
+--		ON th.HomeTeamId = h.Id
+--    	UNION All
+--    	SELECT 
+--			a.TeamName
+--		FROM TeamMatches AS ta
+--		JOIN Teams AS a
+--		ON ta.AwayTeamId = a.Id
+--    	) As m
+--GROUP BY m.TeamName
+--HAVING COUNT(*) > 1
+--ORDER BY m.TeamName ASC
+
+------------------------------------
+-- Problem 8
+------------------------------------
+--SELECT 
+--	b.LeagueName AS [League Name],
+--	a.Teams,
+--	b.Matches,
+--	b.[Average Goals]
+--FROM 
+--	(SELECT
+--	l.LeagueName,
+--	COUNT(lt.TeamId) AS Teams
+--	FROM Leagues AS l
+--	LEFT JOIN Leagues_Teams AS lt
+--	ON l.Id = lt.LeagueId
+--	GROUP BY l.LeagueName
+--	) AS a
+--JOIN 
+--	(SELECT
+--	l.LeagueName,
+--	COUNT(tm.Id) AS Matches,
+--	ISNULL(SUM(tm.AwayGoals + tm.HomeGoals) / COUNT(*), 0) AS [Average Goals]
+--	FROM Leagues AS l
+--	LEFT JOIN TeamMatches AS tm
+--	ON l.Id = tm.LeagueId
+--	GROUP BY l.LeagueName) AS b
+--ON a.LeagueName = b.LeagueName
+--GROUP BY b.LeagueName, a.Teams, Matches, b.[Average Goals]
+--ORDER BY a.Teams DESC, b.Matches DESC
+
+------------------------------------
+-- Problem 9
+------------------------------------
+--SELECT
+--	m.TeamName AS TeamName,
+--	SUM(m.Goals) AS [Total Goals]
+--FROM
+--	(SELECT 
+--		h.TeamName,
+--		ISNULL(tm.HomeGoals, 0) AS Goals
+--	FROM TeamMatches as tm
+--	JOIN Teams AS h
+--	ON tm.HomeTeamId = h.Id
+--	UNION ALL
+--	SELECT 
+--		a.TeamName,
+--		ISNULL(tm.AwayGoals, 0) AS Goals
+--	FROM TeamMatches as tm
+--	JOIN Teams AS a
+--	ON tm.AwayTeamId = a.Id) AS m
+--GROUP BY m.TeamName
+--ORDER BY [Total Goals] DESC, TeamName ASC
+
+------------------------------------
+-- Problem 10
+------------------------------------
+--SELECT DISTINCT a.fd AS [First Date], a.sd AS [Second Date]
+--FROM
+--    (
+--        SELECT tm1.MatchDate AS fd, tm2.MatchDate AS sd
+--        FROM TeamMatches AS tm1, TeamMatches AS tm2
+--		WHERE CAST(tm1.MatchDate AS DATE) = CAST(tm2.MatchDate AS DATE) AND tm1.Id != tm2.Id
+--        UNION ALL
+--        SELECT tm2.MatchDate AS fd, tm1.MatchDate AS sd
+--        FROM TeamMatches AS tm1, TeamMatches AS tm2
+--		WHERE CAST(tm1.MatchDate AS DATE) = CAST(tm2.MatchDate AS DATE) AND tm1.Id != tm2.Id
+--    ) AS a
+--WHERE a.fd < a.sd
+--ORDER BY [First Date] DESC, [Second Date] DESC
+
+------------------------------------
+-- Problem 11
+------------------------------------
+--SELECT 
+--	LOWER(t1.TeamName + SUBSTRING(REVERSE(t2.TeamName), 2, LEN(t2.TeamName))) AS Mix
+--FROM Teams AS t1, Teams AS t2
+--WHERE RIGHT(t1.TeamName, 1) = LEFT(REVERSE(t2.TeamName), 1)
+--ORDER BY Mix
+
+------------------------------------
+-- Problem 12
+------------------------------------
+
+
+------------------------------------
+-- Problem 13
+------------------------------------
+--SELECT
+--	ht.TeamName AS [Home Team],
+--	at.TeamName AS [Away Team],
+--	m.MatchDate AS [Match Date]
+--FROM 
+--	(SELECT fm.HomeTeamID, fm.AwayTeamId, fm.MatchDate FROM FriendlyMatches AS fm
+--	UNION
+--	SELECT tm.HomeTeamId, tm.AwayTeamId, tm.MatchDate FROM TeamMatches AS tm) AS m
+--JOIN Teams AS ht
+--ON m.HomeTeamID = ht.Id
+--JOIN Teams AS at
+--ON m.AwayTeamId = at.Id
+--ORDER BY [Match Date] DESC
