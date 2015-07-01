@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------
 -- Problem 1 : Write a SQL query to find the full name of the employee, his manager full name and
---			   the JobTitle from Sales department. Use nested select statement
+--             the JobTitle from Sales department. Use nested select statement
 --------------------------------------------------------------------------------------------------
 SELECT
 	e.FirstName + ' ' + e.LastName AS [Employee],
@@ -15,8 +15,8 @@ WHERE e.DepartmentID IN
 
 --------------------------------------------------------------------------------------------------
 -- Problem 2 : Write a SQL query to find the FullName, Salary and Department Name for the top 5 
---			   employees ordered by salary in descending order, under the average salary for 
---			   their department
+--             employees ordered by salary in descending order, under the average salary for 
+--             their department
 --------------------------------------------------------------------------------------------------
 SELECT TOP 5
 	e.FirstName,
@@ -47,8 +47,8 @@ ORDER BY p.Name
 
 --------------------------------------------------------------------------------------------------
 -- Problem 4 : Create two tables. Companies and Conferences. Companies have Name, EmployeesCount, 
---			   FoundedIn. Conferences have Name, Price (optional), FreeSeats, Venue and 
---			   Organizer (Company). Alter table Conferences and add TwitterAccount column
+--             FoundedIn. Conferences have Name, Price (optional), FreeSeats, Venue and 
+--             Organizer (Company). Alter table Conferences and add TwitterAccount column
 --------------------------------------------------------------------------------------------------
 
 CREATE TABLE Companies (

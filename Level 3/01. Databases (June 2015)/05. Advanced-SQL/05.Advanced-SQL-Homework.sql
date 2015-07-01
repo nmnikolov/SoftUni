@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------------
 -- Problem 1 : Write a SQL query to find the names and salaries of the employees that take the 
---	       minimal salary in the company
+--             minimal salary in the company
 --------------------------------------------------------------------------------------------------
 SELECT e.FirstName, e.LastName, e.Salary 
 FROM Employees AS e
@@ -9,7 +9,7 @@ WHERE e.Salary =
 
 --------------------------------------------------------------------------------------------------
 -- Problem 2 : Write a SQL query to find the names and salaries of the employees that have a 
---	       salary that is up to 10% higher than the minimal salary for the company
+--             salary that is up to 10% higher than the minimal salary for the company
 --------------------------------------------------------------------------------------------------
 SELECT e.FirstName, e.LastName, e.Salary 
 FROM Employees AS e
@@ -18,7 +18,7 @@ WHERE e.Salary <
 
 --------------------------------------------------------------------------------------------------
 -- Problem 3 - Write a SQL query to find the full name, salary and department of the employees 
---	       that take the minimal salary in their department.
+--             that take the minimal salary in their department.
 --------------------------------------------------------------------------------------------------
 SELECT 
 	e.FirstName + ' ' + e.LastName,
@@ -90,7 +90,7 @@ GROUP BY d.Name
 
 --------------------------------------------------------------------------------------------------
 -- Problem 10 : Write a SQL query to find the count of all employees in each department and for
---		each town
+--              each town
 --------------------------------------------------------------------------------------------------
 SELECT
 	t.Name AS Town,
@@ -130,7 +130,7 @@ ON e.ManagerID = m.EmployeeID
 
 --------------------------------------------------------------------------------------------------
 -- Problem 13 : Write a SQL query to find the names of all employees whose last name is exactly 5 
---		characters long
+--              characters long
 --------------------------------------------------------------------------------------------------
 SELECT
 	e.FirstName,
@@ -140,7 +140,7 @@ WHERE LEN(e.LastName) = 5
 
 --------------------------------------------------------------------------------------------------
 -- Problem 14 : Write a SQL query to display the current date and time in the following format
---				"day.month.year hour:minutes:seconds:milliseconds"
+--              "day.month.year hour:minutes:seconds:milliseconds"
 --------------------------------------------------------------------------------------------------
 SELECT FORMAT ( GETDATE(), 'dd.MM.yyyy HH:m:ss:ms', 'en-US' ) AS DateTime
 
@@ -160,7 +160,7 @@ GO
 
 --------------------------------------------------------------------------------------------------
 -- Problem 16 : Write a SQL statement to create a view that displays the users from the Users 
---		table that have been in the system today
+--              table that have been in the system today
 --------------------------------------------------------------------------------------------------
 CREATE VIEW [Active Users Today] AS
 SELECT * FROM Users AS u
@@ -227,7 +227,7 @@ WHERE GroupId = (SELECT TOP 1 GroupId FROM Groups)
 
 --------------------------------------------------------------------------------------------------
 -- Problem 22 : Write SQL statements to insert in the Users table the names of all employees 
---		from the Employees table
+--              from the Employees table
 --------------------------------------------------------------------------------------------------
 TRUNCATE TABLE Users
 GO
@@ -280,7 +280,7 @@ GO
 
 --------------------------------------------------------------------------------------------------
 -- Problem 23 : Write a SQL statement that changes the password to NULL for all users that have 
---		not been in the system since 10.03.2010
+--              not been in the system since 10.03.2010
 --------------------------------------------------------------------------------------------------
 ALTER TABLE Users
 ALTER COLUMN Password nvarchar(50)
@@ -310,7 +310,7 @@ ORDER BY d.Name ASC, e.JobTitle ASC
 
 --------------------------------------------------------------------------------------------------
 -- Problem 26 : Write a SQL query to display the minimal employee salary by department and job 
---		title along with the name of some of the employees that take it
+--              title along with the name of some of the employees that take it
 --------------------------------------------------------------------------------------------------
 SELECT
 	d.Name AS Department,
@@ -458,8 +458,8 @@ WHERE WorkHoursId = @WorkHoursId2
 
 --------------------------------------------------------------------------------------------------
 -- Problem 32 : Start a database transaction, delete all employees from the 'Sales' department 
---		along with all dependent records from the pother tables. At the end rollback the
---		transaction
+--              along with all dependent records from the pother tables. At the end rollback the
+--              transaction
 --------------------------------------------------------------------------------------------------
 BEGIN TRAN
 DELETE Employees
