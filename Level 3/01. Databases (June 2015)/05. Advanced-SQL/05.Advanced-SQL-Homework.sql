@@ -142,7 +142,7 @@ WHERE LEN(e.LastName) = 5
 -- Problem 14 : Write a SQL query to display the current date and time in the following format
 --              "day.month.year hour:minutes:seconds:milliseconds"
 --------------------------------------------------------------------------------------------------
-SELECT FORMAT ( GETDATE(), 'dd.MM.yyyy HH:m:ss:ms', 'en-US' ) AS DateTime
+SELECT FORMAT ( GETDATE(), 'dd.MM.yyyy HH:mm:ss:fff') AS DateTime
 
 --------------------------------------------------------------------------------------------------
 -- Problem 15 : Write a SQL statement to create a table Users
