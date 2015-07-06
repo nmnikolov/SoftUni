@@ -12,7 +12,7 @@ IF  EXISTS (
 		WHERE name = N'DB_Performance'
 )
 BEGIN
-    DROP DATABASE PartitioningDemo
+    DROP DATABASE DB_Performance
 END
 GO
 
