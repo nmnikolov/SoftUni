@@ -286,7 +286,7 @@ ORDER BY [MonasteriesCount] DESC, c.CountryName ASC
 USE Geography
 GO
 
-ALTER FUNCTION fn_MountainsPeaksJSON () RETURNS NVARCHAR(MAX)
+CREATE FUNCTION fn_MountainsPeaksJSON () RETURNS NVARCHAR(MAX)
 AS
 BEGIN
 	DECLARE @json NVARCHAR(MAX)
@@ -311,11 +311,17 @@ BEGIN
 				(SELECT
 					t.mi,  
 					t.MountainRange AS Name,
-				'[{' + STUFF(ISNULL((SELECT ',{"name":"' + x.PeakName + '","elevation":' + CAST(x.Elevation AS NVARCHAR(MAX)) + '}'
+					'[{' + 
+					STUFF(ISNULL(
+						(SELECT 
+							',{"name":"' + 
+							x.PeakName + '","elevation":' + 
+							CAST(x.Elevation AS NVARCHAR(MAX)) + '}'
 						FROM @res x
 						WHERE x.MountainRange = t.MountainRange
-					GROUP BY x.pi, PeakName, x.Elevation
-						FOR XML PATH (''), TYPE).value('.','NVARCHAR(max)'), ''), 1, 2, '') + ']' [Peaks]
+						GROUP BY x.pi, PeakName, x.Elevation
+						FOR XML PATH (''), TYPE).value('.','NVARCHAR(max)'), ''), 1, 2, '') + 
+					']' AS [Peaks]
 				FROM @res t
 				GROUP BY t.mi, t.MountainRange) AS t1
 			FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(max)'), 1, 1, '')
