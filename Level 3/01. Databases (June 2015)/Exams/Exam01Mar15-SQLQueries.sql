@@ -1,6 +1,97 @@
----------------------------------------------
----- Problem 9
----------------------------------------------
+-------------------------------------------
+-- Problem 1
+-------------------------------------------
+SELECT p.PeakName FROM Peaks AS p
+ORDER BY p.PeakName ASC
+
+-------------------------------------------
+-- Problem 2
+-------------------------------------------
+SELECT TOP 30
+	c.CountryName, 
+	c.Population 
+FROM Countries AS c
+WHERE c.ContinentCode = 'EU'
+ORDER BY c.Population DESC
+
+-------------------------------------------
+-- Problem 3
+-------------------------------------------
+SELECT 
+	c.CountryName, 
+	c.CountryCode,
+	CASE WHEN c.CurrencyCode = 'EUR' THEN 'Euro' ELSE 'Not Euro' END AS [Currency]
+FROM Countries AS c
+ORDER BY c.CountryName ASC
+
+-------------------------------------------
+-- Problem 4
+-------------------------------------------
+SELECT
+	c.CountryName AS [Country Name],
+	c.IsoCode AS [ISO Code]
+FROM Countries AS c
+WHERE c.CountryName LIKE '%A%A%A%'
+ORDER BY c.IsoCode ASC
+
+-------------------------------------------
+-- Problem 5
+-------------------------------------------
+SELECT
+	p.PeakName,
+	m.MountainRange AS [Mountain],
+	p.Elevation
+FROM Peaks AS p
+JOIN Mountains AS m
+ON p.MountainId = m.Id
+ORDER BY p.Elevation DESC, p.PeakName ASC
+
+-------------------------------------------
+-- Problem 6
+-------------------------------------------
+SELECT
+	p.PeakName,
+	m.MountainRange AS [Mountain],
+	c.CountryName,
+	cn.ContinentName
+FROM Peaks AS p
+JOIN Mountains AS m
+	ON p.MountainId = m.Id
+JOIN MountainsCountries AS mc
+	ON m.Id = mc.MountainId
+JOIN Countries AS c
+	ON c.CountryCode = mc.CountryCode
+JOIN Continents AS cn
+	ON c.ContinentCode = cn.ContinentCode
+ORDER BY p.PeakName ASC, c.CountryName ASC
+
+-------------------------------------------
+-- Problem 7
+-------------------------------------------
+SELECT 
+	r.RiverName AS [River],
+	COUNT(*) AS [Countries Count]
+FROM Rivers AS r
+JOIN CountriesRivers AS cr
+	ON r.Id = cr.RiverId
+JOIN Countries AS c
+	ON c.CountryCode = cr.CountryCode
+GROUP BY r.RiverName
+	HAVING COUNT(DISTINCT c.CountryCode) >= 3
+ORDER BY r.RiverName ASC
+
+-------------------------------------------
+-- Problem 8
+-------------------------------------------
+SELECT
+	MAX(p.Elevation) AS [MaxElevation],
+	MIN(p.Elevation) AS [MinElevation],
+	AVG(p.Elevation) AS [AverageElevation]
+FROM Peaks AS p
+
+-------------------------------------------
+-- Problem 9
+-------------------------------------------
 SELECT 
 	c.CountryName,
 	cn.ContinentName,
@@ -102,3 +193,136 @@ SELECT
     CASE WHEN chp.PeakName IS NOT NULL THEN chp.MountainRange ELSE '(no mountain)' END AS [Mountain]
 FROM chp
 WHERE rn = 1
+
+-------------------------------------------
+-- Problem 15
+-------------------------------------------
+USE Geography
+GO
+
+CREATE TABLE Monasteries(
+	Id INT IDENTITY PRIMARY KEY,
+	Name NVARCHAR(50) NOT NULL,
+	CountryCode CHAR(2) FOREIGN KEY REFERENCES Countries(CountryCode))
+GO
+
+INSERT INTO Monasteries(Name, CountryCode) VALUES
+('Rila Monastery “St. Ivan of Rila”', 'BG'), 
+('Bachkovo Monastery “Virgin Mary”', 'BG'),
+('Troyan Monastery “Holy Mother''s Assumption”', 'BG'),
+('Kopan Monastery', 'NP'),
+('Thrangu Tashi Yangtse Monastery', 'NP'),
+('Shechen Tennyi Dargyeling Monastery', 'NP'),
+('Benchen Monastery', 'NP'),
+('Southern Shaolin Monastery', 'CN'),
+('Dabei Monastery', 'CN'),
+('Wa Sau Toi', 'CN'),
+('Lhunshigyia Monastery', 'CN'),
+('Rakya Monastery', 'CN'),
+('Monasteries of Meteora', 'GR'),
+('The Holy Monastery of Stavronikita', 'GR'),
+('Taung Kalat Monastery', 'MM'),
+('Pa-Auk Forest Monastery', 'MM'),
+('Taktsang Palphug Monastery', 'BT'),
+('Sümela Monastery', 'TR')
+GO
+
+ALTER TABLE Countries ADD IsDeleted BIT NOT NULL DEFAULT 0
+GO
+
+UPDATE Countries
+SET IsDeleted = 1
+WHERE CountryCode IN 
+	(SELECT
+	    c.CountryCode
+    FROM Countries AS c
+    LEFT JOIN CountriesRivers AS cr
+    ON c.CountryCode = cr.CountryCode
+	GROUP BY c.CountryCode
+	HAVING COUNT(*) > 3)
+GO
+
+SELECT 
+	m.Name AS [Monastery],
+	c.CountryName AS [Country]
+FROM Monasteries AS m
+JOIN Countries AS c
+	ON m.CountryCode = c.CountryCode AND c.IsDeleted = 0
+ORDER BY m.Name
+GO
+
+-------------------------------------------
+-- Problem 16
+-------------------------------------------
+USE Geography
+GO
+
+UPDATE Countries
+SET CountryName = 'Burma'
+WHERE CountryName = 'Myanmar'
+GO
+
+INSERT INTO Monasteries(Name, CountryCode) VALUES
+	('Hanga Abbey', (SELECT c.CountryCode FROM Countries AS c WHERE c.CountryName = 'Tanzania')),
+	('Myin-Tin-Daik', (SELECT c.CountryCode FROM Countries AS c WHERE c.CountryName = 'Myanmar'))
+GO
+
+SELECT
+	cn.ContinentName,
+	c.CountryName,
+	COUNT(m.Id) AS [MonasteriesCount]
+FROM Countries AS c
+JOIN Continents AS cn
+	ON c.ContinentCode = cn.ContinentCode
+LEFT JOIN Monasteries AS m
+	ON c.CountryCode = m.CountryCode
+GROUP BY cn.ContinentName, c.CountryName, c.IsDeleted
+HAVING c.IsDeleted = 0
+ORDER BY [MonasteriesCount] DESC, c.CountryName ASC
+
+-------------------------------------------
+-- Problem 17
+-------------------------------------------
+USE Geography
+GO
+
+ALTER FUNCTION fn_MountainsPeaksJSON () RETURNS NVARCHAR(MAX)
+AS
+BEGIN
+	DECLARE @json NVARCHAR(MAX)
+	DECLARE @res TABLE(mi INT, MountainRange NVARCHAR(50), pi INT, PeakName NVARCHAR(50), Elevation INT) 
+	INSERT INTO @res
+		SELECT
+			m.Id,
+			m.MountainRange,
+			p.Id,
+			p.PeakName,
+			p.Elevation
+		FROM Mountains AS m
+		LEFT JOIN Peaks AS p
+			ON m.Id = p.MountainId	
+
+	SET @json = '{"mountains":[' + 
+		STUFF((
+			SELECT 
+				',{"name":"' + t1.Name
+				+ '","peaks":' + ISNULL(t1.Peaks, '[]') + '}'
+			FROM 		
+				(SELECT
+					t.mi,  
+					t.MountainRange AS Name,
+				'[{' + STUFF(ISNULL((SELECT ',{"name":"' + x.PeakName + '","elevation":' + CAST(x.Elevation AS NVARCHAR(MAX)) + '}'
+						FROM @res x
+						WHERE x.MountainRange = t.MountainRange
+					GROUP BY x.pi, PeakName, x.Elevation
+						FOR XML PATH (''), TYPE).value('.','NVARCHAR(max)'), ''), 1, 2, '') + ']' [Peaks]
+				FROM @res t
+				GROUP BY t.mi, t.MountainRange) AS t1
+			FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(max)'), 1, 1, '')
+	 + ']}'
+
+	RETURN @json
+END
+GO
+
+SELECT dbo.fn_MountainsPeaksJSON()
