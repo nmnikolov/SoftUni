@@ -129,7 +129,8 @@ JOIN Categories AS c
 	ON q.CategoryId = c.Id
 WHERE 
 	a.IsHidden = 1 AND 
-	YEAR(a.CreatedOn) = @maxYear AND MONTH(a.CreatedOn) IN (@minMonth, @maxMonth)
+	YEAR(a.CreatedOn) = @maxYear AND 
+    MONTH(a.CreatedOn) IN (@minMonth, @maxMonth)
 ORDER BY c.Name ASC
 GO
 
