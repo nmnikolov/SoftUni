@@ -110,6 +110,23 @@ ORDER BY a.CreatedOn DESC
 --------------------------------------------------------------------------------------------------
 -- Problem 10
 --------------------------------------------------------------------------------------------------
+DECLARE @maxYear INT = 
+    (SELECT YEAR((SELECT TOP 1 a.CreatedOn 
+                  FROM Answers AS a 
+                  ORDER BY a.CreatedOn DESC)))
+    
+DECLARE @minMonth INT = 
+    (SELECT MONTH((SELECT TOP 1 a.CreatedOn 
+                   FROM Answers AS a 
+                   WHERE YEAR(a.CreatedOn) = @maxYear 
+                   ORDER BY a.CreatedOn ASC)))
+
+DECLARE @maxMonth INT = 
+    (SELECT MONTH((SELECT TOP 1 a.CreatedOn 
+                   FROM Answers AS a 
+                   WHERE YEAR(a.CreatedOn) = @maxYear 
+                   ORDER BY a.CreatedOn DESC)))
+
 SELECT 
 	a.Content AS [Answer Content],
 	q.Title AS [Question],
@@ -121,8 +138,9 @@ JOIN Categories AS c
 	ON q.CategoryId = c.Id
 WHERE 
 	a.IsHidden = 1 AND 
-	YEAR(a.CreatedOn) = YEAR((SELECT TOP 1 a.CreatedOn FROM Answers AS a ORDER BY a.CreatedOn DESC))
+	YEAR(a.CreatedOn) = @maxYear AND MONTH(a.CreatedOn) IN (@minMonth, @maxMonth)
 ORDER BY c.Name ASC
+GO
 
 --------------------------------------------------------------------------------------------------
 -- Problem 11
@@ -161,6 +179,8 @@ ORDER BY [Answers Count] DESC, u.Username ASC
 --------------------------------------------------------------------------------------------------
 USE Forum
 GO
+
+BEGIN TRAN
 
 CREATE TABLE Towns(
 	Id INT IDENTITY PRIMARY KEY,
@@ -226,6 +246,9 @@ LEFT JOIN Answers AS a
 	ON a.UserId = u.Id
 GROUP BY t.Name, u.Username
 ORDER BY AnswersCount DESC, u.Username ASC
+GO
+
+ROLLBACK
 
 --------------------------------------------------------------------------------------------------
 -- Problem 14
