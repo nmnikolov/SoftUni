@@ -237,9 +237,9 @@ ON m.AwayTeamId = at.Id
 ORDER BY [Match Date] DESC
 GO
 
-----------------------------------
+------------------------------------
 -- Problem 14
-----------------------------------
+------------------------------------
 USE Football
 GO
 
@@ -288,13 +288,13 @@ WHERE l.IsSeasonal = 1 AND tm.MatchDate > '10-APR-2015'
 ORDER BY [League Name] ASC, [Home Goals] DESC, [Away Goals] DESC
 GO
 
-----------------------------------
+------------------------------------
 -- Problem 15
-----------------------------------
+------------------------------------
 USE Football
 GO
 
-ALTER VIEW [Bulgarian Teams]
+CREATE VIEW [Bulgarian Teams]
 AS    
     SELECT
         t.TeamName AS Name,
@@ -304,19 +304,16 @@ AS
         tm.AwayGoals AS AwayGoals,
         tm.MatchDate
     FROM Teams AS t 
-    JOIN TeamMatches AS tm
+    LEFT JOIN TeamMatches AS tm
         ON t.Id = tm.HomeTeamId OR t.Id = tm.AwayTeamId
-    JOIN Teams AS tm1
+    LEFT JOIN Teams AS tm1
         ON tm.HomeTeamId = tm1.Id
-    JOIN Teams AS tm2
+    LEFT JOIN Teams AS tm2
         ON tm.AwayTeamId = tm2.Id
     WHERE t.CountryCode = 'BG'
 GO
 
-SELECT * FROM [Bulgarian Teams] AS a
-GO
-
-ALTER FUNCTION fn_TeamsJSON() RETURNS NVARCHAR(MAX)
+CREATE FUNCTION fn_TeamsJSON() RETURNS NVARCHAR(MAX)
 AS
     BEGIN
         DECLARE @json NVARCHAR(MAX)
@@ -325,7 +322,7 @@ AS
 		STUFF((
 			SELECT 
 				',{"name":"' + t1.Name
-				+ '","matches":' + ISNULL(t1.Peaks, '[]') + '}'
+				+ '","matches":' + ISNULL(t1.Matches, '[]') + '}'
 			FROM 		
 				(SELECT
 					t.Name AS name,
@@ -334,12 +331,13 @@ AS
 						(SELECT 
 							',{"'+ x.HomeTeam +'":' + CAST(x.HomeGoals AS NVARCHAR(MAX)) +
 							',"' + x.AwayTeam + '":' + CAST(x.AwayGoals AS NVARCHAR(MAX)) + 
-							',"date":' + CAST(x.MatchDate AS NVARCHAR(MAX)) + '}'
+							',"date":' + CONVERT(NVARCHAR(10), x.MatchDate, 103) + '}'
 						FROM [Bulgarian Teams] x
 						WHERE x.Name = t.Name
-						GROUP BY x.Name
+						GROUP BY x.Name, x.HomeTeam, x.HomeGoals, x.AwayTeam, x.AwayGoals, x.MatchDate
+                        ORDER BY x.MatchDate DESC
 						FOR XML PATH (''), TYPE).value('.','NVARCHAR(max)'), ''), 1, 2, '') + 
-					']' AS [Peaks]
+					']' AS [Matches]
 				FROM [Bulgarian Teams] t
 				GROUP BY t.Name) AS t1
 			FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(max)'), 1, 1, '')
