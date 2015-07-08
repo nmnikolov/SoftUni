@@ -110,24 +110,15 @@ ORDER BY a.CreatedOn DESC
 --------------------------------------------------------------------------------------------------
 -- Problem 10
 --------------------------------------------------------------------------------------------------
-DECLARE @maxYear INT = 
-    (SELECT YEAR((SELECT TOP 1 a.CreatedOn 
-                  FROM Answers AS a 
-                  ORDER BY a.CreatedOn DESC)))
+DECLARE @maxYear INT = YEAR((SELECT MAX(CreatedOn) FROM Answers))
     
-DECLARE @minMonth INT = 
-    (SELECT MONTH((SELECT TOP 1 a.CreatedOn 
-                   FROM Answers AS a 
-                   WHERE YEAR(a.CreatedOn) = @maxYear 
-                   ORDER BY a.CreatedOn ASC)))
+DECLARE @minMonth INT = MONTH((SELECT MIN(CreatedOn)
+                               FROM Answers
+                               WHERE YEAR(CreatedOn) = @maxYear))
 
-DECLARE @maxMonth INT = 
-    (SELECT MONTH((SELECT TOP 1 a.CreatedOn 
-                   FROM Answers AS a 
-                   WHERE YEAR(a.CreatedOn) = @maxYear 
-                   ORDER BY a.CreatedOn DESC)))
+DECLARE @maxMonth INT = MONTH((SELECT MAX(CreatedOn) FROM Answers))
 
-SELECT 
+SELECT
 	a.Content AS [Answer Content],
 	q.Title AS [Question],
 	c.Name AS [Category]
