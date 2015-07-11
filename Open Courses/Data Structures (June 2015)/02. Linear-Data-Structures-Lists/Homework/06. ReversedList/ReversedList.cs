@@ -3,7 +3,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.ComponentModel;
 
     public class ReversedList<T> : IEnumerable
     {
@@ -92,7 +91,7 @@
         {
             if (this.Count == 0)
             {
-                throw new InvalidEnumArgumentException("List is empty.");
+                throw new InvalidOperationException("List is empty.");
             }
 
             if (index < 0 || index >= this.Count)
