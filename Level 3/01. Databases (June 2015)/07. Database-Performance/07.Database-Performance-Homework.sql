@@ -99,3 +99,59 @@ GO
 -- Select from table by Date range
 SELECT Id, Date FROM Performance
 WHERE Date BETWEEN CAST(DATEADD(DAY, 300, GETDATE()) AS DATE) AND CAST(DATEADD(DAY, 1365, GETDATE()) AS DATE)
+GO
+
+--------------------------------------------------------------------------------------------------
+-- Problem 3 : Create the same table in MySQL and partition it by date (1990, 2000 and 2010). 
+--             Fill 1 000 000 log entries. Compare the searching speed in all partitions (random 
+--             dates) to certain partition (e.g. year 1995)
+--------------------------------------------------------------------------------------------------
+-- Drop the database if it already exists
+DROP DATABASE IF EXISTS `DB_Performance`;
+
+-- Create database
+CREATE DATABASE `DB_Performance`
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+USE `DB_Performance`;
+
+DROP TABLE IF EXISTS `Performance`;
+
+CREATE TABLE `Performance` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+    `dated` datetime NOT NULL,
+    `info` text NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
+-- Fill Database
+DELIMITER $$
+
+CREATE PROCEDURE fill_database()
+BEGIN
+START TRANSACTION;
+  SET @i = 10000;
+  SET @date = NOW();
+  SET @count = 1;
+
+  WHILE @i > 0 DO
+	
+    INSERT INTO `Performance` VALUES (
+    @count,
+    @date,
+    CONCAT('Some text ', @count)
+    );
+    
+	SET @date = @date + INTERVAL 2 MINUTE;
+	SET @i = @i - 1;
+    SET @count = @count + 1;
+  END WHILE;
+COMMIT;
+END;
+
+DELIMITER ;
+
+-- Calling finction
+CALL fill_database();
+
+SELECT  * FROM `Performance`
