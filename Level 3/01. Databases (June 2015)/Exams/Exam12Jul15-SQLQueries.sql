@@ -160,6 +160,11 @@ IF EXISTS (SELECT name FROM sysobjects
    DROP VIEW [Items table]
 GO
 
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'tr_UserGameItems' AND type = 'TR')
+   DROP TRIGGER tr_UserGameItems
+GO
+
 CREATE VIEW [Items table]
 AS
 	SELECT 
@@ -193,13 +198,8 @@ BEGIN TRAN
     SET Cash = Cash - (SELECT SUM(Price) FROM [Items table])
     WHERE Id = @userGameId
 
-    INSERT INTO UserGameItems(ItemId, UserGameId) VALUES
-	    ((SELECT i.Id FROM [Items table] AS i WHERE i.Name = 'Blackguard') , @userGameId),
-	    ((SELECT i.Id FROM [Items table] AS i WHERE i.Name = 'Bottomless Potion of Amplification') , @userGameId),
-	    ((SELECT i.Id FROM [Items table] AS i WHERE i.Name = 'Eye of Etlich (Diablo III)') , @userGameId),
-	    ((SELECT i.Id FROM [Items table] AS i WHERE i.Name = 'Gem of Efficacious Toxin') , @userGameId),
-	    ((SELECT i.Id FROM [Items table] AS i WHERE i.Name = 'Golden Gorget of Leoric') , @userGameId),
-	    ((SELECT i.Id FROM [Items table] AS i WHERE i.Name = 'Hellfire Amulet') , @userGameId)
+    INSERT INTO UserGameItems(ItemId, UserGameId)
+        SELECT Id, @userGameId FROM [Items table]
     GO
 
     SELECT 
