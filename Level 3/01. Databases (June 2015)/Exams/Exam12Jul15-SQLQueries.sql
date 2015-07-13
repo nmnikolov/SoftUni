@@ -254,7 +254,7 @@ FROM Items AS i
 WHERE (i.MinLevel BETWEEN 19 AND 21)
 GO
 
-DECLARE @gameId INT =(SELECT g.Id FROM Games AS g Where g.Name = 'Safflower')
+DECLARE @gameId INT = (SELECT g.Id FROM Games AS g Where g.Name = 'Safflower')
 
 DECLARE @stamatId INT = (SELECT u.Id FROM Users AS u WHERE u.Username = 'Stamat')
 
@@ -419,7 +419,7 @@ ON UserGameItems
 INSTEAD OF INSERT
 AS
     BEGIN
-        DECLARE @itemMinLevel MONEY =   (SELECT
+        DECLARE @itemMinLevel INT =   (SELECT
                                             itm.MinLevel
                                         FROM inserted AS i
                                         JOIN Items AS itm
@@ -431,7 +431,7 @@ AS
                                     JOIN Items AS itm
                                         ON itm.Id = i.ItemId)    
          
-        DECLARE @userLevel MONEY = (SELECT  
+        DECLARE @userLevel INT = (SELECT  
                                         ug.Level
                                     FROM inserted AS i
                                     JOIN UsersGames AS ug
@@ -506,24 +506,24 @@ COLLATE utf8_general_ci;
 USE `Job Portal`;
 
 CREATE TABLE `users` (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     username NVARCHAR(50) NOT NULL,
     fullname NVARCHAR(50));
     
 CREATE TABLE `salaries` (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     from_value DECIMAL(10, 2) NOT NULL,
 	to_value DECIMAL(10, 2) NOT NULL);
     
 CREATE TABLE `job_ads` (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title NVARCHAR(300) NOT NULL,
     description NVARCHAR(300),
     author_id INT NOT NULL REFERENCES users(id),
 	salary_id INT NOT NULL REFERENCES salaries(id));
     
 CREATE TABLE `job_ad_applications` (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
 	job_ad_id INT NOT NULL REFERENCES job_ads(id),
 	user_id INT NOT NULL REFERENCES users(id));
 
