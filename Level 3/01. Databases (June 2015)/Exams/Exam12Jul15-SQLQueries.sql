@@ -320,49 +320,40 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 
 CREATE FUNCTION fn_CashInUsersGames(@gameName NVARCHAR(100)) RETURNS @table TABLE(
-	Row INT,
-	Cash MONEY)
+	SumCash MONEY)
 AS
 BEGIN
-	INSERT INTO @table 
-	SELECT 		
-		ROW_NUMBER() OVER (PARTITION BY g.Name ORDER BY ug.Cash DESC) AS rn,
-		ug.Cash
-	FROM UsersGames AS ug
-	JOIN Games AS g
-		ON ug.GameId = g.Id
-	WHERE g.Name = @gameName
-	GROUP BY ug.Id, g.Name, ug.Cash
+    DECLARE @tempTable TABLE(row INT, Cash MONEY)
+    
+	INSERT INTO @tempTable
+	    SELECT		
+		    ROW_NUMBER() OVER (PARTITION BY g.Name ORDER BY ug.Cash DESC) AS rn,
+		    ug.Cash
+	    FROM UsersGames AS ug
+	    JOIN Games AS g
+		    ON ug.GameId = g.Id
+	    WHERE g.Name = @gameName
+	    GROUP BY ug.Id, g.Name, ug.Cash
+
+    INSERT INTO @table
+        SELECT
+            SUM(Cash)
+        FROM @tempTable
+        WHERE (Row % 2) = 1
 
 	RETURN
 END
 GO
 
-SELECT 
-	SUM(Cash) AS SumCash
-FROM dbo.fn_CashInUsersGames('Bali') AS c
-WHERE (c.Row % 2) = 1
+SELECT * FROM dbo.fn_CashInUsersGames('Bali')
 UNION
-SELECT 
-	SUM(Cash) AS SumCash
-FROM dbo.fn_CashInUsersGames('Lily Stargazer') AS c
-WHERE (c.Row % 2) = 1
+SELECT * FROM dbo.fn_CashInUsersGames('Lily Stargazer') 
 UNION
-SELECT 
-	SUM(Cash) AS SumCash
-FROM dbo.fn_CashInUsersGames('Love in a mist') AS c
-WHERE (c.Row % 2) = 1
+SELECT * FROM dbo.fn_CashInUsersGames('Love in a mist') 
 UNION
-SELECT
-	SUM(Cash) AS SumCash
-FROM dbo.fn_CashInUsersGames('Mimosa') AS c
-WHERE (c.Row % 2) = 1
+SELECT * FROM dbo.fn_CashInUsersGames('Mimosa') 
 UNION
-SELECT 
-	SUM(Cash) AS SumCash
-FROM dbo.fn_CashInUsersGames('Ming fern') AS c
-WHERE (c.Row % 2) = 1
-ORDER BY SumCash ASC
+SELECT * FROM dbo.fn_CashInUsersGames('Ming fern')
 
 --------------------------------------------------------------------------------------------------
 -- Problem 15
