@@ -236,6 +236,11 @@ IF EXISTS (SELECT name FROM sysobjects
    DROP VIEW [SecondGroup]
 GO
 
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'tr_UserGameItems' AND type = 'TR')
+   DROP TRIGGER tr_UserGameItems
+GO
+
 CREATE VIEW [FirstGroup]
 AS
 SELECT
@@ -254,48 +259,37 @@ FROM Items AS i
 WHERE (i.MinLevel BETWEEN 19 AND 21)
 GO
 
-DECLARE @gameId INT = (SELECT g.Id FROM Games AS g Where g.Name = 'Safflower')
+DECLARE @usersGamesId INT = (SELECT 
+                                ug.Id
+                             FROM UsersGames AS ug
+                             JOIN Games AS g
+                                ON g.Id = ug.GameId
+                             JOIN Users AS u
+                                 ON u.Id = ug.UserId
+                             WHERE u.Username = 'Stamat' AND g.Name = 'Safflower')
 
-DECLARE @stamatId INT = (SELECT u.Id FROM Users AS u WHERE u.Username = 'Stamat')
+BEGIN TRY
+    BEGIN TRAN
+        INSERT INTO UserGameItems(ItemId, UserGameId)
+        SELECT i.Id , @usersGamesId FROM [FirstGroup] AS i
 
-DECLARE @usersGamesId INT = (SELECT Id FROM UsersGames  WHERE UserId = @stamatId AND GameId = @gameId)
+        UPDATE UsersGames
+        SET Cash = Cash - (SELECT SUM(Price) FROM [FirstGroup])
+        WHERE Id = @usersGamesId
+    COMMIT
+    
+    BEGIN TRAN
+        INSERT INTO UserGameItems(ItemId, UserGameId)
+        SELECT i.Id, @usersGamesId FROM [SecondGroup] AS i
 
-BEGIN TRAN
-    DECLARE @cash MONEY = (SELECT Cash FROM UsersGames  WHERE UserId = @stamatId AND GameId = @gameId),
-            @itemsPrice MONEY = (SELECT SUM(Price) FROM [FirstGroup])
-
-    IF(@cash < @itemsPrice)
-    BEGIN
-        ROLLBACK
-        RETURN
-    END
-
-    INSERT INTO UserGameItems(ItemId, UserGameId)
-        SELECT i.Id, @usersGamesId FROM [FirstGroup] AS i
-
-    UPDATE UsersGames
-    SET Cash = Cash - @itemsPrice
-    WHERE Id = @usersGamesId
-COMMIT
-
-BEGIN TRAN
-    DECLARE @cash2 MONEY = (SELECT Cash FROM UsersGames  WHERE UserId = @stamatId AND GameId = @gameId),
-            @itemsPrice2 MONEY = (SELECT SUM(Price) FROM [FirstGroup])
-
-    IF(@cash2 < @itemsPrice2)
-    BEGIN
-        ROLLBACK
-        RETURN
-    END
-
-    INSERT INTO UserGameItems(ItemId, UserGameId)
-        SELECT i.Id, @usersGamesId FROM [FirstGroup] AS i
-
-    UPDATE UsersGames
-    SET Cash = Cash - @itemsPrice2
-    WHERE Id = @usersGamesId
-COMMIT
-GO
+        UPDATE UsersGames
+        SET Cash = Cash - (SELECT SUM(Price) FROM SecondGroup)
+        WHERE Id = @usersGamesId      
+    COMMIT   
+END TRY
+BEGIN CATCH 
+    ROLLBACK
+END CATCH
 
 SELECT 
 	i.Name AS [Item Name]
