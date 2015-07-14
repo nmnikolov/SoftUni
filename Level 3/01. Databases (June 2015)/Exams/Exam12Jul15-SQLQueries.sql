@@ -112,7 +112,36 @@ ORDER BY [Items Count] DESC, [Items Price] DESC, [Username] ASC
 --------------------------------------------------------------------------------------------------
 -- Problem 9
 --------------------------------------------------------------------------------------------------
-
+SELECT
+    u.Username,
+    g.Name AS Game,
+    MAX(c.Name) AS Character,
+    SUM(itemStat.Strength) + MAX(gameStat.Strength) + MAX(characterStat.Strength) AS Strength,
+    SUM(itemStat.Defence) + MAX(gameStat.Defence) + MAX(characterStat.Defence) AS Defence,
+    SUM(itemStat.Speed) + MAX(gameStat.Speed) + MAX(characterStat.Speed) AS Speed,
+    SUM(itemStat.Mind) + MAX(gameStat.Mind) + MAX(characterStat.Mind) AS Mind,
+    SUM(itemStat.Luck) + MAX(gameStat.Luck) + MAX(characterStat.Luck) AS Luck
+FROM UsersGames AS ug
+JOIN Games AS g
+    ON ug.GameId = g.Id
+JOIN Users AS u
+    ON ug.UserId = u.Id
+JOIN Characters AS c
+    ON ug.CharacterId = c.Id
+JOIN [Statistics] AS characterStat
+    ON characterStat.Id = c.StatisticId 
+JOIN GameTypes AS gt
+    ON gt.Id = g.GameTypeId
+JOIN [Statistics] AS gameStat
+    ON gt.BonusStatsId = gameStat.Id   
+JOIN UserGameItems AS ugi
+    ON ugi.UserGameId = ug.Id
+JOIN Items AS i
+    ON i.Id = ugi.ItemId
+JOIN [Statistics] AS itemStat
+    ON itemStat.Id = i.StatisticId
+GROUP BY u.Username, g.Name
+ORDER BY Strength DESC, Defence DESC, Speed DESC, Mind DESC, Luck DESC
 
 --------------------------------------------------------------------------------------------------
 -- Problem 10
