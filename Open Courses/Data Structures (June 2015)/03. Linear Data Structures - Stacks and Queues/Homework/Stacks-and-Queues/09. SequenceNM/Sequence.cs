@@ -31,14 +31,14 @@
                     break;
                 }
 
-                if (current.Value < end && end > 0)
+                if (current.Value < end && end >= 0)
                 {
                     queue.Enqueue(new Item(current.Value + 1, current));
                     queue.Enqueue(new Item(current.Value + 2, current));
                     queue.Enqueue(new Item(current.Value * 2, current));
                 }
 
-                if (current.Value > end && end < 0 && end % 2 == 0)
+                if (current.Value < 0 && end < 0)
                 {
                     queue.Enqueue(new Item(current.Value + 1, current));
                     queue.Enqueue(new Item(current.Value + 2, current));
