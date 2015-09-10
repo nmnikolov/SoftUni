@@ -20,7 +20,7 @@
 	"requests": [
 		{
 			"id": "3434dd8b-4216-a667-bc70-c5e767195930",
-			"headers": "Authorization: bearer ViEr6SAOyQhXnYIYIjQ3ybZL6ylDyoUT9r6aJGRjMiYxHZQYHcfE95JFw3qwl9dbVy-71MPoZDkNj-juMlGMbEN01EyH2ZZqk5nRTfXVfgVux46qdOh2lbs4dzTtXiT2LEWk7jXpOIt3Jh_GTvXtU7Sy0m4zhIlDMu3GhplXY_Aq8GmNG-x7SIt5UhmgDkMV-n88NSUWFNtnlnIEQPCkPo560YO4mIvvmFoPmUiprNUZi_ilcVt2vO1CdPYBYHVW_FtuSoSoMxQy0XS3an0P_tEbvkS11nU2PUmeTAFqC4XSBlICHRcRaKciVyRWAbnbGKkAFycaCv8uI_j61YMppI_gE_Im_kKfUMDIhg2AJrh4QdeNKsExfqkQ2wMQnVVjJehgJ32xRf2XfZyQegihD9scUpM0dZUa-JcLX7psoDph99suXPVtx_1v7hCSnaGnJBlnONTpvV4burD2w6rXuB_pdJjf1UKUziNEpbd0gDo\n",
+			"headers": "Authorization: bearer n0pGeooimhXZjdpJOjrl9XNCXARTECPcng88vOqnTGs2QAbaDWH9VrrMUL2YncqC-jyraM5a0YN6jsTngssD4gEHw7c19P75Mbv9dNpl1IIo3RUMEQok-Y06WmOEtLeYHKQ3rvqvPbcIhqPvlr7YyLhREcw9o-o9fMNCNp5A8ppdLnmkeOAl2p6CkxI7V1qscppWxWIN3eOi5IHu7ZsNFdXRVTqciuOEI_6SYzYM9QMs1cBiLC4Mzkqk8dul3gjdw_JfiQJKS9c7ONetUkFXXeQybcGhOfJXHcZNi96nOlczyt3VJ2fzwPSRQemdlHIUmJoGE3aIbQc183FqNkHAZ8Y95GpxSoRBhiZlAC5QkBsOol0wqUxUZsY4gHXPH5TbGzBVjjSzTtub0TleAUq-2oOMPe-0fY-vYM2eiLnCTB7fEn2YGaEryfMwCCta6STiojAIeySzJTB3F9OOu_zjeF8zQMSbBjv4R5_MR4K1Q-w\n",
 			"url": "http://localhost:50334/api/news",
 			"preRequestScript": "",
 			"pathVariables": {},
@@ -28,7 +28,7 @@
 			"data": [
 				{
 					"key": "Title",
-					"value": "My first news",
+					"value": "My first newsasdasd12",
 					"type": "text",
 					"enabled": true
 				},
@@ -50,16 +50,16 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1441661380776,
-			"name": "Add News",
+			"time": 1441888348772,
+			"name": "Create News",
 			"description": "",
 			"collectionId": "63ca4385-7c9a-b8bf-be59-53118bac22c2",
 			"responses": []
 		},
 		{
 			"id": "34443b26-dcb5-640b-3b72-d2821036f51e",
-			"headers": "Authorization: bearer ViEr6SAOyQhXnYIYIjQ3ybZL6ylDyoUT9r6aJGRjMiYxHZQYHcfE95JFw3qwl9dbVy-71MPoZDkNj-juMlGMbEN01EyH2ZZqk5nRTfXVfgVux46qdOh2lbs4dzTtXiT2LEWk7jXpOIt3Jh_GTvXtU7Sy0m4zhIlDMu3GhplXY_Aq8GmNG-x7SIt5UhmgDkMV-n88NSUWFNtnlnIEQPCkPo560YO4mIvvmFoPmUiprNUZi_ilcVt2vO1CdPYBYHVW_FtuSoSoMxQy0XS3an0P_tEbvkS11nU2PUmeTAFqC4XSBlICHRcRaKciVyRWAbnbGKkAFycaCv8uI_j61YMppI_gE_Im_kKfUMDIhg2AJrh4QdeNKsExfqkQ2wMQnVVjJehgJ32xRf2XfZyQegihD9scUpM0dZUa-JcLX7psoDph99suXPVtx_1v7hCSnaGnJBlnONTpvV4burD2w6rXuB_pdJjf1UKUziNEpbd0gDo\n",
-			"url": "http://localhost:50334/api/news/1",
+			"headers": "Authorization: bearer n0pGeooimhXZjdpJOjrl9XNCXARTECPcng88vOqnTGs2QAbaDWH9VrrMUL2YncqC-jyraM5a0YN6jsTngssD4gEHw7c19P75Mbv9dNpl1IIo3RUMEQok-Y06WmOEtLeYHKQ3rvqvPbcIhqPvlr7YyLhREcw9o-o9fMNCNp5A8ppdLnmkeOAl2p6CkxI7V1qscppWxWIN3eOi5IHu7ZsNFdXRVTqciuOEI_6SYzYM9QMs1cBiLC4Mzkqk8dul3gjdw_JfiQJKS9c7ONetUkFXXeQybcGhOfJXHcZNi96nOlczyt3VJ2fzwPSRQemdlHIUmJoGE3aIbQc183FqNkHAZ8Y95GpxSoRBhiZlAC5QkBsOol0wqUxUZsY4gHXPH5TbGzBVjjSzTtub0TleAUq-2oOMPe-0fY-vYM2eiLnCTB7fEn2YGaEryfMwCCta6STiojAIeySzJTB3F9OOu_zjeF8zQMSbBjv4R5_MR4K1Q-w\n",
+			"url": "http://localhost:50334/api/news/97",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "PUT",
@@ -88,7 +88,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1441661416131,
+			"time": 1441888344635,
 			"name": "Edit News",
 			"description": "",
 			"collectionId": "63ca4385-7c9a-b8bf-be59-53118bac22c2",
