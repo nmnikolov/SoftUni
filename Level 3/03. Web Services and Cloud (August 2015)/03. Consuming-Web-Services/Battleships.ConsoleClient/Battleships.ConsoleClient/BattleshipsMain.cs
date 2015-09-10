@@ -3,6 +3,8 @@
     using System.Globalization;
     using System.Threading;
     using Engine;
+    using Execution;
+    using UserInterface;
 
     public class BattleshipsMain
     {
@@ -10,7 +12,10 @@
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-            var engine = new BattleshipsEngine();
+            var userInterface = new ConsoleInterface();
+            var commandExecutor = new CommandExecutor(userInterface);
+            var data = new BattleshipsData();
+            var engine = new BattleshipsEngine(commandExecutor, userInterface, data);
             engine.Run();
         }
     }

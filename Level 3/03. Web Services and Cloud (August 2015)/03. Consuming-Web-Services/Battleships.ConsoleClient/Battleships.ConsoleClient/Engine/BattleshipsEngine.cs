@@ -3,7 +3,7 @@
     using System;
     using Execution;
     using Interfaces;
-    using UserInterface;
+    using Utilities;
 
     public class BattleshipsEngine : IEngine
     {
@@ -18,13 +18,9 @@
             this.data = data;
         }
 
-        public BattleshipsEngine()
-            : this(new CommandExecutor(), new ConsoleInterface(), new BattleshipsData())
-        {
-        }
-
         public void Run()
         {
+            this.userInterface.WriteLine(Messages.Legend);
             string commandLine = this.userInterface.ReadLine();
 
             while (commandLine != "exit")
@@ -35,8 +31,7 @@
                     try
                     {
                         var command = new Command(commandLine);
-                        string commandResult = this.commandExecutor.ExecuteCommand(command, this.data);
-                        this.userInterface.WriteLine(commandResult);
+                        this.commandExecutor.ExecuteCommand(command, this.data);
                     }
                     catch (Exception ex)
                     {

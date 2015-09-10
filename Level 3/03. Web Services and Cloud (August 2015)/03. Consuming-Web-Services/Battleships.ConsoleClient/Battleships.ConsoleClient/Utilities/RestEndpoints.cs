@@ -1,4 +1,4 @@
-﻿namespace Battleships.ConsoleClient.Execution
+﻿namespace Battleships.ConsoleClient.Utilities
 {
     public static class RestEndpoints
     {

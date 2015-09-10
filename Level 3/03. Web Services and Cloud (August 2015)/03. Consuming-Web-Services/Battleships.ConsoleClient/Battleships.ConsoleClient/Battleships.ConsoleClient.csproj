@@ -56,6 +56,7 @@
     <Compile Include="Engine\BattleshipsEngine.cs" />
     <Compile Include="Execution\Command.cs" />
     <Compile Include="Execution\CommandExecutor.cs" />
+    <Compile Include="Models\AvailableGamesView.cs" />
     <Compile Include="Utilities\RestEndpoints.cs" />
     <Compile Include="Execution\RestQueriesExecutor.cs" />
     <Compile Include="Interfaces\ICommand.cs" />

@@ -6,101 +6,104 @@
 
     public class CommandExecutor
     {
-        public string ExecuteCommand(ICommand command, BattleshipsData data)
+        public CommandExecutor(IUserInterface userInterface)
         {
-            string commandResult;
+            this.UserInterface = userInterface;
+        }
 
-            switch (command.Name)
+        public IUserInterface UserInterface { get; set; }
+
+        public void ExecuteCommand(ICommand command, BattleshipsData data)
+        {
+            switch (command.Name.ToLower())
             {
                 case "register":
-                    commandResult = this.ExecuteRegisterCommand(command, data);
+                    this.ExecuteRegisterCommand(command, data);
                     break;
                 case "login":
-                    commandResult = this.ExecuteLoginCommand(command, data);
+                    this.ExecuteLoginCommand(command, data);
                     break;
                 case "logout":
-                    commandResult = this.ExecuteLogOutCommand(command, data);
+                    this.ExecuteLogOutCommand(command, data);
                     break;
                 case "create-game":
-                    commandResult = this.ExecuteCreateGameCommand(command, data);
+                    this.ExecuteCreateGameCommand(command, data);
                     break;
                 case "join-game":
-                    commandResult = this.ExecuteJoinGameCommand(command, data);
+                    this.ExecuteJoinGameCommand(command, data);
+                    break;
+                case "available-games":
+                    this.ExecuteShowAvailableGames(command, data);
                     break;
                 case "play":
-                    commandResult = this.ExecutePlayCommand(command, data);
+                    this.ExecutePlayCommand(command, data);
                     break;
                 default:
                     throw new InvalidOperationException(Messages.InvalidCommandError);
             }
-
-            return commandResult;
         }
-        
-        private string ExecuteRegisterCommand(ICommand command, BattleshipsData data)
+
+        private void ExecuteShowAvailableGames(ICommand command, BattleshipsData data)
+        {
+            this.ValidateParametersLength(command, 0);
+            this.ValidateUser(true, data, Messages.NotLoggedError);
+
+            var restQueriesExecutor = new RestQueriesExecutor(this.UserInterface);
+            var result = restQueriesExecutor.AvailableGamesAsync(data.LoggedUserAccessToken);
+        }
+
+        private void ExecuteRegisterCommand(ICommand command, BattleshipsData data)
         {
             this.ValidateParametersLength(command, 3);
             this.ValidateUser(false, data, Messages.RegistrationWhileLoggedError);
-            
-            var restQueriesExecutor = new RestQueriesExecutor();
-            var result = restQueriesExecutor.RegisterAsync(command);
 
-            return result.Result;
+            var restQueriesExecutor = new RestQueriesExecutor(this.UserInterface);
+            var result = restQueriesExecutor.RegisterAsync(command);
         }
 
-        private string ExecuteLoginCommand(ICommand command, BattleshipsData data)
+        private void ExecuteLoginCommand(ICommand command, BattleshipsData data)
         {
             this.ValidateParametersLength(command, 2);
             this.ValidateUser(false, data, Messages.AlreadyLoggedError);
 
-            var restQueriesExecutor = new RestQueriesExecutor();
+            var restQueriesExecutor = new RestQueriesExecutor(this.UserInterface);
             var result = restQueriesExecutor.LoginAsync(command, data);
-
-            return result.Result;
         }
 
-        private string ExecuteLogOutCommand(ICommand command, BattleshipsData data)
+        private void ExecuteLogOutCommand(ICommand command, BattleshipsData data)
         {
             this.ValidateParametersLength(command, 0);
             this.ValidateUser(true, data, Messages.NotLoggedError);
 
             data.LogOutUser();
-            var result = Messages.LogedOutMessage;
-
-            return result;
+            this.UserInterface.WriteLine(Messages.LogedOutMessage); 
         }
 
-        private string ExecuteCreateGameCommand(ICommand command, BattleshipsData data)
+        private void ExecuteCreateGameCommand(ICommand command, BattleshipsData data)
         {
             this.ValidateParametersLength(command, 0);
             this.ValidateUser(true, data, Messages.NotLoggedError);
 
-            var restQueriesExecutor = new RestQueriesExecutor();
+            var restQueriesExecutor = new RestQueriesExecutor(this.UserInterface);
             var result = restQueriesExecutor.CreateGameAsync(data.LoggedUserAccessToken);
-
-            return result.Result;
         }
 
-        private string ExecuteJoinGameCommand(ICommand command, BattleshipsData data)
+        private void ExecuteJoinGameCommand(ICommand command, BattleshipsData data)
         {
             this.ValidateParametersLength(command, 1);
             this.ValidateUser(true, data, Messages.NotLoggedError);
 
-            var restQueriesExecutor = new RestQueriesExecutor();
+            var restQueriesExecutor = new RestQueriesExecutor(this.UserInterface);
             var result = restQueriesExecutor.JoinGameAsync(command, data.LoggedUserAccessToken);
-
-            return result.Result;
         }
 
-        private string ExecutePlayCommand(ICommand command, BattleshipsData data)
+        private void ExecutePlayCommand(ICommand command, BattleshipsData data)
         {
             this.ValidateParametersLength(command, 3);
             this.ValidateUser(true, data, Messages.NotLoggedError);
 
-            var restQueriesExecutor = new RestQueriesExecutor();
+            var restQueriesExecutor = new RestQueriesExecutor(this.UserInterface);
             var result = restQueriesExecutor.PlayAsync(command, data.LoggedUserAccessToken);
-
-            return result.Result;
         }
 
         private void ValidateParametersLength(ICommand command, int expectedCount)

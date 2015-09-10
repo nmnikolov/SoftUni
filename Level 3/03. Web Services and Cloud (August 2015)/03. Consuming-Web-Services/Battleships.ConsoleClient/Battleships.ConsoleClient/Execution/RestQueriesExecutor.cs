@@ -10,7 +10,14 @@
 
     public class RestQueriesExecutor
     {
-        public async Task<string> RegisterAsync(ICommand command)
+        public RestQueriesExecutor(IUserInterface userInterface)
+        {
+            this.UserInterface = userInterface;
+        }
+
+        public IUserInterface UserInterface { get; set; }
+
+        public async Task RegisterAsync(ICommand command)
         {
             using (var httpClient = new HttpClient())
             {
@@ -32,11 +39,11 @@
                     result = string.Format(Messages.RegisteredMessage, command.Parameters[0]);
                 }
 
-                return result;
+                this.UserInterface.WriteLine(result);
             }
         }
 
-        public async Task<string> LoginAsync(ICommand command, BattleshipsData data)
+        public async Task LoginAsync(ICommand command, BattleshipsData data)
         {
             using (var httpClient = new HttpClient())
             {
@@ -60,11 +67,11 @@
                     result = string.Format(Messages.LogedInMessage, command.Parameters[0]);
                 }
 
-                return result;
+                this.UserInterface.WriteLine(result);
             }
         }
 
-        public async Task<string> CreateGameAsync(string accessToken)
+        public async Task CreateGameAsync(string accessToken)
         {
             using (var httpClient = new HttpClient())
             {
@@ -78,11 +85,41 @@
                     result = string.Format(Messages.CreatedGameMessage, result);
                 }
 
-                return result;
+                this.UserInterface.WriteLine(result);
             }
         }
 
-        public async Task<string> JoinGameAsync(ICommand command, string accessToken)
+        public async Task AvailableGamesAsync(string accessToken)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                var response = await httpClient.GetAsync(RestEndpoints.GetAvailableGamesEndpoint);
+
+                string result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    var availablegames = await response.Content.ReadAsAsync<ICollection<AvailableGamesView>>();
+
+                    if (availablegames.Count > 0)
+                    {
+                        result = "=> " + string.Join("\n=> ", availablegames);
+                    }
+                    else
+                    {
+                        result = Messages.NoAvailableGamesMessage;
+                    }
+                }
+
+                this.UserInterface.WriteLine(result);
+            }
+        }
+
+        public async Task JoinGameAsync(ICommand command, string accessToken)
         {
             using (var httpClient = new HttpClient())
             {
@@ -100,11 +137,11 @@
                     result = string.Format(Messages.JoinedGameMessage);
                 }
 
-                return result;
+                this.UserInterface.WriteLine(result);
             }
         }
 
-        public async Task<string> PlayAsync(ICommand command, string accessToken)
+        public async Task PlayAsync(ICommand command, string accessToken)
         {
             using (var httpClient = new HttpClient())
             {
@@ -130,7 +167,7 @@
                     result = string.Format(Messages.PositionBombedMessage, command.Parameters[1], command.Parameters[2]);
                 }
 
-                return result;
+                this.UserInterface.WriteLine(result);
             }
         }
     }
