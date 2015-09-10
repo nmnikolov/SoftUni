@@ -19,7 +19,6 @@
     [TestClass]
     public class NewsControllerIntegrationTests
     {
-        private static TransactionScope tran;
         private TestServer httpTestServer;
         private HttpClient httpClient;
 
@@ -68,36 +67,9 @@
         public void ListNews_NonEmptyDb_ShouldReturnNewsList()
         {
             // Arrange
-            var dbContext = new NewsData(NewsContext.Create());
-            var user = new ApplicationUser
-            {
-                UserName = "petar",
-                Email = "petar@abv.bg"
-            };
-
-            dbContext.Users.Add(user);
-            dbContext.SaveChanges();
-
-            dbContext.News.Add(
-                new News
-                {
-                    Title = "Title #1",
-                    Content = "Another content.",
-                    PublishDate = DateTime.Now,
-                    AuthorId = user.Id,
-                    Author = user
-                });
-            dbContext.SaveChanges();
-            dbContext.News.Add(
-                new News
-                {
-                    Title = "Title #2",
-                    Content = "Test content.",
-                    PublishDate = DateTime.Now,
-                    AuthorId = user.Id,
-                    Author = user
-                });
-            dbContext.SaveChanges();
+            this.Register();
+            var loginData = this.Login();
+            this.CreateNews(loginData);
 
             // Act
             var httpResponse = this.httpClient.GetAsync("/api/news").Result;
@@ -106,9 +78,9 @@
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, httpResponse.StatusCode);
             Assert.AreEqual(httpResponse.Content.Headers.ContentType.MediaType, "application/json");
-            Assert.AreEqual(2, dbNews.Count);
-            Assert.AreEqual("Title #2", dbNews[0].Title);
-            Assert.AreEqual("Another content.", dbNews[1].Content);
+            Assert.AreEqual(1, dbNews.Count);
+            Assert.AreEqual("News title", dbNews[0].Title);
+            Assert.AreEqual("some news content", dbNews[0].Content);
         }
 
         [TestMethod]
