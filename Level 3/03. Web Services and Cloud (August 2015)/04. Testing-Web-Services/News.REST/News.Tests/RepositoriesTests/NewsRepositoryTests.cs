@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Validation;
+    using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Transactions;
     using Data;
     using Data.Contracts;
     using EntityFramework.Extensions;
@@ -17,34 +17,14 @@
     [TestClass]
     public class NewsRepositoryTests
     {
-        private static TransactionScope tran;
         private INewsData repo;
-
-        [AssemblyInitialize]
-        public static void CreateRepositoryTestDatabase(TestContext testContext)
-        {
-            if (!Database.Exists("data source=.;initial catalog=NewsTestDb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"))
-            {
-                using (var context = new NewsContext())
-                {
-                    context.Database.Create();
-                }
-            }
-        }
 
         [TestInitialize]
         public void TestInit()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             // Start a new temporary transaction
-            tran = new TransactionScope();
             this.CleanDatabase();
-        }
-
-        [TestCleanup]
-        public void TestCleanUp()
-        {
-            // Rollback the temporary transaction
-            tran.Dispose();
         }
 
         [TestMethod]

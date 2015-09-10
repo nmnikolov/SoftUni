@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
@@ -29,6 +30,8 @@
         [TestInitialize]
         public void InitTest()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
             this.mocks = new MockContainer();
             this.mocks.PrepareMocks();
             this.mockContext = new Mock<INewsData>();

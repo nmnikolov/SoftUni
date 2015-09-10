@@ -2,9 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Net;
     using System.Net.Http;
-    using System.Transactions;
+    using System.Threading;
     using System.Web.Http;
     using Data;
     using Microsoft.Owin.Testing;
@@ -25,6 +26,8 @@
         [TestInitialize]
         public void TestInit()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
             // Start OWIN testing HTTP server with Web API support
             this.httpTestServer = TestServer.Create(appBuilder =>
             {
