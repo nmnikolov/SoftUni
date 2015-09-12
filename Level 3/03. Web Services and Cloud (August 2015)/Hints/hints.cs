@@ -1,10 +1,10 @@
-// Enable CORS
+// Enable CORS - App_Start/Startup.Auth.cs
 app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
-// Set-up JSON response
+// Set-up JSON response - App_Start/WebApiConfig.cs
 config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
-// Setup CamelCaseProperties
+// Setup CamelCaseProperties - App_Start/WebApiConfig.cs
 config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
 // Set-up static class Create in DbContext
