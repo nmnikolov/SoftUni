@@ -124,7 +124,7 @@ class App
     public function editUser(User $user){
         $result = $this->db->prepare("UPDATE users SET password = ?, username = ? WHERE id = ?");
         $result->execute([
-            $user->getPass(),
+            password_hash($user->getPass(), PASSWORD_DEFAULT),
             $user->getUsername(),
             $user->getId()
         ]);
