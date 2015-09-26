@@ -1,0 +1,62 @@
+<div>
+    <div class="form-group">
+        <label class="control-label col-xs-1">OrderBy:</label>
+        <div class="col-lg-2">
+            <select class="form-control" ng-model="sortOrder">
+                <option selected disabled value="">please select</option>
+                <option selected value="title">title</option>
+                <option  value="length">length</option>
+                <option  value="-date.iso">date</option>
+            </select>
+        </div>
+    </div>
+
+    <label class="control-label col-xs-1">FilterBy:</label>
+    <div class="col-lg-2">
+        <select class="form-control" ng-change="clearFilterBy()" ng-model="filter">
+            <option selected disabled value="">please select</option>
+            <option selected value="category">category</option>
+            <option  value="date">date</option>
+            <option  value="haveSubtitles">having subtitles</option>
+        </select>
+    </div>
+    <div class="col-lg-2" ng-show="filter === 'category'">
+        <select class="form-control"  ng-model="filterBy.category">
+            <option selected disabled value="">select category</option>
+            <option ng-repeat="video in videoData | unique: 'category'">{{video.category}}</option>
+        </select>
+    </div>
+    <div class="col-lg-2" ng-show="filter === 'haveSubtitles'">
+        <select class="form-control"  ng-model="filterBy.haveSubtitles">
+            <option selected disabled value="">please select</option>
+            <option ng-if="filter === 'haveSubtitles'" value="true">true</option>
+            <option ng-if="filter === 'haveSubtitles'" value="false">false</option>
+        </select>
+    </div>
+    <div class="col-lg-2" ng-show="filter === 'date'">
+        <input class="form-control"  ng-change="getDate()" ng-model="a" type="text" name="date" id="inputDate" placeholder="Choose date">
+    </div>
+    <button type="button" class="btn btn-danger" ng-if="filterBy" ng-click="clearFilter()">Clear filter</button>
+</div>
+
+<div class="col-lg-12 videos">
+    <article ng-repeat="video in videoData | orderBy: sortOrder | filter: filterBy">
+        <a href="#/video/{{video.objectId}}">
+            <div class="media-list">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <h2>{{video.title}}</h2>
+                        <img ng-src="{{video.picture}}" style="width: 214px; height: 317px" />
+                        <div class="caption">
+                            <p>length: {{video.length  | number: 0}} min</p>
+                            <p>category: {{video.category}}</p>
+                            <p>subscribers: {{video.subscribers  | number: 0}}</p>
+                            <p>date: {{video.date.iso | date : "dd MMMM yyyy"}}</p>
+                            <p>have subtitles: {{video.haveSubtitles}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </article>
+</div>

@@ -1,0 +1,71 @@
+<form class="form-horizontal" id="video-add" name="videoAdd" ng-submit="addVideo()">
+    <div class="form-group">
+        <label for="inputTitle" class="control-label col-sm-2">*Title</label>
+        <div class="col-sm-4">
+            <input name="title" ng-model="newVideo.title" type="text" class="form-control" ng-minlength="4" id="inputTitle" placeholder="Title" required>
+        </div>
+        <span class="glyphicon glyphicon-ok" ng-show="videoAdd.title.$valid"></span>
+        <span class="glyphicon glyphicon-remove" ng-show="videoAdd.title.$invalid && videoAdd.title.$dirty "></span>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-lg-4">
+            <div class="fileinput new" data-provides="fileinput">
+                <img class="picture-preview thumbnail" id="video-picture" style="width: 214px; height: 317px" />
+                <div>
+                <span class="btn btn-info btn-file">
+                    <span class="fileinput-new">Select image</span>
+                    <input type="file" custom-on-change="uploadMoviePicture" class="form-control" id="picture" name="adImage">
+                    <span> max file-size: 500kb</span>
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputLength" class="col-sm-2 control-label">*Length</label>
+        <div class="col-sm-4">
+            <input name="length" ng-model="newVideo.length" min="1" ng-pattern="/^[1-9]{1}\d*$/i" type="number" class="form-control" id="inputLength"  placeholder="Length / minutes" required>
+        </div>
+        <span class="glyphicon glyphicon-ok" ng-show="videoAdd.length.$valid"></span>
+        <span class="glyphicon glyphicon-remove" ng-show="videoAdd.length.$invalid && videoAdd.length.$dirty "></span>
+    </div>
+    <div class="form-group">
+        <label for="inputCategory" class="col-sm-2 control-label">*Category</label>
+        <div class="col-sm-4">
+            <input name="category" ng-model="newVideo.category" type="text" ng-minlength="2" class="form-control" id="inputCategory" placeholder="Category" required>
+        </div>
+        <span class="glyphicon glyphicon-ok" ng-show="videoAdd.category.$valid"></span>
+        <span class="glyphicon glyphicon-remove" ng-show="videoAdd.category.$invalid && videoAdd.category.$dirty "></span>
+    </div>
+    <div class="form-group">
+        <label for="inputSubscribers" class="col-sm-2 control-label">*Subscribers</label>
+        <div class="col-sm-4">
+            <input name="subscribers" ng-pattern="/^[0-9]+$/i" min="0" ng-model="newVideo.subscribers" type="number" class="form-control" id="inputSubscribers" placeholder="Subscribers" required>
+        </div>
+        <span class="glyphicon glyphicon-ok" ng-show="videoAdd.subscribers.$valid"></span>
+        <span class="glyphicon glyphicon-remove" ng-show="videoAdd.subscribers.$invalid && videoAdd.subscribers.$dirty "></span>
+    </div>
+    <div class="form-group">
+        <label for="inputDate" class="col-sm-2 control-label">*Date</label>
+        <div class="col-sm-4">
+            <input ng-model="newVideo.date.iso" type="text" name="date" class="form-control" id="inputDate" placeholder="Date" required>
+         </div>
+        <span class="glyphicon glyphicon-ok" ng-show="videoAdd.date.$valid"></span>
+        <span class="glyphicon glyphicon-remove" ng-show="videoAdd.date.$invalid && videoAdd.date.$dirty "></span>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input ng-model="newVideo.haveSubtitles" type="checkbox"> has subtitles
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" ng-disabled="videoAdd.$invalid">Add movie</button>
+        </div>
+    </div>
+</form>

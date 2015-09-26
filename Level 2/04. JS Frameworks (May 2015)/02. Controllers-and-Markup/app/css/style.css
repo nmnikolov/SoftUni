@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    max-width: 100%;
+    font-size: 16px;
+}
+
+/*--- Header ---*/
+
+header {
+    background: #222222;
+}
+
+header .navbar {
+    max-width: 1170px;
+    margin: 0 auto;
+    border: none;
+    background: #222222;
+}
+
+.navbar-nav li {
+    margin: 0 2px;
+}
+
+header .navbar-inverse .navbar-nav>.active>a {
+    background: #E90606;
+}
+
+body .navbar-inverse .navbar-nav>li>a:hover, body .navbar-inverse .navbar-nav>.active>a:hover {
+    background: #E90606;
+}
+
+header .navbar-inverse a {
+    color: #ffffff !important;
+    font-size: 1.2em;
+}
+
+main{
+    max-width: 1170px;
+    margin: 10px auto;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+#video-add .glyphicon-ok {
+    color: green;
+    vertical-align: top;
+    top: 5px;
+    font-size: 1.3em;
+}
+
+#video-add .glyphicon-remove {
+    color: red;
+    vertical-align: top;
+    top: 5px;
+    font-size: 1.3em;
+}
+
+#video-add .form-group > div {
+    float: none;
+    display: inline-block;
+}
+
+.videos{
+    margin-top: 20px;
+}
+
+.ui-datepicker-month, .ui-datepicker-year {
+    color: #808080;
+}

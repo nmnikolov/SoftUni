@@ -1,0 +1,17 @@
+<article>
+    <div class="media-list">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <h2>{{video.title}}</h2>
+                <img ng-src="{{video.picture}}" />
+                <div class="caption">
+                    <p>length: {{video.length  | number: 0}} min</p>
+                    <p>category: {{video.category}}</p>
+                    <p>subscribers: {{video.subscribers | number: 0}}</p>
+                    <p>date: {{video.date.iso | date : "dd MMM yyyy"}}</p>
+                    <p>have subtitles: {{video.haveSubtitles}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
