@@ -1,5 +1,5 @@
 // for
-for ($$$ITERABLE$ = 0; $$$ITERABLE$ < $LENGTH$; $$$ITERABLE$++) {
+for ($ITERABLE$ = 0; $ITERABLE$ < $LENGTH$; $ITERABLE$++) {
     $END$
 }
 
@@ -15,6 +15,9 @@ if ($CONDITION$) {
 
 // switch
 switch ($CONDITION$) {
-    case $END$
+    case $VAR$: 
+        $END$; 
+        break;
     default: 
+        throw new \Exception('');
 }
