@@ -1,0 +1,42 @@
+﻿@model Events.Web.Models.EventInputModel
+
+@{
+    ViewBag.Title = "Edit Event";
+}
+
+<h2>Edit</h2>
+
+@Html.Partial("_EventEditorForm")
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-datetimepicker")
+
+    <script type="text/javascript">
+        $(function () {
+        $('#StartDateTime').datetimepicker({
+            format: 'DD-MMM-YYYY HH:mm',
+            sideBySide: true,
+            showTodayButton: true
+        });
+        });
+
+        $(function () {
+        var date = new Date();
+        date.setHours(1);
+        date.setMinutes(0);
+
+        $('#Duration').datetimepicker({
+            format: 'HH:mm',
+            defaultDate: date,
+            showClear: true
+        });
+        });
+    </script>
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/bootstrap-datetimepicker")
+}

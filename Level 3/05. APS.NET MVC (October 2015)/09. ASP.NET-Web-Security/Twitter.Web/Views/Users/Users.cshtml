@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Twitter.Web.Models.ViewModels.UserPreviewViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<div class="row">
+    @Html.DisplayForModel()
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/twitter.js"></script>
+}

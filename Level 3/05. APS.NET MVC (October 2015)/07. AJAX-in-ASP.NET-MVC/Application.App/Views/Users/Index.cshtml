@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SoftUni.Blog.App.Models.ViewModels.UserPreviewViewModel>
+@{
+    ViewBag.Title = "Users Page";
+}
+
+<div class="row">
+    <ul class="list-group col-md-3">
+        <li class="list-group-item active">Users</li>
+        @Html.DisplayForModel()
+    </ul>
+</div>
+
+<div class="media well col-md-4" id="tooltip">
+</div>
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(document).mousemove(function (e) {
+            window.x = e.pageX;
+            window.y = e.pageY;
+        });
+
+        function GetUserPreview(username) {
+            //var div = document.getElementById('tooltip');
+
+            $("#tooltip").css("top", y + 2 + 'px');
+            $("#tooltip").css("left", x + 2 + 'px');
+
+            $.ajax({
+                type: 'GET',
+                url: "/Users/GetUserPreview",
+                data: "username=" + username,
+                success: function(result) {
+                    var el = $('#tooltip');
+                    el.html(result);
+
+                    //var x = $("#elementName").offset().left;
+                    //y = $("#elementName").offset().top;
+                    //SET
+                    //$("#anotherElementName").css({ left: x, top: y });
+
+                    $('#tooltip').show();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+
+        function ChagePosition() {
+            $("#tooltip").css("top", y + 2 + 'px');
+            $("#tooltip").css("left", x + 2 + 'px');
+        }
+
+        function HideToolTip() {
+            $('#tooltip').hide();
+        }
+    </Script>
+}

@@ -1,0 +1,65 @@
+﻿@using Twitter.Web.Models.BindingModels
+@using Twitter.Web.Models.ViewModels
+@model Twitter.Web.Models.ViewModels.UserWallViewModel
+
+@{
+    ViewBag.Title = "Users Page";
+}
+
+<h1>@Model.User.Fullname</h1>
+
+<hr/>
+
+<ul class="nav nav-pills">
+    <li role="presentation">
+        <a href="@Url.Action("Index", "Users", routeValues: new { username = @Model.User.Username })">
+            <span>Tweets</span>
+            <span class="badge total-tweets">@Model.User.TweetsCount</span>
+        </a>
+    </li>
+    <li role="presentation">
+        <a href="@Url.Action("Index", "Users", routeValues: new { username = @Model.User.Username })">
+            <span>Following</span>
+            <span class="badge following-count">@Model.User.FollowingCount</span>
+        </a>
+    </li>
+    <li role="presentation">
+        <a href="#">
+            <span>Followers</span>
+            <span class="badge followers-count">@Model.User.FollowersCount</span>
+        </a>
+    </li>
+    <li role="presentation">
+        <a href="#">
+            <span>Favorites</span>
+            <span class="badge favorites-count">@Model.User.FavoritesCount</span>
+        </a>
+    </li>
+</ul>
+
+@if (Request.IsAuthenticated && this.User.Identity.Name == @Model.User.Username )
+{
+    @Html.Partial("Partial/AddTweet", new AddTweetBindingModel())
+}
+
+<div class="tweets">
+    @Html.Partial("DisplayTemplates/TweetViewModel", @Model.Tweets)
+</div>
+
+@section scripts{
+    <script src="~/Scripts/twitter.js"></script>
+    <script src="~/Scripts/infiniteScroll.js"></script>
+
+    <script type="text/javascript">
+        var prepend = true;
+        $(function () {
+            $("div#loading").hide();
+        });
+        var moreRowsUrl = ""; //the URL to your ActionMethod
+        //var moreRowsUrl = ' Url.RouteUrl("CustomerList")'; //if you have a route defined, you can use an Html helper like Url.RouteUrl
+        $(window).scroll(scrollHandler);
+
+    </script>
+}
+
+

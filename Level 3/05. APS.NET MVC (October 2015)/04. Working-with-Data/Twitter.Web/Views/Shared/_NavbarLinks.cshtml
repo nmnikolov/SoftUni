@@ -1,0 +1,5 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li>@Html.ActionLink(User.Identity.Name, "Index", "Users", routeValues: new { username = User.Identity.Name }, htmlAttributes: null)</li>
+}
+

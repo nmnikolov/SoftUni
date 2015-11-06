@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApp.Data", "IdentityApp.Data\IdentityApp.Data.csproj", "{B74B8975-40DC-43DF-B84D-27EED9151C49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApp.Models", "IdentityApp.Models\IdentityApp.Models.csproj", "{4971CBB9-732C-4692-94F4-3275E5362863}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApp.Web", "IdentityApp.Web\IdentityApp.Web.csproj", "{289118A0-CC4E-44AF-839F-31CF889CB87E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B74B8975-40DC-43DF-B84D-27EED9151C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B74B8975-40DC-43DF-B84D-27EED9151C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B74B8975-40DC-43DF-B84D-27EED9151C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B74B8975-40DC-43DF-B84D-27EED9151C49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4971CBB9-732C-4692-94F4-3275E5362863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4971CBB9-732C-4692-94F4-3275E5362863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4971CBB9-732C-4692-94F4-3275E5362863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4971CBB9-732C-4692-94F4-3275E5362863}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289118A0-CC4E-44AF-839F-31CF889CB87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289118A0-CC4E-44AF-839F-31CF889CB87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289118A0-CC4E-44AF-839F-31CF889CB87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289118A0-CC4E-44AF-839F-31CF889CB87E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

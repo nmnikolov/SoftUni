@@ -1,0 +1,23 @@
+﻿@model Twitter.Web.Models.BindingModels.AddTweetBindingModel
+
+<div id="myForm">
+    @using (Html.BeginForm("AddTweet", "Tweets", FormMethod.Post, new {@class = "tweet-add-form"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h1>Add tweet</h1>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.Content, new {@class = "well tweet-add"})
+                @Html.ValidationMessageFor(model => model.Content, "", new {@class = "text-danger"})
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Tweet" class="btn btn-default"/>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Towns Page";
+}
+
+<h4>SearchTown:</h4>
+@Html.TextBox("town", "", new { @class = "form-control", placeholder = "enter town name..."})
+
+<div class="row">
+    <ul class="list-group col-md-4" id="town-search-results">
+    </ul>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $('#town').on('keyup', townsSearch);
+        $(document).on('click', '.autocomplete', autocomplete);
+
+        function autocomplete(e) {
+            e.preventDefault();
+            var a = $(this).html();
+            $('#town').val(a);
+            $('#town-search-results').html('');
+        }
+
+        function townsSearch(e) {
+            e.preventDefault();
+            var search = $(this).val();
+            
+            var el = $('#town-search-results');
+            if (search === '') {
+                el.html('');
+            }
+            else {
+                $.ajax({
+                        type: 'GET',
+                        url: "/Towns/GetTowns",
+                        data: "search=" + search
+                    })
+                    .done(function(result) {
+                        el.html(result);
+                    });
+            }
+        }
+    </script>
+}

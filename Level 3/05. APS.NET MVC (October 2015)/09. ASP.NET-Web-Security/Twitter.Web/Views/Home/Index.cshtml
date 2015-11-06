@@ -1,0 +1,49 @@
+﻿@using System.Collections
+@using Twitter.Web.Models.BindingModels
+@using Twitter.Web.Models.ViewModels
+@model IEnumerable<Twitter.Web.Models.ViewModels.TweetViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*@Html.Partial("_Messages", TempData)*@
+
+@if (Request.IsAuthenticated)
+{
+    @Html.Partial("Partial/AddTweet", new AddTweetBindingModel())
+}
+
+<div class="tweets">
+    @Html.Partial("DisplayTemplates/TweetViewModel", (ViewBag.Tweets as IEnumerable<TweetViewModel>))
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/infiniteScroll.js"></script>
+    <script src="~/Scripts/twitter.js"></script>
+    <script type="text/javascript">
+        var prepend = false;
+        $(function() {
+            $("div#loading").hide();
+        });
+        var moreRowsUrl = ""; //the URL to your ActionMethod
+        $(window).scroll(scrollHandler);
+
+        $(document).ready(function() {
+            var tweetsHub = $.connection.tweets;
+            tweetsHub.client.receiveTweet = function(tweetId) {
+                $.ajax({
+                    method: "GET",
+                    url: "/Tweets/Tweet",
+                    data: "tweetId=" + tweetId,
+                    success: function(tweet) {
+                        $('.tweets').prepend(tweet);
+                    }
+                });
+            };
+
+            $.connection.hub.start();
+        });
+    </script>
+}

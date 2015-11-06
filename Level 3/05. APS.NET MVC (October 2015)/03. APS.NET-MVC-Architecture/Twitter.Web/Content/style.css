@@ -1,0 +1,25 @@
+﻿.post-author {
+    font-weight: bold;
+}
+
+.posted-on {
+    color: gray;
+}
+
+.tweet-add {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.user-info, .user-info ul {
+    list-style: none;
+    display: inline;
+}
+
+.user-info > li{
+    display: inline;
+}
+
+.user-info span {
+    display: inline-block;
+}

@@ -1,0 +1,29 @@
+﻿@using System.Collections
+@model TempDataDictionary
+
+@if (Model["success"] != null)
+{
+    <div class="alert alert-success fade in">
+        <span class="close" data-dismiss="alert">&times;</span>
+        <strong>Success!</strong>
+
+        @foreach (var message in @Model["success"] as IEnumerable)
+        {
+            <p>@message</p>
+        }
+    </div>
+}
+
+@if (Model["error"] != null)
+{
+    <div class="alert alert-danger fade in">
+        <span class="close" data-dismiss="alert">&times;</span>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <strong>Error!</strong> 
+        @foreach (var message in @Model["error"] as IEnumerable)
+        {
+            <p>@message</p>
+        }
+    </div>
+}

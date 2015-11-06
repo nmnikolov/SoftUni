@@ -1,0 +1,16 @@
+﻿html {
+    overflow-y: scroll;
+}
+
+.registration-form input {
+    display: inline-block !important;
+}
+
+.users {
+    display: block;
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+}

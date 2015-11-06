@@ -1,0 +1,20 @@
+﻿@using System.Globalization
+@model IEnumerable<Twitter.Web.Models.ViewModels.TweetViewModel>
+
+@foreach (var tweet in Model)
+{
+    <div class="well">
+        <div>
+            <span class="post-author">@tweet.Author.Fullname</span>
+            @if (tweet.Author.Id != tweet.WallOwner.Id)
+            {
+                @:>> <span class="post-author">@tweet.Author.Fullname</span>
+            }
+            <span class="posted-on">@tweet.PostedOn.ToString("yyyy-MMM-dd HH:mm")</span>
+        </div>
+        
+        <div>
+            <p class="">@tweet.Content</p>
+        </div>
+    </div>
+}

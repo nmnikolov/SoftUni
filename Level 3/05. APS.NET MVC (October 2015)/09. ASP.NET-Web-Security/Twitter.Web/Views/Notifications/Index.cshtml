@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Twitter.Web.Models.ViewModels.NotificationViewModel>
+
+@{
+    ViewBag.Title = "Notifications Page";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Notification</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayForModel()
+    </tbody>
+</table>

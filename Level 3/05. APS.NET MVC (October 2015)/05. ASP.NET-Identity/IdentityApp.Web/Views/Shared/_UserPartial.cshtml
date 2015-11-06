@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <li>
+        @Html.ActionLink("User", "Index", "User", routeValues: null, htmlAttributes: new { title = "User" })
+    </li>
+    
+    if (User.IsInRole("Administrator"))
+    {
+        <li>
+            @Html.ActionLink("Admin", "Index", "Admin", routeValues: null, htmlAttributes: new { title = "Admin" })
+        </li>
+
+    }
+}

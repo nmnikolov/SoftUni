@@ -1,0 +1,13 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li>@Html.ActionLink(User.Identity.Name, "Index", "Users", routeValues: new {username = User.Identity.Name}, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Users", "Users", "Users", routeValues: null, htmlAttributes: null)</li>
+    <li>@*@Html.ActionLink("Noitications <span class=\"badget\">0</span>", "UserNotifications", "Notifications", routeValues: null, htmlAttributes: null)*@</li>
+    <li>
+        <a href="@Url.Action("Index", "Notifications", null)">
+            <span>Notifications</span>
+            <span id="notifications" class="badge"> @ViewBag.notifications</span>
+        </a>
+    </li>
+}
+

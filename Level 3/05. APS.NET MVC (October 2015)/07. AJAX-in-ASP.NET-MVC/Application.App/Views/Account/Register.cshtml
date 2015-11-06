@@ -1,0 +1,119 @@
+﻿@model SoftUni.Blog.App.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal registration-form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", onkeyup = "UserChecker(this.value)" })
+            <span id="username-availability"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", onkeyup = "EmailChecker(this.value)" })
+            <span id="email-availability"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Fullname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+         function UserChecker(username) {
+
+             var spn = document.getElementById('username-availability');
+
+             if (username === '') {
+                 spn.innerHTML = '';
+                 spn.style.color = "black";
+
+             }
+             else {
+                 $.ajax({
+                     type: 'GET',
+                     url: "/Users/UserNameChecker",
+                     data: "newUserName=" + username,
+                     success: function (result) {
+                         if (result === 'True') {
+                             spn.innerHTML = 'User name not available';
+                             spn.style.color = "red";
+                         }
+
+                         else {
+                             spn.innerHTML = 'Use name available';
+                             spn.style.color = "green";
+                         }
+                     },
+                     error: function (XMLHttpRequest, textStatus, errorThrown) {
+                     }
+                 });
+             }
+         }
+
+         function EmailChecker(email) {
+
+             var spn = document.getElementById('email-availability');
+
+             if (email === '') {
+                 spn.innerHTML = '';
+                 spn.style.color = "black";
+
+             }
+             else {
+                 $.ajax({
+                     type: 'GET',
+                     url: "/Users/EmailChecker",
+                     data: "newEmail=" + email,
+                     success: function (result) {
+                         if (result === 'True') {
+                             spn.innerHTML = 'Email not available';
+                             spn.style.color = "red";
+                         }
+
+                         else {
+                             spn.innerHTML = 'Email available';
+                             spn.style.color = "green";
+                         }
+                     },
+                     error: function (XMLHttpRequest, textStatus, errorThrown) {
+                     }
+                 });
+             }
+         }
+</script>
+}

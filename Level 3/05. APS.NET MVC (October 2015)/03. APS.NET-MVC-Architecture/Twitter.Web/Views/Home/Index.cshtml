@@ -1,0 +1,32 @@
+﻿@using System.Collections
+@using Twitter.Web.Models.BindingModels
+@using Twitter.Web.Models.ViewModels
+@model IEnumerable<Twitter.Web.Models.ViewModels.TweetViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*@Html.Partial("_Messages", TempData)*@
+
+@if (Request.IsAuthenticated)
+{
+    @Html.Partial("Partial/AddTweet", new AddTweetBindingModel())
+}
+
+<div class="tweets">
+    @Html.Partial("DisplayTemplates/TweetViewModel", (ViewBag.Tweets as IEnumerable<TweetViewModel>))
+</div>
+
+@section scripts{
+    <script src="~/Scripts/infiniteScroll.js"></script>
+    <script src="~/Scripts/twitter.js"></script>
+    <script type="text/javascript">
+        var prepend = false;
+        $(function() {
+            $("div#loading").hide();
+        });
+        var moreRowsUrl = ""; //the URL to your ActionMethod
+        $(window).scroll(scrollHandler);
+    </script>
+}
