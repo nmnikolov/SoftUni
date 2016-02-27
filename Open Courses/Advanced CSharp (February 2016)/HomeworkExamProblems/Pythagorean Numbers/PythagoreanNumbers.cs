@@ -8,6 +8,7 @@ namespace Pythagorean_Numbers
     {
         public static void Main()
         {
+            bool found = false;
             int rows = int.Parse(Console.ReadLine());
             int[] numbers = new int[rows];
 
@@ -16,22 +17,26 @@ namespace Pythagorean_Numbers
                 numbers[i] = int.Parse(Console.ReadLine());
             }
 
-            var perms = numbers.GetCombinationsRepetition(3);
-
+            IEnumerable<IEnumerable<int>> perms = numbers.GetCombinationsRepetition(3);
+                        
             foreach (var perm in perms)
             {
-                //Console.WriteLine(string.Join(" ", perm));
-
                 var comb = perm.ToArray();
 
-                int firstNumber = comb[0];
-                int secondNumber = comb[1];
-                int thirdNumber = comb[2];
+                int max = comb.Max();
+                int min = comb.Min();
+                int middle = comb.Sum() - max - min;
 
-                if (firstNumber * firstNumber + secondNumber * secondNumber == thirdNumber * thirdNumber)
+                if (min * min + middle * middle == max * max)
                 {
-                    Console.WriteLine("{0}*{0} + {1}*{1} = {2}*{2}", firstNumber, secondNumber, thirdNumber);
+                    found = true;
+                    Console.WriteLine("{0}*{0} + {1}*{1} = {2}*{2}", min, middle, max);
                 }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("No");
             }
         }
     }
@@ -67,11 +72,11 @@ namespace Pythagorean_Numbers
 
         public static IEnumerable<IEnumerable<T>> GetCombinationsRepetition<T>(this IEnumerable<T> elements, int k)
         {
-            return k == 0 ? new[] { new T[0] }
-                          : elements.SelectMany(
+            return k == 0 ? new[] { new T[0] } : elements.SelectMany(
                                 (e, i) =>
                                   elements
-                                  .GetCombinations(k - 1)
+                                  .Skip(i)
+                                  .GetCombinationsRepetition(k - 1)
                                   .Select(c => (new[] { e }).Concat(c)));
         }
     }
