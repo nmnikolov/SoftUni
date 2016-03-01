@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,52 +35,55 @@ namespace ParkingSystem
                 if (!occupied.Contains(coodinates))
                 {
                     occupied.Add(coodinates);
-
-                    int distance = Math.Abs(startingRow - x) + y + 1;
-                    Console.WriteLine(distance);
+                    PrintResult(true, startingRow, x, y);                    
                 }
                 else
                 {
                     bool found = false;
+                    int loops = Math.Max(y - 1, cols - y);
+                    int col = 0;
 
-                    int closestToSpot = int.MaxValue;
-                    SortedSet<int> columns = new SortedSet<int>();
-
-                    for (int i = 1; i < cols; i++)
+                    for (int i = 1; i < loops; i++)
                     {
-                        coodinates = string.Format("{0}|{1}", x, i);
+                        string left = string.Format("{0}|{1}", x, y - i);
+                        string right = string.Format("{0}|{1}", x, y + i);
 
-                        if (!occupied.Contains(coodinates))
+                        if (!occupied.Contains(left) && y - i > 0)
                         {
-                            int distanceFromSpot = Math.Abs(y - i);
-                            if (distanceFromSpot == closestToSpot)
-                            {
-                                columns.Add(i);
-                                found = true;
-                            }
-                            else if (distanceFromSpot <= closestToSpot)
-                            {
-                                closestToSpot = distanceFromSpot;
-                                columns.Clear();
-                                columns.Add(i);
-                                found = true;
-                            }
+                            col = y - i;
+                            occupied.Add(left);
+                            found = true;
+                            break;
+                        }
+
+                        if (!occupied.Contains(right) && y + i < cols)
+                        {
+                            col = y + i;
+                            occupied.Add(right);
+                            found = true;
+                            break;
                         }
                     }
 
-                    if (!found)
-                    {
-                        Console.WriteLine("Row {0} full", x);
-                    }
-                    else
-                    {
-                        occupied.Add(string.Format("{0}|{1}", x, columns.First()));
-                        Console.WriteLine(Math.Abs(startingRow - x) + columns.First() + 1);
-                    }
+                    PrintResult(found, startingRow, x, col);
                 }
 
                 parkingRow = Console.ReadLine();
             }
+
+        }
+
+        private static void PrintResult(bool found, int startingRow, int row, int col)
+        {
+            if (found)
+            {
+                int distance = CalculateDistance(startingRow, row, col);
+                Console.WriteLine(distance);
+            }
+            else
+            {
+                Console.WriteLine("Row {0} full", row);
+            }            
         }
 
         private static void ReadDimensions()
@@ -90,6 +93,11 @@ namespace ParkingSystem
 
             rows = dimensions[0];
             cols = dimensions[1];
+        }
+
+        private static int CalculateDistance(int startingRow, int row, int col)
+        {
+            return Math.Abs(startingRow - row) + col + 1;
         }
     }
 }
