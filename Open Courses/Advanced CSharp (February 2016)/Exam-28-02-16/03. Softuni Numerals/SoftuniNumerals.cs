@@ -1,68 +1,48 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
-namespace _03.Softuni_Numerals
+namespace SoftuniNumerals
 {
     public class SoftuniNumerals
     {
         public static void Main()
         {
-            string pattern = @"aa|aba|bcc|cc|cdc";
+            string pattern = @"(aa)|(aba)|(bcc)|(cc)|(cdc)";
             MatchCollection matches = Regex.Matches(Console.ReadLine(), pattern);
+            string numeric = ProcessMatches(matches);
+            BigInteger number = ConvertToDec(numeric);
+            Console.WriteLine(number);
+        }
+
+        private static string ProcessMatches(MatchCollection matches)
+        {
             string numeric = String.Empty;
 
             foreach (Match match in matches)
             {
-                switch (match.Value)
-                {
-                    case "aa":
-                        numeric += "0";
-                        break;
-                    case "aba":
-                        numeric += "1";
-                        break;
-                    case "bcc":
-                        numeric += "2";
-                        break;
-                    case "cc":
-                        numeric += "3";
-                        break;
-                    case "cdc":
-                        numeric += "4";
-                        break;
-                }
+                int digit = match.Groups.Cast<Group>()
+                    .Select((v, i) => new { Index = i, Value = v.Value})
+                    .Skip(1)
+                    .First(o => o.Value != string.Empty)
+                    .Index - 1;
+
+                numeric += digit;
             }
 
-            BigInteger number = ConvertToDec(numeric);
-            Console.WriteLine(number);
+            return numeric;
         }
 
         public static BigInteger ConvertToDec(string numeric)
         {
             BigInteger result = 0;
-            numeric = new string(numeric.ToCharArray().Reverse().ToArray());
 
-            for (int i = 0; i < numeric.Length; i++)
+            for (int index = numeric.Length - 1; index >= 0; index--)
             {
-                int digit = int.Parse(numeric[i].ToString());
-
-                if (i == 0)
-                {
-                    result += digit;
-                }
-                else
-                {
-                    BigInteger pow = 5;
-
-                    for (int j = 1; j < i; j++)
-                    {
-                        pow *= 5;
-                    }
-                    
-                    result += pow * digit;
-                }
+                int digit = int.Parse(numeric[index].ToString());
+                result += BigInteger.Pow(5, numeric.Length - 1 - index) * digit;
             }
 
             return result;
