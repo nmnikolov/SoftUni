@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,8 +8,8 @@ namespace Events
 {
     public class Events
     {
-        private static SortedDictionary<string, SortedDictionary<string, OrderedBag<string>>> result =
-                new SortedDictionary<string, SortedDictionary<string, OrderedBag<string>>>();
+        private static Dictionary<string, SortedDictionary<string, OrderedBag<string>>> result =
+                new Dictionary<string, SortedDictionary<string, OrderedBag<string>>>();
 
         private static string[] locations;
 
