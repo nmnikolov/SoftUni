@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +11,7 @@ namespace AdvancedCsharp
             "stone", "gold", "wood", "food"
         };
 
-        private static List<KeyValuePair<string, int>> resourcesWithValues = new List<KeyValuePair<string, int>>();
+        private static List<int> resourcesWithValues = new List<int>();
         private static List<string> resourcesNames = new List<string>();
         private static int max = int.MinValue;
 
@@ -45,7 +45,7 @@ namespace AdvancedCsharp
                     if (validResources.Contains(resourcesNames[start]))
                     {
                         visited[start] = true;
-                        currentSum += resourcesWithValues[start].Value;
+                        currentSum += resourcesWithValues[start];
                     }
 
                     start = (start + step) % resourcesNames.Count;
@@ -68,7 +68,7 @@ namespace AdvancedCsharp
                     quantity = int.Parse(resourceData[1]);
                 }
 
-                resourcesWithValues.Add(new KeyValuePair<string, int>(resource, quantity));
+                resourcesWithValues.Add(quantity);
                 resourcesNames.Add(resource);
             }
         }
